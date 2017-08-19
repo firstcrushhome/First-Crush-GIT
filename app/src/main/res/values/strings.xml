@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">First Crush</string>
+    <string name="player_error">Error initializing YouTube player: %s</string>
+</resources>

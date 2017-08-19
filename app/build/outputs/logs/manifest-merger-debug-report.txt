@@ -1,0 +1,410 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:2:1-65:12
+	package
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:5:5-39
+		INJECTED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml
+		INJECTED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml
+		INJECTED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:3:5-51
+	android:hardwareAccelerated
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:4:5-39
+	xmlns:android
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml
+		INJECTED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml
+supports-screens
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:6:5-7:93
+	android:largeScreens
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:6:49-76
+	android:smallScreens
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:7:35-62
+	android:normalScreens
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:6:77-105
+	android:xlargeScreens
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:7:63-91
+	android:resizeable
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:7:9-34
+	android:anyDensity
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:6:23-48
+uses-permission#android.permission.INTERNET
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:8:5-66
+MERGED from [com.google.android.gms:play-services-appinvite:8.1.0] C:\Users\sjohri\.android\build-cache\ff1988a28088002f771332c22080b38837c2917a\output\AndroidManifest.xml:19:5-67
+MERGED from [com.google.android.gms:play-services-measurement:8.1.0] C:\Users\sjohri\.android\build-cache\5bcaf5c55ebea81eb7697279ece7854becdcab38\output\AndroidManifest.xml:21:5-67
+MERGED from [com.google.android.gms:play-services-wallet:8.1.0] C:\Users\sjohri\.android\build-cache\a284b2913c31632f99191fa6b76fa93d83374587\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-gcm:8.1.0] C:\Users\sjohri\.android\build-cache\1bec6f4ac2e8cba25c951a90d308a24641452fbf\output\AndroidManifest.xml:22:5-67
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:15:5-67
+MERGED from [com.google.android.gms:play-services-analytics:8.1.0] C:\Users\sjohri\.android\build-cache\453305f5c20d0c4ea433b45b6358537955b62596\output\AndroidManifest.xml:21:5-67
+MERGED from [com.google.android.gms:play-services-ads:8.1.0] C:\Users\sjohri\.android\build-cache\4835cbaab112f59af00b70d3db351d6b725d0944\output\AndroidManifest.xml:20:5-66
+MERGED from [com.google.android.gms:play-services-maps:8.1.0] C:\Users\sjohri\.android\build-cache\d105cac4c8f9ecf20df34089a0d36fa3116cb8b2\output\AndroidManifest.xml:21:5-66
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:8:22-64
+uses-permission#android.permission.VIBRATE
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:9:5-65
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:23:5-66
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:9:22-63
+uses-permission#android.permission.WAKE_LOCK
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:10:5-67
+MERGED from [com.google.android.gms:play-services-measurement:8.1.0] C:\Users\sjohri\.android\build-cache\5bcaf5c55ebea81eb7697279ece7854becdcab38\output\AndroidManifest.xml:24:5-67
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:18:5-68
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:10:22-65
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:11:5-81
+MERGED from [com.google.android.gms:play-services-gcm:8.1.0] C:\Users\sjohri\.android\build-cache\1bec6f4ac2e8cba25c951a90d308a24641452fbf\output\AndroidManifest.xml:21:5-82
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:16:5-82
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:11:22-79
+application
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:12:5-64:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\sjohri\.android\build-cache\3511b2ac59befa565e888e7a1c42dca5c4ebe0a5\output\AndroidManifest.xml:9:5-20
+MERGED from [com.google.android.gms:play-services:8.1.0] C:\Users\sjohri\.android\build-cache\84f34aaeccbba228927464c87ba59be1c17784a4\output\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-appinvite:8.1.0] C:\Users\sjohri\.android\build-cache\ff1988a28088002f771332c22080b38837c2917a\output\AndroidManifest.xml:20:5-20
+MERGED from [com.google.android.gms:play-services-appstate:8.1.0] C:\Users\sjohri\.android\build-cache\8f8e8c0381e48e534db25e7309eeab00196a72bc\output\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-cast:8.1.0] C:\Users\sjohri\.android\build-cache\2985bc1d6eb7ddfb8bb5722f07cc23d1f1cf2878\output\AndroidManifest.xml:19:5-20
+MERGED from [com.android.support:mediarouter-v7:22.2.0] C:\Users\sjohri\.android\build-cache\d40350803c2ab6e2aa5e429abde0f9be4da9de6f\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\sjohri\.android\build-cache\da0d83734e71f9dae791e4390d7e8a88468ce2a8\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\sjohri\.android\build-cache\ee94ddbb39fdc64870a6a37f0c9dc38285ab9984\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\sjohri\.android\build-cache\b7bc4c2715d6c0ecbcafca845ea008204fbc70d9\output\AndroidManifest.xml:26:5-20
+MERGED from [com.google.android.gms:play-services-fitness:8.1.0] C:\Users\sjohri\.android\build-cache\0b9efd47079195ffd86b0a13138477012b85cfe4\output\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-games:8.1.0] C:\Users\sjohri\.android\build-cache\5921b32d209858961fa9fac2a2727f6a3d90175d\output\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-drive:8.1.0] C:\Users\sjohri\.android\build-cache\ce93e8ef430cdcca72b742951951297da220bcb3\output\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-measurement:8.1.0] C:\Users\sjohri\.android\build-cache\5bcaf5c55ebea81eb7697279ece7854becdcab38\output\AndroidManifest.xml:26:5-46:19
+MERGED from [com.google.android.gms:play-services-nearby:8.1.0] C:\Users\sjohri\.android\build-cache\bab557a8e7bee4181db2028eb197cc7fe6754159\output\AndroidManifest.xml:20:5-20
+MERGED from [com.google.android.gms:play-services-panorama:8.1.0] C:\Users\sjohri\.android\build-cache\0d0b12294436d9729a559a2ea972835407a0edd6\output\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-plus:8.1.0] C:\Users\sjohri\.android\build-cache\8d69c215e46e2cee64e2ed966f31a067e5625d0e\output\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-safetynet:8.1.0] C:\Users\sjohri\.android\build-cache\323d997e67f926fbf6fb7bfde42a357a8310d958\output\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-vision:8.1.0] C:\Users\sjohri\.android\build-cache\5963b40f816575c075a9c0e6d6b6255888b93b31\output\AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-wearable:8.1.0] C:\Users\sjohri\.android\build-cache\d7449d55729164ce60811069e0c14c81785d4b65\output\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-identity:8.1.0] C:\Users\sjohri\.android\build-cache\c850b3f699a0d1a7a2cebcb2075a202f98aaf6a8\output\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-gcm:8.1.0] C:\Users\sjohri\.android\build-cache\1bec6f4ac2e8cba25c951a90d308a24641452fbf\output\AndroidManifest.xml:24:5-20
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:40:5-81:19
+MERGED from [com.google.android.gms:play-services-analytics:8.1.0] C:\Users\sjohri\.android\build-cache\453305f5c20d0c4ea433b45b6358537955b62596\output\AndroidManifest.xml:24:5-20
+MERGED from [com.google.android.gms:play-services-ads:8.1.0] C:\Users\sjohri\.android\build-cache\4835cbaab112f59af00b70d3db351d6b725d0944\output\AndroidManifest.xml:24:5-32:19
+MERGED from [com.google.android.gms:play-services-appindexing:8.1.0] C:\Users\sjohri\.android\build-cache\28d9d1d1f9b9bd93931414521c14ff2f1b96b30e\output\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-location:8.1.0] C:\Users\sjohri\.android\build-cache\60dea248e0a266dd7735d535fca60d58ef466d09\output\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-maps:8.1.0] C:\Users\sjohri\.android\build-cache\d105cac4c8f9ecf20df34089a0d36fa3116cb8b2\output\AndroidManifest.xml:28:5-20
+MERGED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\sjohri\.android\build-cache\77d1daa42a854a85edf548c46dbb17a4c743af5d\output\AndroidManifest.xml:20:5-24:19
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\sjohri\.android\build-cache\98651646d7c25e56c492a1b81e29c691f0640efb\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\sjohri\.android\build-cache\01372f0f78dfcea09ab7fbd87d32cc407026368c\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\sjohri\.android\build-cache\e0fc2dc3f723d6d25d2e07511b7ad60604fbca61\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\sjohri\.android\build-cache\344335cc2c2b779ad66ff97e2180cba222de695e\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\sjohri\.android\build-cache\f13721400c65434d5a02a5e8aaff0ce092c71720\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\sjohri\.android\build-cache\e0fba59ed35aaf37813c9dbb220d70bdb81e2749\output\AndroidManifest.xml:29:5-20
+	android:label
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:16:9-41
+	android:supportsRtl
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:18:9-35
+	android:hardwareAccelerated
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:14:9-43
+	android:roundIcon
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:17:9-50
+	android:allowBackup
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:13:9-35
+	android:icon
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:15:9-36
+	android:theme
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:19:9-65
+activity#co.firstcrush.firstcrush.MainActivity
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:20:9-30:20
+	android:screenOrientation
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:20:19-55
+	android:launchMode
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:23:19-49
+	android:windowSoftInputMode
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:25:19-61
+	android:supportsPictureInPicture
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:21:19-58
+	android:configChanges
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:22:19-96
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:24:19-47
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:26:13-29:29
+action#android.intent.action.MAIN
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:27:17-69
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:27:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:28:17-77
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:28:27-74
+meta-data#com.onesignal.NotificationOpened.DEFAULT
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:31:9-102
+	android:value
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:31:76-99
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:31:20-75
+provider#com.google.android.gms.measurement.AppMeasurementContentProvider
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:33:9-199
+MERGED from [com.google.android.gms:play-services-measurement:8.1.0] C:\Users\sjohri\.android\build-cache\5bcaf5c55ebea81eb7697279ece7854becdcab38\output\AndroidManifest.xml:28:7-31:37
+	android:authorities
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:33:19-92
+	android:exported
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:33:93-117
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:33:118-197
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:34:9-38:20
+MERGED from [com.google.android.gms:play-services-measurement:8.1.0] C:\Users\sjohri\.android\build-cache\5bcaf5c55ebea81eb7697279ece7854becdcab38\output\AndroidManifest.xml:33:7-39:18
+	android:enabled
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:34:19-41
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:34:42-114
+intent-filter#com.google.android.gms.measurement.UPLOAD
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:35:13-37:29
+action#com.google.android.gms.measurement.UPLOAD
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:36:17-83
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:36:25-81
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:39:9-139
+MERGED from [com.google.android.gms:play-services-measurement:8.1.0] C:\Users\sjohri\.android\build-cache\5bcaf5c55ebea81eb7697279ece7854becdcab38\output\AndroidManifest.xml:41:7-44:37
+	android:enabled
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:39:18-40
+	android:exported
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:39:41-65
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:39:66-137
+meta-data#onesignal_app_id
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:40:9-106
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:41:9-43:51
+	android:value
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:40:52-104
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:40:20-51
+meta-data#onesignal_google_project_number
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:41:9-101
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:44:9-46:70
+	android:value
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:41:67-99
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:41:20-66
+receiver#com.onesignal.GcmBroadcastReceiver
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:42:9-47:20
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:48:9-56:20
+	android:permission
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:42:69-129
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:42:19-68
+intent-filter#co.firstcrush.firstcrush+com.google.android.c2dm.intent.RECEIVE
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:43:13-46:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:44:17-80
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:44:25-78
+category#co.firstcrush.firstcrush
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:45:17-68
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:45:27-66
+receiver#com.onesignal.NotificationOpenedReceiver
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:48:9-76
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:57:9-77
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:48:19-74
+service#com.onesignal.GcmIntentService
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:49:9-65
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:59:9-66
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:49:18-63
+service#com.onesignal.SyncService
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:50:9-89
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:60:9-62:44
+	android:stopWithTask
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:50:59-87
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:50:18-58
+activity#com.onesignal.PermissionsActivity
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:51:9-129
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:64:9-66:75
+	android:theme
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:51:68-127
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:51:19-67
+service#com.onesignal.NotificationRestoreService
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:52:9-75
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:68:9-76
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:52:18-73
+receiver#com.onesignal.BootUpReceiver
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:53:9-58:20
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:70:9-75:20
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:53:19-62
+intent-filter#android.intent.action.BOOT_COMPLETED+android.intent.action.QUICKBOOT_POWERON
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:54:13-57:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:55:17-78
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:55:25-76
+action#android.intent.action.QUICKBOOT_POWERON
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:56:17-81
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:56:25-79
+receiver#com.onesignal.UpgradeReceiver
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:59:9-63:20
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:76:9-80:20
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:59:19-63
+intent-filter#android.intent.action.MY_PACKAGE_REPLACED
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:60:13-62:29
+action#android.intent.action.MY_PACKAGE_REPLACED
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:61:17-83
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:61:25-81
+uses-sdk
+INJECTED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\sjohri\.android\build-cache\3511b2ac59befa565e888e7a1c42dca5c4ebe0a5\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.gms:play-services:8.1.0] C:\Users\sjohri\.android\build-cache\84f34aaeccbba228927464c87ba59be1c17784a4\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-appinvite:8.1.0] C:\Users\sjohri\.android\build-cache\ff1988a28088002f771332c22080b38837c2917a\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-appstate:8.1.0] C:\Users\sjohri\.android\build-cache\8f8e8c0381e48e534db25e7309eeab00196a72bc\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-cast:8.1.0] C:\Users\sjohri\.android\build-cache\2985bc1d6eb7ddfb8bb5722f07cc23d1f1cf2878\output\AndroidManifest.xml:18:5-42
+MERGED from [com.android.support:mediarouter-v7:22.2.0] C:\Users\sjohri\.android\build-cache\d40350803c2ab6e2aa5e429abde0f9be4da9de6f\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\sjohri\.android\build-cache\da0d83734e71f9dae791e4390d7e8a88468ce2a8\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\sjohri\.android\build-cache\ee94ddbb39fdc64870a6a37f0c9dc38285ab9984\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\sjohri\.android\build-cache\b7bc4c2715d6c0ecbcafca845ea008204fbc70d9\output\AndroidManifest.xml:20:5-43
+MERGED from [com.google.android.gms:play-services-fitness:8.1.0] C:\Users\sjohri\.android\build-cache\0b9efd47079195ffd86b0a13138477012b85cfe4\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-games:8.1.0] C:\Users\sjohri\.android\build-cache\5921b32d209858961fa9fac2a2727f6a3d90175d\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-drive:8.1.0] C:\Users\sjohri\.android\build-cache\ce93e8ef430cdcca72b742951951297da220bcb3\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-measurement:8.1.0] C:\Users\sjohri\.android\build-cache\5bcaf5c55ebea81eb7697279ece7854becdcab38\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-nearby:8.1.0] C:\Users\sjohri\.android\build-cache\bab557a8e7bee4181db2028eb197cc7fe6754159\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-panorama:8.1.0] C:\Users\sjohri\.android\build-cache\0d0b12294436d9729a559a2ea972835407a0edd6\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-plus:8.1.0] C:\Users\sjohri\.android\build-cache\8d69c215e46e2cee64e2ed966f31a067e5625d0e\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-safetynet:8.1.0] C:\Users\sjohri\.android\build-cache\323d997e67f926fbf6fb7bfde42a357a8310d958\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-vision:8.1.0] C:\Users\sjohri\.android\build-cache\5963b40f816575c075a9c0e6d6b6255888b93b31\output\AndroidManifest.xml:4:5-42
+MERGED from [com.google.android.gms:play-services-wallet:8.1.0] C:\Users\sjohri\.android\build-cache\a284b2913c31632f99191fa6b76fa93d83374587\output\AndroidManifest.xml:19:5-42
+MERGED from [com.google.android.gms:play-services-wearable:8.1.0] C:\Users\sjohri\.android\build-cache\d7449d55729164ce60811069e0c14c81785d4b65\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-identity:8.1.0] C:\Users\sjohri\.android\build-cache\c850b3f699a0d1a7a2cebcb2075a202f98aaf6a8\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-gcm:8.1.0] C:\Users\sjohri\.android\build-cache\1bec6f4ac2e8cba25c951a90d308a24641452fbf\output\AndroidManifest.xml:18:5-42
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:5:5-43
+MERGED from [com.google.android.gms:play-services-analytics:8.1.0] C:\Users\sjohri\.android\build-cache\453305f5c20d0c4ea433b45b6358537955b62596\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-ads:8.1.0] C:\Users\sjohri\.android\build-cache\4835cbaab112f59af00b70d3db351d6b725d0944\output\AndroidManifest.xml:23:5-42
+MERGED from [com.google.android.gms:play-services-appindexing:8.1.0] C:\Users\sjohri\.android\build-cache\28d9d1d1f9b9bd93931414521c14ff2f1b96b30e\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-location:8.1.0] C:\Users\sjohri\.android\build-cache\60dea248e0a266dd7735d535fca60d58ef466d09\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-maps:8.1.0] C:\Users\sjohri\.android\build-cache\d105cac4c8f9ecf20df34089a0d36fa3116cb8b2\output\AndroidManifest.xml:27:5-42
+MERGED from [com.google.android.gms:play-services-base:8.1.0] C:\Users\sjohri\.android\build-cache\3c274ae4f03ca6432c00425b4f4904e7183edee7\output\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\sjohri\.android\build-cache\77d1daa42a854a85edf548c46dbb17a4c743af5d\output\AndroidManifest.xml:18:5-42
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\sjohri\.android\build-cache\98651646d7c25e56c492a1b81e29c691f0640efb\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\sjohri\.android\build-cache\01372f0f78dfcea09ab7fbd87d32cc407026368c\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\sjohri\.android\build-cache\e0fc2dc3f723d6d25d2e07511b7ad60604fbca61\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\sjohri\.android\build-cache\344335cc2c2b779ad66ff97e2180cba222de695e\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\sjohri\.android\build-cache\f13721400c65434d5a02a5e8aaff0ce092c71720\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\sjohri\.android\build-cache\e0fba59ed35aaf37813c9dbb220d70bdb81e2749\output\AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\sjohri\.android\build-cache\da0d83734e71f9dae791e4390d7e8a88468ce2a8\output\AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml
+		INJECTED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml
+		INJECTED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\sjohri\.android\build-cache\da0d83734e71f9dae791e4390d7e8a88468ce2a8\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\sjohri\.android\build-cache\ee94ddbb39fdc64870a6a37f0c9dc38285ab9984\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\sjohri\.android\build-cache\b7bc4c2715d6c0ecbcafca845ea008204fbc70d9\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\sjohri\.android\build-cache\98651646d7c25e56c492a1b81e29c691f0640efb\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\sjohri\.android\build-cache\01372f0f78dfcea09ab7fbd87d32cc407026368c\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\sjohri\.android\build-cache\e0fc2dc3f723d6d25d2e07511b7ad60604fbca61\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\sjohri\.android\build-cache\344335cc2c2b779ad66ff97e2180cba222de695e\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\sjohri\.android\build-cache\f13721400c65434d5a02a5e8aaff0ce092c71720\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\sjohri\.android\build-cache\e0fba59ed35aaf37813c9dbb220d70bdb81e2749\output\AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\sjohri\.android\build-cache\da0d83734e71f9dae791e4390d7e8a88468ce2a8\output\AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\sjohri\.android\build-cache\da0d83734e71f9dae791e4390d7e8a88468ce2a8\output\AndroidManifest.xml:26:9-47
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.android.gms:play-services-measurement:8.1.0] C:\Users\sjohri\.android\build-cache\5bcaf5c55ebea81eb7697279ece7854becdcab38\output\AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.gms:play-services-nearby:8.1.0] C:\Users\sjohri\.android\build-cache\bab557a8e7bee4181db2028eb197cc7fe6754159\output\AndroidManifest.xml:19:5-79
+MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-analytics:8.1.0] C:\Users\sjohri\.android\build-cache\453305f5c20d0c4ea433b45b6358537955b62596\output\AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.gms:play-services-ads:8.1.0] C:\Users\sjohri\.android\build-cache\4835cbaab112f59af00b70d3db351d6b725d0944\output\AndroidManifest.xml:21:5-78
+MERGED from [com.google.android.gms:play-services-maps:8.1.0] C:\Users\sjohri\.android\build-cache\d105cac4c8f9ecf20df34089a0d36fa3116cb8b2\output\AndroidManifest.xml:20:5-78
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:8.1.0] C:\Users\sjohri\.android\build-cache\5bcaf5c55ebea81eb7697279ece7854becdcab38\output\AndroidManifest.xml:22:22-76
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from [com.google.android.gms:play-services-wallet:8.1.0] C:\Users\sjohri\.android\build-cache\a284b2913c31632f99191fa6b76fa93d83374587\output\AndroidManifest.xml:21:5-70
+	android:name
+		ADDED from [com.google.android.gms:play-services-wallet:8.1.0] C:\Users\sjohri\.android\build-cache\a284b2913c31632f99191fa6b76fa93d83374587\output\AndroidManifest.xml:21:22-68
+uses-permission#android.permission.USE_CREDENTIALS
+ADDED from [com.google.android.gms:play-services-wallet:8.1.0] C:\Users\sjohri\.android\build-cache\a284b2913c31632f99191fa6b76fa93d83374587\output\AndroidManifest.xml:22:5-73
+	android:name
+		ADDED from [com.google.android.gms:play-services-wallet:8.1.0] C:\Users\sjohri\.android\build-cache\a284b2913c31632f99191fa6b76fa93d83374587\output\AndroidManifest.xml:22:22-71
+permission#${manifestApplicationId}.permission.C2D_MESSAGE
+ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:8:5-10:47
+	android:protectionLevel
+		ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:10:9-44
+	android:name
+		ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:9:9-71
+uses-permission#${manifestApplicationId}.permission.C2D_MESSAGE
+ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:12:5-87
+	android:name
+		ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:12:22-84
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:25:5-81
+	android:name
+		ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:25:22-78
+uses-permission#com.sec.android.provider.badge.permission.READ
+ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:28:5-86
+	android:name
+		ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:28:22-83
+uses-permission#com.sec.android.provider.badge.permission.WRITE
+ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:29:5-87
+	android:name
+		ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:29:22-84
+uses-permission#com.htc.launcher.permission.READ_SETTINGS
+ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:31:5-81
+	android:name
+		ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:31:22-78
+uses-permission#com.htc.launcher.permission.UPDATE_SHORTCUT
+ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:32:5-83
+	android:name
+		ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:32:22-80
+uses-permission#com.sonyericsson.home.permission.BROADCAST_BADGE
+ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:34:5-88
+	android:name
+		ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:34:22-85
+uses-permission#com.anddoes.launcher.permission.UPDATE_COUNT
+ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:36:5-84
+	android:name
+		ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:36:22-81
+uses-permission#com.majeur.launcher.permission.UPDATE_BADGE
+ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:38:5-83
+	android:name
+		ADDED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:38:22-80
+activity#com.google.android.gms.ads.AdActivity
+ADDED from [com.google.android.gms:play-services-ads:8.1.0] C:\Users\sjohri\.android\build-cache\4835cbaab112f59af00b70d3db351d6b725d0944\output\AndroidManifest.xml:26:9-29:64
+	android:configChanges
+		ADDED from [com.google.android.gms:play-services-ads:8.1.0] C:\Users\sjohri\.android\build-cache\4835cbaab112f59af00b70d3db351d6b725d0944\output\AndroidManifest.xml:28:13-122
+	android:theme
+		ADDED from [com.google.android.gms:play-services-ads:8.1.0] C:\Users\sjohri\.android\build-cache\4835cbaab112f59af00b70d3db351d6b725d0944\output\AndroidManifest.xml:29:13-61
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads:8.1.0] C:\Users\sjohri\.android\build-cache\4835cbaab112f59af00b70d3db351d6b725d0944\output\AndroidManifest.xml:27:13-65
+activity#com.google.android.gms.ads.purchase.InAppPurchaseActivity
+ADDED from [com.google.android.gms:play-services-ads:8.1.0] C:\Users\sjohri\.android\build-cache\4835cbaab112f59af00b70d3db351d6b725d0944\output\AndroidManifest.xml:30:9-31:52
+	android:theme
+		ADDED from [com.google.android.gms:play-services-ads:8.1.0] C:\Users\sjohri\.android\build-cache\4835cbaab112f59af00b70d3db351d6b725d0944\output\AndroidManifest.xml:31:13-50
+	android:name
+		ADDED from [com.google.android.gms:play-services-ads:8.1.0] C:\Users\sjohri\.android\build-cache\4835cbaab112f59af00b70d3db351d6b725d0944\output\AndroidManifest.xml:30:19-91
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [com.google.android.gms:play-services-maps:8.1.0] C:\Users\sjohri\.android\build-cache\d105cac4c8f9ecf20df34089a0d36fa3116cb8b2\output\AndroidManifest.xml:22:5-80
+	android:name
+		ADDED from [com.google.android.gms:play-services-maps:8.1.0] C:\Users\sjohri\.android\build-cache\d105cac4c8f9ecf20df34089a0d36fa3116cb8b2\output\AndroidManifest.xml:22:22-78
+uses-feature#0x00020000
+ADDED from [com.google.android.gms:play-services-maps:8.1.0] C:\Users\sjohri\.android\build-cache\d105cac4c8f9ecf20df34089a0d36fa3116cb8b2\output\AndroidManifest.xml:23:5-25:33
+	android:glEsVersion
+		ADDED from [com.google.android.gms:play-services-maps:8.1.0] C:\Users\sjohri\.android\build-cache\d105cac4c8f9ecf20df34089a0d36fa3116cb8b2\output\AndroidManifest.xml:24:8-40
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:8.1.0] C:\Users\sjohri\.android\build-cache\d105cac4c8f9ecf20df34089a0d36fa3116cb8b2\output\AndroidManifest.xml:25:8-31
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+IMPLIED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:2:1-65:12 reason: com.google.android.gms.maps requested WRITE_EXTERNAL_STORAGE
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\sjohri\.android\build-cache\77d1daa42a854a85edf548c46dbb17a4c743af5d\output\AndroidManifest.xml:21:9-23:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\sjohri\.android\build-cache\77d1daa42a854a85edf548c46dbb17a4c743af5d\output\AndroidManifest.xml:23:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\sjohri\.android\build-cache\77d1daa42a854a85edf548c46dbb17a4c743af5d\output\AndroidManifest.xml:22:13-58

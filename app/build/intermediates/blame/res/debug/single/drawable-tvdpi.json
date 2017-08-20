@@ -1,31 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\sjohri\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\ic_plusone_tall_off_client.png",
-        "source": "C:\\Users\\sjohri\\.android\\build-cache\\5eb8b057b0a5312d53de588d8689f21ebf01b519\\output\\res\\drawable-tvdpi\\ic_plusone_tall_off_client.png"
-    },
-    {
-        "merged": "C:\\Users\\sjohri\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\ic_plusone_standard_off_client.png",
-        "source": "C:\\Users\\sjohri\\.android\\build-cache\\5eb8b057b0a5312d53de588d8689f21ebf01b519\\output\\res\\drawable-tvdpi\\ic_plusone_standard_off_client.png"
-    },
-    {
         "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\ic_plusone_small_off_client.png",
         "source": "C:\\Users\\sjohri\\.android\\build-cache\\8d69c215e46e2cee64e2ed966f31a067e5625d0e\\output\\res\\drawable-tvdpi\\ic_plusone_small_off_client.png"
     },
     {
         "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\ic_plusone_standard_off_client.png",
         "source": "C:\\Users\\sjohri\\.android\\build-cache\\8d69c215e46e2cee64e2ed966f31a067e5625d0e\\output\\res\\drawable-tvdpi\\ic_plusone_standard_off_client.png"
-    },
-    {
-        "merged": "C:\\Users\\sjohri\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_full_open_on_phone.png",
-        "source": "C:\\Users\\sjohri\\.android\\build-cache\\1af6d8be818c5053de01b74ebaee824cc0d35719\\output\\res\\drawable-tvdpi\\common_full_open_on_phone.png"
-    },
-    {
-        "merged": "C:\\Users\\sjohri\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\ic_plusone_small_off_client.png",
-        "source": "C:\\Users\\sjohri\\.android\\build-cache\\5eb8b057b0a5312d53de588d8689f21ebf01b519\\output\\res\\drawable-tvdpi\\ic_plusone_small_off_client.png"
-    },
-    {
-        "merged": "C:\\Users\\sjohri\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\ic_plusone_medium_off_client.png",
-        "source": "C:\\Users\\sjohri\\.android\\build-cache\\5eb8b057b0a5312d53de588d8689f21ebf01b519\\output\\res\\drawable-tvdpi\\ic_plusone_medium_off_client.png"
     },
     {
         "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_full_open_on_phone.png",

@@ -3,7 +3,7 @@
     package="co.firstcrush.firstcrush"
     android:hardwareAccelerated="true"
     android:versionCode="3"
-    android:versionName="3.0" >
+    android:versionName="3.1" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -60,6 +60,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         <activity
+            android:name="co.firstcrush.firstcrush.SplashScreen"
+            android:screenOrientation="fullUser" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="co.firstcrush.firstcrush.MainActivity"
             android:configChanges="keyboard|keyboardHidden|locale|orientation|screenSize"
             android:launchMode="singleTop"
@@ -69,7 +78,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 

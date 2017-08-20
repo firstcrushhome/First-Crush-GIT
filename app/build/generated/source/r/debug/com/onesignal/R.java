@@ -45,9 +45,9 @@ public final class R {
         public static final int hybrid = 0x7f0c0029;
         public static final int none = 0x7f0c0012;
         public static final int normal = 0x7f0c0014;
-        public static final int os_bgimage_notif_bgimage = 0x7f0c00a2;
-        public static final int os_bgimage_notif_body = 0x7f0c00a4;
-        public static final int os_bgimage_notif_title = 0x7f0c00a3;
+        public static final int os_bgimage_notif_bgimage = 0x7f0c00a6;
+        public static final int os_bgimage_notif_body = 0x7f0c00a8;
+        public static final int os_bgimage_notif_title = 0x7f0c00a7;
         public static final int satellite = 0x7f0c002a;
         public static final int terrain = 0x7f0c002b;
     }
@@ -55,11 +55,11 @@ public final class R {
         public static final int google_play_services_version = 0x7f0d0003;
     }
     public static final class layout {
-        public static final int onesignal_bgimage_notif_layout = 0x7f04002e;
+        public static final int onesignal_bgimage_notif_layout = 0x7f04002f;
     }
     public static final class string {
-        public static final int auth_google_play_services_client_facebook_display_name = 0x7f070048;
-        public static final int auth_google_play_services_client_google_display_name = 0x7f070049;
+        public static final int auth_google_play_services_client_facebook_display_name = 0x7f070049;
+        public static final int auth_google_play_services_client_google_display_name = 0x7f07004a;
         public static final int common_google_play_services_api_unavailable_text = 0x7f070016;
         public static final int common_google_play_services_enable_button = 0x7f070017;
         public static final int common_google_play_services_enable_text = 0x7f070018;
@@ -84,8 +84,8 @@ public final class R {
         public static final int common_google_play_services_updating_text = 0x7f07002e;
         public static final int common_google_play_services_updating_title = 0x7f07002f;
         public static final int common_open_on_phone = 0x7f070030;
-        public static final int common_signin_button_text = 0x7f07004d;
-        public static final int common_signin_button_text_long = 0x7f07004e;
+        public static final int common_signin_button_text = 0x7f07004e;
+        public static final int common_signin_button_text_long = 0x7f07004f;
     }
     public static final class styleable {
         public static final int[] LoadingImageView = { 0x7f0100e3, 0x7f0100e4, 0x7f0100e5 };

@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:2:1-65:12
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:2:1-74:12
 	package
 		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:5:5-39
 		INJECTED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml
@@ -61,7 +61,7 @@ MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache
 	android:name
 		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:11:22-79
 application
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:12:5-64:19
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:12:5-73:19
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\sjohri\.android\build-cache\3511b2ac59befa565e888e7a1c42dca5c4ebe0a5\output\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services:8.1.0] C:\Users\sjohri\.android\build-cache\84f34aaeccbba228927464c87ba59be1c17784a4\output\AndroidManifest.xml:19:5-20
 MERGED from [com.google.android.gms:play-services-appinvite:8.1.0] C:\Users\sjohri\.android\build-cache\ff1988a28088002f771332c22080b38837c2917a\output\AndroidManifest.xml:20:5-20
@@ -110,153 +110,165 @@ MERGED from [com.android.support:support-compat:25.3.1] C:\Users\sjohri\.android
 		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:15:9-36
 	android:theme
 		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:19:9-65
-activity#co.firstcrush.firstcrush.MainActivity
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:20:9-30:20
+activity#co.firstcrush.firstcrush.SplashScreen
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:20:9-26:20
 	android:screenOrientation
 		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:20:19-55
-	android:launchMode
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:23:19-49
-	android:windowSoftInputMode
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:25:19-61
-	android:supportsPictureInPicture
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:21:19-58
-	android:configChanges
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:22:19-96
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:24:19-47
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:21:13-41
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:26:13-29:29
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:22:13-25:29
 action#android.intent.action.MAIN
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:27:17-69
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:23:17-69
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:27:25-66
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:23:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:28:17-77
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:24:17-77
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:28:27-74
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:24:27-74
+activity#co.firstcrush.firstcrush.MainActivity
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:27:9-37:20
+	android:screenOrientation
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:27:19-55
+	android:launchMode
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:30:19-49
+	android:windowSoftInputMode
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:32:19-61
+	android:supportsPictureInPicture
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:28:19-58
+	android:configChanges
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:29:19-96
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:31:19-47
+intent-filter#android.intent.action.MAIN+android.intent.category.DEFAULT
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:33:13-36:29
+category#android.intent.category.DEFAULT
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:35:17-76
+	android:name
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:35:27-73
 meta-data#com.onesignal.NotificationOpened.DEFAULT
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:31:9-102
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:40:9-102
 	android:value
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:31:76-99
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:40:76-99
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:31:20-75
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:40:20-75
 provider#com.google.android.gms.measurement.AppMeasurementContentProvider
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:33:9-199
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:42:9-199
 MERGED from [com.google.android.gms:play-services-measurement:8.1.0] C:\Users\sjohri\.android\build-cache\5bcaf5c55ebea81eb7697279ece7854becdcab38\output\AndroidManifest.xml:28:7-31:37
 	android:authorities
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:33:19-92
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:42:19-92
 	android:exported
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:33:93-117
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:42:93-117
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:33:118-197
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:42:118-197
 receiver#com.google.android.gms.measurement.AppMeasurementReceiver
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:34:9-38:20
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:43:9-47:20
 MERGED from [com.google.android.gms:play-services-measurement:8.1.0] C:\Users\sjohri\.android\build-cache\5bcaf5c55ebea81eb7697279ece7854becdcab38\output\AndroidManifest.xml:33:7-39:18
 	android:enabled
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:34:19-41
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:43:19-41
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:34:42-114
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:43:42-114
 intent-filter#com.google.android.gms.measurement.UPLOAD
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:35:13-37:29
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:44:13-46:29
 action#com.google.android.gms.measurement.UPLOAD
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:36:17-83
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:45:17-83
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:36:25-81
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:45:25-81
 service#com.google.android.gms.measurement.AppMeasurementService
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:39:9-139
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:48:9-139
 MERGED from [com.google.android.gms:play-services-measurement:8.1.0] C:\Users\sjohri\.android\build-cache\5bcaf5c55ebea81eb7697279ece7854becdcab38\output\AndroidManifest.xml:41:7-44:37
 	android:enabled
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:39:18-40
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:48:18-40
 	android:exported
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:39:41-65
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:48:41-65
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:39:66-137
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:48:66-137
 meta-data#onesignal_app_id
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:40:9-106
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:49:9-106
 MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:41:9-43:51
 	android:value
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:40:52-104
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:49:52-104
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:40:20-51
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:49:20-51
 meta-data#onesignal_google_project_number
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:41:9-101
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:50:9-101
 MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:44:9-46:70
 	android:value
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:41:67-99
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:50:67-99
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:41:20-66
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:50:20-66
 receiver#com.onesignal.GcmBroadcastReceiver
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:42:9-47:20
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:51:9-56:20
 MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:48:9-56:20
 	android:permission
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:42:69-129
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:51:69-129
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:42:19-68
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:51:19-68
 intent-filter#co.firstcrush.firstcrush+com.google.android.c2dm.intent.RECEIVE
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:43:13-46:29
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:52:13-55:29
 action#com.google.android.c2dm.intent.RECEIVE
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:44:17-80
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:53:17-80
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:44:25-78
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:53:25-78
 category#co.firstcrush.firstcrush
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:45:17-68
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:54:17-68
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:45:27-66
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:54:27-66
 receiver#com.onesignal.NotificationOpenedReceiver
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:48:9-76
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:57:9-76
 MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:57:9-77
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:48:19-74
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:57:19-74
 service#com.onesignal.GcmIntentService
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:49:9-65
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:58:9-65
 MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:59:9-66
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:49:18-63
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:58:18-63
 service#com.onesignal.SyncService
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:50:9-89
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:59:9-89
 MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:60:9-62:44
 	android:stopWithTask
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:50:59-87
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:59:59-87
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:50:18-58
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:59:18-58
 activity#com.onesignal.PermissionsActivity
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:51:9-129
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:60:9-129
 MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:64:9-66:75
 	android:theme
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:51:68-127
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:60:68-127
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:51:19-67
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:60:19-67
 service#com.onesignal.NotificationRestoreService
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:52:9-75
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:61:9-75
 MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:68:9-76
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:52:18-73
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:61:18-73
 receiver#com.onesignal.BootUpReceiver
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:53:9-58:20
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:62:9-67:20
 MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:70:9-75:20
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:53:19-62
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:62:19-62
 intent-filter#android.intent.action.BOOT_COMPLETED+android.intent.action.QUICKBOOT_POWERON
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:54:13-57:29
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:63:13-66:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:55:17-78
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:64:17-78
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:55:25-76
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:64:25-76
 action#android.intent.action.QUICKBOOT_POWERON
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:56:17-81
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:65:17-81
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:56:25-79
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:65:25-79
 receiver#com.onesignal.UpgradeReceiver
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:59:9-63:20
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:68:9-72:20
 MERGED from [com.onesignal:OneSignal:2.6.2] C:\Users\sjohri\.android\build-cache\8eec07bda178c17b9ea798dd20ffaae93c735316\output\AndroidManifest.xml:76:9-80:20
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:59:19-63
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:68:19-63
 intent-filter#android.intent.action.MY_PACKAGE_REPLACED
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:60:13-62:29
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:69:13-71:29
 action#android.intent.action.MY_PACKAGE_REPLACED
-ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:61:17-83
+ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:70:17-83
 	android:name
-		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:61:25-81
+		ADDED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:70:25-81
 uses-sdk
 INJECTED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\sjohri\.android\build-cache\3511b2ac59befa565e888e7a1c42dca5c4ebe0a5\output\AndroidManifest.xml:5:5-7:41
@@ -401,7 +413,7 @@ ADDED from [com.google.android.gms:play-services-maps:8.1.0] C:\Users\sjohri\.an
 	android:required
 		ADDED from [com.google.android.gms:play-services-maps:8.1.0] C:\Users\sjohri\.android\build-cache\d105cac4c8f9ecf20df34089a0d36fa3116cb8b2\output\AndroidManifest.xml:25:8-31
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-IMPLIED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:2:1-65:12 reason: com.google.android.gms.maps requested WRITE_EXTERNAL_STORAGE
+IMPLIED from D:\App\AndroidStudioProjects\FirstCrush2\app\src\main\AndroidManifest.xml:2:1-74:12 reason: com.google.android.gms.maps requested WRITE_EXTERNAL_STORAGE
 meta-data#com.google.android.gms.version
 ADDED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\sjohri\.android\build-cache\77d1daa42a854a85edf548c46dbb17a4c743af5d\output\AndroidManifest.xml:21:9-23:69
 	android:value

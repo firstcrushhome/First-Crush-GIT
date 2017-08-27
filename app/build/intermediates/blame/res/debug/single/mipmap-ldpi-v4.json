@@ -1,5 +1,9 @@
 [
     {
+        "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-ldpi-v4\\largeicon.bmp",
+        "source": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\src\\main\\res\\mipmap-ldpi-v4\\largeicon.bmp"
+    },
+    {
         "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-ldpi-v4\\launcher_icon.png",
         "source": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\src\\main\\res\\mipmap-ldpi-v4\\launcher_icon.png"
     },

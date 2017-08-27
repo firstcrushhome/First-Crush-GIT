@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "105064394158",
+    "firebase_url": "https://first-crush.firebaseio.com",
+    "project_id": "first-crush",
+    "storage_bucket": "first-crush.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105064394158:android:53cedac404b32bb4",
+        "android_client_info": {
+          "package_name": "biz.buildapps.FirstCrush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105064394158-2t027jsg15hhs1iqppu0rsjn5mh36d9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2aqDx5GJFwTYhmQq4HyEClHB2M0I620U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105064394158:android:bb3348aee4ec8d9c",
+        "android_client_info": {
+          "package_name": "co.firstcrush.firstcrush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105064394158-2t027jsg15hhs1iqppu0rsjn5mh36d9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2aqDx5GJFwTYhmQq4HyEClHB2M0I620U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

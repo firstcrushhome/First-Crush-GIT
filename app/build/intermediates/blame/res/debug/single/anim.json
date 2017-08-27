@@ -16,12 +16,12 @@
         "source": "C:\\Users\\sjohri\\.android\\build-cache\\da0d83734e71f9dae791e4390d7e8a88468ce2a8\\output\\res\\anim\\abc_fade_out.xml"
     },
     {
-        "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
-        "source": "C:\\Users\\sjohri\\.android\\build-cache\\da0d83734e71f9dae791e4390d7e8a88468ce2a8\\output\\res\\anim\\abc_slide_out_top.xml"
-    },
-    {
         "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
         "source": "C:\\Users\\sjohri\\.android\\build-cache\\da0d83734e71f9dae791e4390d7e8a88468ce2a8\\output\\res\\anim\\abc_popup_enter.xml"
+    },
+    {
+        "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
+        "source": "C:\\Users\\sjohri\\.android\\build-cache\\da0d83734e71f9dae791e4390d7e8a88468ce2a8\\output\\res\\anim\\abc_slide_out_top.xml"
     },
     {
         "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\anim\\alpha.xml",

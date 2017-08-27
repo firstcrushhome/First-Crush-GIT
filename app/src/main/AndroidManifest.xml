@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/launcher_icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:screenOrientation="fullUser"
             android:name=".SplashScreen">
             <intent-filter>
@@ -34,11 +34,14 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" android:host="www.firstcrush.co" />
+                <data android:scheme="http" android:host="radio.firstcrush.co" />
+            </intent-filter>
         </activity>
-
-
-        <meta-data android:name="com.onesignal.NotificationOpened.DEFAULT" android:value="DISABLE" />
-
         <provider android:authorities="co.firstcrush.firstcrush.google_measurement_service" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementContentProvider"/>
         <receiver android:enabled="true" android:name="com.google.android.gms.measurement.AppMeasurementReceiver">
             <intent-filter>

@@ -12,10 +12,6 @@
         "source": "C:\\Users\\sjohri\\.android\\build-cache\\da0d83734e71f9dae791e4390d7e8a88468ce2a8\\output\\res\\color-v23\\abc_tint_spinner.xml"
     },
     {
-        "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_default.xml",
-        "source": "C:\\Users\\sjohri\\.android\\build-cache\\da0d83734e71f9dae791e4390d7e8a88468ce2a8\\output\\res\\color-v23\\abc_tint_default.xml"
-    },
-    {
         "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_btn_colored_borderless_text_material.xml",
         "source": "C:\\Users\\sjohri\\.android\\build-cache\\da0d83734e71f9dae791e4390d7e8a88468ce2a8\\output\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
     },
@@ -26,6 +22,10 @@
     {
         "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_seek_thumb.xml",
         "source": "C:\\Users\\sjohri\\.android\\build-cache\\da0d83734e71f9dae791e4390d7e8a88468ce2a8\\output\\res\\color-v23\\abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_tint_default.xml",
+        "source": "C:\\Users\\sjohri\\.android\\build-cache\\da0d83734e71f9dae791e4390d7e8a88468ce2a8\\output\\res\\color-v23\\abc_tint_default.xml"
     },
     {
         "merged": "D:\\App\\AndroidStudioProjects\\FirstCrush2\\app\\build\\intermediates\\res\\merged\\debug\\color-v23\\abc_color_highlight_material.xml",

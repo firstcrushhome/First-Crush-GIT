@@ -159,17 +159,36 @@
                     "startLine": 10,
                     "startColumn": 4,
                     "startOffset": 611,
-                    "endColumn": 72,
-                    "endOffset": 679
+                    "endColumn": 68,
+                    "endOffset": 675
                 },
                 "from": {
-                    "file": "C:\\Users\\sjohri\\.android\\build-cache\\d40350803c2ab6e2aa5e429abde0f9be4da9de6f\\output\\res\\values-sw600dp\\values-sw600dp.xml",
+                    "file": "C:\\Users\\sjohri\\.android\\build-cache\\08180ab477ba484687a206ce5f04ad91c347186c\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "position": {
-                        "startLine": 4,
+                        "startLine": 2,
                         "startColumn": 4,
-                        "startOffset": 297,
-                        "endColumn": 72,
-                        "endOffset": 365
+                        "startOffset": 55,
+                        "endColumn": 68,
+                        "endOffset": 119
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 680,
+                    "endColumn": 68,
+                    "endOffset": 744
+                },
+                "from": {
+                    "file": "C:\\Users\\sjohri\\.android\\build-cache\\08180ab477ba484687a206ce5f04ad91c347186c\\output\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 124,
+                        "endColumn": 68,
+                        "endOffset": 188
                     }
                 }
             }

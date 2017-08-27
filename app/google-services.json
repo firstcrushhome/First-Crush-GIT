@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "105064394158",
+    "firebase_url": "https://first-crush.firebaseio.com",
+    "project_id": "first-crush",
+    "storage_bucket": "first-crush.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105064394158:android:bb3348aee4ec8d9c",
+        "android_client_info": {
+          "package_name": "co.firstcrush.firstcrush"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105064394158-77g3594l1h8e7cs78o3q4cuerpf3h40e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.firstcrush.firstcrush",
+            "certificate_hash": "9f757f35bbd64fa2fc823605ede0261b4180db8f"
+          }
+        },
+        {
+          "client_id": "105064394158-2t027jsg15hhs1iqppu0rsjn5mh36d9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2aqDx5GJFwTYhmQq4HyEClHB2M0I620U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105064394158-2t027jsg15hhs1iqppu0rsjn5mh36d9v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

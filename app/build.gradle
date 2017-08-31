@@ -7,8 +7,13 @@ android {
         applicationId "co.firstcrush.firstcrush"
         minSdkVersion 15
         targetSdkVersion 25
+<<<<<<< HEAD
+        versionCode 6
+        versionName "6.0"
+=======
         versionCode 5
         versionName "5.0"
+>>>>>>> master
         manifestPlaceholders = [manifestApplicationId          : "${applicationId}",
                                 onesignal_app_id               : "ea063994-c980-468b-8895-fcdd9dd93cf4",
                                 onesignal_google_project_number: "105064394158"]

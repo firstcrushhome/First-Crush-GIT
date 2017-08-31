@@ -86,9 +86,15 @@ public class MainActivity extends AppCompatActivity {
         webSettings.supportMultipleWindows();
 
         //String ua = "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.63 Safari/537.31";
+<<<<<<< HEAD
+        String ua ="Mozilla/5.0 (Linux; Android 4.1.1; HTC One X Build/JRO03C) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.58 Mobile Safari/537.31";
+        //String ua = "Mozilla/5.0 (Android; Tablet; rv:20.0) Gecko/20.0 Firefox/20.0";
+        //String ua ="Chrome";
+=======
        //String ua ="Mozilla/5.0 (Linux; Android 4.1.1; HTC One X Build/JRO03C) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.58 Mobile Safari/537.31";
         //String ua = "Mozilla/5.0 (Android; Tablet; rv:20.0) Gecko/20.0 Firefox/20.0";
         String ua ="Chrome";
+>>>>>>> master
         webView.getSettings().setUserAgentString(ua);
 
         webView.loadUrl("http://www.firstcrush.co");
@@ -179,6 +185,32 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
+        webView.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
+        webView.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
+        if (mCustomView != null) {
+            setContentView(mContentView);;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        webView = null;
     }
 
 

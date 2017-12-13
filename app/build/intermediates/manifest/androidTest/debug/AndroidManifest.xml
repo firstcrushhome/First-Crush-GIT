@@ -3,8 +3,8 @@
     package="co.firstcrush.firstcrush.test" >
 
     <uses-sdk
-        android:minSdkVersion="15"
-        android:targetSdkVersion="25" />
+        android:minSdkVersion="19"
+        android:targetSdkVersion="26" />
 
     <instrumentation
         android:name="android.support.test.runner.AndroidJUnitRunner"
@@ -13,7 +13,7 @@
         android:label="Tests for co.firstcrush.firstcrush"
         android:targetPackage="co.firstcrush.firstcrush" />
 
-    <application>
+    <application android:debuggable="true" >
         <uses-library android:name="android.test.runner" />
     </application>
 

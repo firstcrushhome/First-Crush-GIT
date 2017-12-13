@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent">
+    <item
+        android:id="@+id/menu_home"
+        android:title="@string/menu_home"
+        android:icon="@drawable/ic_home"
+        />
+    <item
+        android:id="@+id/menu_radio"
+        android:title="@string/menu_radio"
+        android:icon="@drawable/ic_action_radio"
+        />
+    <item
+        android:id="@+id/menu_profile"
+        android:title="@string/menu_profile"
+        android:icon="@drawable/ic_action_name"
+        />
+    <item
+        android:id="@+id/menu_notifications"
+        android:title="@string/menu_notifications"
+        android:icon="@drawable/ic_action_notifications" />
+</menu>
+

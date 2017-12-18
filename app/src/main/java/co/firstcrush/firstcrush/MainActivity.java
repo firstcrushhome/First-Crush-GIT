@@ -10,6 +10,8 @@ import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
@@ -42,6 +44,7 @@ import static co.firstcrush.firstcrush.R.mipmap.launcher_icon;
 
 public class MainActivity extends AppCompatActivity {
     private WebView webView;
+    private BottomNavigationView navigation;
     private static boolean activityStarted;
     private MyWebChromeClient mWebChromeClient = null;
     private View mCustomView;
@@ -49,12 +52,42 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout mCustomViewContainer;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
     private ProgressDialog progressBar;
+    View decorView;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    webView.loadUrl("http://www.firstcrush.co");
+                    return true;
+                case R.id.navigation_news:
+                    webView.loadUrl("http://www.firstcrush.co/news/");
+                    return true;
+                case R.id.navigation_radio:
+                    webView.loadUrl("http://www.firstcrush.co/first-crush-101-radio/");
+                    return true;
+                case R.id.navigation_profile:
+                    webView.loadUrl("http://www.firstcrush.co/your-profile");
+                    return true;
+                case R.id.navigation_notifications:
+                    webView.loadUrl("http://www.firstcrush.co/notifications");
+                    return true;
+            }
+            BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+            BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+            return false;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         OneSignal.startInit(this).setNotificationOpenedHandler(new ExampleNotificationOpenedHandler()).init();
         if (activityStarted
                 && getIntent() != null
@@ -65,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
         activityStarted = true;
         setContentView(R.layout.activity_main);
         webView = (WebView) findViewById(R.id.web1);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationViewHelper.disableShiftMode(navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         mWebChromeClient = new MyWebChromeClient();
         webView.setWebChromeClient(mWebChromeClient);
         webView.setWebViewClient(new WebViewClient() {
@@ -86,15 +122,14 @@ public class MainActivity extends AppCompatActivity {
         webSettings.supportMultipleWindows();
 
         //String ua = "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.63 Safari/537.31";
-<<<<<<< HEAD
-        String ua ="Mozilla/5.0 (Linux; Android 4.1.1; HTC One X Build/JRO03C) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.58 Mobile Safari/537.31";
+
+        //String ua ="Mozilla/5.0 (Linux; Android 4.1.1; HTC One X Build/JRO03C) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.58 Mobile Safari/537.31";
         //String ua = "Mozilla/5.0 (Android; Tablet; rv:20.0) Gecko/20.0 Firefox/20.0";
         //String ua ="Chrome";
-=======
-       //String ua ="Mozilla/5.0 (Linux; Android 4.1.1; HTC One X Build/JRO03C) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.58 Mobile Safari/537.31";
+        //String ua ="Mozilla/5.0 (Linux; Android 4.1.1; HTC One X Build/JRO03C) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.58 Mobile Safari/537.31";
         //String ua = "Mozilla/5.0 (Android; Tablet; rv:20.0) Gecko/20.0 Firefox/20.0";
         String ua ="Chrome";
->>>>>>> master
+
         webView.getSettings().setUserAgentString(ua);
 
         webView.loadUrl("http://www.firstcrush.co");
@@ -132,6 +167,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onShowCustomView(View view, CustomViewCallback callback) {
+            decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
             // if a view already exists then immediately terminate the new one
             if (mCustomView != null) {
                 callback.onCustomViewHidden();
@@ -148,10 +191,16 @@ public class MainActivity extends AppCompatActivity {
             mCustomViewCallback = callback;
             mCustomViewContainer.setVisibility(View.VISIBLE);
             setContentView(mCustomViewContainer);
+
         }
 
         @Override
         public void onHideCustomView() {
+            decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             if (mCustomView == null) {
                 mContentView.setVisibility(View.VISIBLE);
                 setContentView(mContentView);
@@ -167,6 +216,8 @@ public class MainActivity extends AppCompatActivity {
                 mContentView.setVisibility(View.VISIBLE);
                 setContentView(mContentView);
             }
+
+
         }
 
     }
@@ -183,6 +234,14 @@ public class MainActivity extends AppCompatActivity {
                 webView.goBack();
                 return true;
             }
+            else
+            {
+                decorView = getWindow().getDecorView();
+                decorView.setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            }
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -197,6 +256,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
         webView.onResume();
+        decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
     @Override
@@ -213,7 +277,14 @@ public class MainActivity extends AppCompatActivity {
         webView = null;
     }
 
-
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+    }
     // This fires when a notification is opened by tapping on it or one is received while the app is running.
     private class ExampleNotificationOpenedHandler implements OneSignal.NotificationOpenedHandler {
         public void notificationOpened(String message, JSONObject additionalData, boolean isActive) {

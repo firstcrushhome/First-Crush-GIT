@@ -10,6 +10,8 @@ import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
@@ -42,6 +44,7 @@ import static co.firstcrush.firstcrush.R.mipmap.launcher_icon;
 
 public class MainActivity extends AppCompatActivity {
     private WebView webView;
+    private BottomNavigationView navigation;
     private static boolean activityStarted;
     private MyWebChromeClient mWebChromeClient = null;
     private View mCustomView;
@@ -50,6 +53,37 @@ public class MainActivity extends AppCompatActivity {
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
     private ProgressDialog progressBar;
     View decorView;
+<<<<<<< HEAD
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    webView.loadUrl("http://www.firstcrush.co");
+                    return true;
+                case R.id.navigation_news:
+                    webView.loadUrl("http://www.firstcrush.co/news/");
+                    return true;
+                case R.id.navigation_radio:
+                    webView.loadUrl("http://www.firstcrush.co/first-crush-101-radio/");
+                    return true;
+                case R.id.navigation_profile:
+                    webView.loadUrl("http://www.firstcrush.co/your-profile");
+                    return true;
+                case R.id.navigation_notifications:
+                    webView.loadUrl("http://www.firstcrush.co/notifications");
+                    return true;
+            }
+            BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+            BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+            return false;
+        }
+    };
+=======
+>>>>>>> master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
         activityStarted = true;
         setContentView(R.layout.activity_main);
         webView = (WebView) findViewById(R.id.web1);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationViewHelper.disableShiftMode(navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         mWebChromeClient = new MyWebChromeClient();
         webView.setWebChromeClient(mWebChromeClient);
         webView.setWebViewClient(new WebViewClient() {
@@ -199,6 +236,14 @@ public class MainActivity extends AppCompatActivity {
             if ((mCustomView == null)&& webView.canGoBack()) {
                 webView.goBack();
                 return true;
+            }
+            else
+            {
+                decorView = getWindow().getDecorView();
+                decorView.setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             }
         }
         return super.onKeyDown(keyCode, event);

@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
     private ProgressDialog progressBar;
     View decorView;
+<<<<<<< HEAD
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -81,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+=======
+>>>>>>> master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

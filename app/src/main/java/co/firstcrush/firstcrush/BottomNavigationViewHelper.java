@@ -1,6 +1,9 @@
 package co.firstcrush.firstcrush;
 
+<<<<<<< HEAD
 import android.annotation.SuppressLint;
+=======
+>>>>>>> master
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -8,7 +11,10 @@ import android.util.Log;
 import java.lang.reflect.Field;
 
 public class BottomNavigationViewHelper {
+<<<<<<< HEAD
     @SuppressLint("RestrictedApi")
+=======
+>>>>>>> master
     public static void disableShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
         try {

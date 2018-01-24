@@ -4,8 +4,8 @@
     xmlns:design="http://schemas.android.com/apk/res-auto"
     package="co.firstcrush.firstcrush"
     android:hardwareAccelerated="true"
-    android:versionCode="7"
-    android:versionName="7.0" >
+    android:versionCode="9"
+    android:versionName="9.0" >
 
     <uses-sdk
         android:minSdkVersion="19"
@@ -142,6 +142,7 @@
         <activity
             android:name="com.onesignal.PermissionsActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name="co.firstcrush.firstcrush.HomeFragment" />
 
         <service android:name="com.onesignal.NotificationRestoreService" />
 

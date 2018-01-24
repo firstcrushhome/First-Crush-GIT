@@ -1,17 +1,17 @@
 package co.firstcrush.firstcrush;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Icon;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+<<<<<<< HEAD
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+=======
+>>>>>>> master
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
@@ -22,25 +22,15 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
-import android.widget.MediaController;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
-
 import com.onesignal.OneSignal;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static co.firstcrush.firstcrush.R.mipmap.ic_stat_onesignal_default;
-import static co.firstcrush.firstcrush.R.mipmap.largeicon;
 import static co.firstcrush.firstcrush.R.mipmap.icon;
-import static co.firstcrush.firstcrush.R.mipmap.launcher_icon;
-
 
 public class MainActivity extends AppCompatActivity {
     private WebView webView;
@@ -85,6 +75,34 @@ public class MainActivity extends AppCompatActivity {
 =======
 >>>>>>> master
 
+    private String mCurrentTab;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            android.support.v4.app.Fragment selectedFragment = null;
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    selectedFragment = HomeFragment.newInstance();
+                    break;
+                case R.id.navigation_radio:
+                    selectedFragment = RadioFragment.newInstance();
+                    break;
+                case R.id.navigation_profile:
+                    selectedFragment = ProfileFragment.newInstance();
+                    break;
+                case R.id.navigation_notifications:
+                    selectedFragment = NotificationsFragment.newInstance();
+                    break;
+            }
+            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame_layout, selectedFragment);
+            transaction.commit();
+            return true;
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
         }
         activityStarted = true;
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD
+=======
         webView = (WebView) findViewById(R.id.web1);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(navigation);
@@ -136,12 +156,31 @@ public class MainActivity extends AppCompatActivity {
         webView.getSettings().setUserAgentString(ua);
 
         webView.loadUrl("http://www.firstcrush.co");
+>>>>>>> master
 
+        //Add Bottom Navigation View
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationViewHelper.disableShiftMode(navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        //first fragment - one time only
+        android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, HomeFragment.newInstance());
+        transaction.commit();
+        //Used to select an item programmatically
+        //bottomNavigationView.getMenu().getItem(2).setChecked(true);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(icon);
         //builder.setLargeIcon(Bitmap.createBitmap(largeicon));
     }
 
+    @Override
+    public void onBackPressed() {
+        if (navigation.getSelectedItemId() == R.id.navigation_home) {
+            super.onBackPressed();
+        } else {
+            navigation.setSelectedItemId(R.id.navigation_home);
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -224,14 +263,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        webView.saveState(outState);
+        //webView.saveState(outState);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+<<<<<<< HEAD
+        if (navigation.getSelectedItemId() == R.id.navigation_home) {
+            super.onBackPressed();
+        } else {
+            navigation.setSelectedItemId(R.id.navigation_home);
+=======
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if ((mCustomView == null)&& webView.canGoBack()) {
                 webView.goBack();
@@ -245,17 +291,19 @@ public class MainActivity extends AppCompatActivity {
                                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             }
+>>>>>>> master
         }
-        return super.onKeyDown(keyCode, event);
+            return super.onKeyDown(keyCode, event);
     }
 
+    /*
     @Override
-    protected void onPause() {
+     protected void onPause() {
         super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
-        webView.onPause();
-    }
+        //webView.onPause();
+    }*/
 
-    @Override
+    /*@Override
     protected void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
         webView.onResume();
@@ -287,7 +335,7 @@ public class MainActivity extends AppCompatActivity {
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-    }
+    }*/
     // This fires when a notification is opened by tapping on it or one is received while the app is running.
     private class ExampleNotificationOpenedHandler implements OneSignal.NotificationOpenedHandler {
         public void notificationOpened(String message, JSONObject additionalData, boolean isActive) {

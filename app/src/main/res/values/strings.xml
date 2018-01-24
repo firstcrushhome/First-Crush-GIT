@@ -8,6 +8,6 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_radio">Radio</string>
-    <string name="menu_profile">Radio</string>
+    <string name="menu_profile">Profile</string>
     <string name="menu_notifications">Notifications</string>
 </resources>

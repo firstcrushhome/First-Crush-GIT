@@ -1,12 +1,22 @@
 package co.firstcrush.firstcrush;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -22,7 +32,23 @@ public class ProfileFragment extends Fragment {
     private RelativeLayout mContentView;
     private FrameLayout mCustomViewContainer;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
+    private MyWebChromeClient mWebChromeClient = null;
     private ProgressDialog progressBar;
+    View decorView;
+    AudioManager audioManager;
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message message) {
+            switch (message.what) {
+                case 1: {
+                    webViewGoBack();
+                }
+                break;
+            }
+        }
+    };
 
     public static ProfileFragment newInstance() {
         ProfileFragment fragment = new ProfileFragment();
@@ -33,17 +59,16 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View newsView=inflater.inflate(R.layout.profile_fragment, container, false);
-        webProfileView = (WebView) newsView.findViewById(R.id.web1);
+        this.getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        View profileView = inflater.inflate(R.layout.profile_fragment, container, false);
+        webProfileView = (WebView) profileView.findViewById(R.id.web1);
         webProfileView.loadUrl("http://www.firstcrush.co/your-profile");
 
-        // Enable Javascript
-        WebSettings webSettings = webProfileView.getSettings();
 
-        // Force links and redirects to open in the WebView instead of in a browser
-        webProfileView.setWebViewClient(new WebViewClient());
+        WebSettings webSettings = webProfileView.getSettings();
         // Enable Javascript
 
         webSettings.setDomStorageEnabled(true);
@@ -54,12 +79,62 @@ public class ProfileFragment extends Fragment {
         //webSettings.setPluginState(WebSettings.PluginState.ON);
         webSettings.supportMultipleWindows();
         webSettings.setJavaScriptEnabled(true);
-        String ua ="Chrome";
-
-        webProfileView.getSettings().setUserAgentString(ua);
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        if (android.os.Build.VERSION.SDK_INT >= 20) {
+            String ua = "Chrome";
+            webProfileView.getSettings().setUserAgentString(ua);
+        }
+        mWebChromeClient = new MyWebChromeClient();
+        webProfileView.setWebChromeClient(mWebChromeClient);
         // Force links and redirects to open in the WebView instead of in a browser
-        webProfileView.setWebViewClient(new WebViewClient());
-        return newsView;
+        webProfileView.setWebViewClient(new WebViewClient() {
+
+            public void onPageFinished(WebView view, String url) {
+                if (progressBar != null)
+                    progressBar.dismiss();
+            }
+        });
+        progressBar = ProgressDialog.show(getActivity(), "", "Loading...");
+        webProfileView.setOnKeyListener(new View.OnKeyListener() {
+
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK
+                        && event.getAction() == MotionEvent.ACTION_UP) {
+                    if(webProfileView.canGoBack()&& mCustomView == null) {
+                        handler.sendEmptyMessage(1);
+                        webProfileView.goBack();
+                        return true;
+                    }
+                    else
+                    {
+                        decorView = getActivity().getWindow().getDecorView();
+                        decorView.setSystemUiVisibility(
+                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+                    }
+                }
+
+                if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+                    handler.sendEmptyMessage(2);
+                    return true;
+                }
+                if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
+                    handler.sendEmptyMessage(3);
+                    return true;
+                }
+                if ((keyCode == KeyEvent.KEYCODE_HOME)) {
+                    handler.sendEmptyMessage(4);
+                    return true;
+                }
+                return false;
+            }
+        });
+        return profileView;
+    }
+
+    private void webViewGoBack() {
+        webProfileView.goBack();
     }
 
     public boolean onBackPressed() {
@@ -91,5 +166,72 @@ public class ProfileFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         webProfileView = null;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        webProfileView.saveState(outState);
+    }
+
+
+    public class MyWebChromeClient extends WebChromeClient {
+        private Context mContext;
+        FrameLayout.LayoutParams LayoutParameters = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
+
+        @Override
+        public void onShowCustomView(View view, CustomViewCallback callback) {
+            Activity activity = getActivity();
+            decorView = getActivity().getWindow().getDecorView();
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+            // if a view already exists then immediately terminate the new one
+            if (mCustomView != null) {
+                callback.onCustomViewHidden();
+                return;
+            }
+
+            mContentView = (RelativeLayout) view.findViewWithTag(R.layout.profile_fragment);
+            getView().setVisibility(View.GONE);
+            mCustomViewContainer = new FrameLayout(activity);
+            mCustomViewContainer.setLayoutParams(LayoutParameters);
+            mCustomViewContainer.setBackgroundResource(android.R.color.black);
+            view.setLayoutParams(LayoutParameters);
+            mCustomViewContainer.addView(view);
+            mCustomView = view;
+            mCustomViewCallback = callback;
+            mCustomViewContainer.setVisibility(View.VISIBLE);
+            getActivity().setContentView(mCustomViewContainer);
+        }
+
+        @Override
+        public void onHideCustomView() {
+            decorView = getActivity().getWindow().getDecorView();
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            if (mCustomView == null) {
+                mContentView.setVisibility(View.VISIBLE);
+            } else {
+                // Hide the custom view.
+                getView().setVisibility(View.GONE);
+                // Remove the custom view from its container.
+                mCustomViewContainer.removeView(mCustomView);
+                mCustomView = null;
+                mCustomViewContainer.setVisibility(View.GONE);
+                mCustomViewCallback.onCustomViewHidden();
+                mContentView.setVisibility(View.VISIBLE);
+                // Show the content view.
+                getActivity().setContentView(mContentView);
+            }
+
+
+        }
     }
 }

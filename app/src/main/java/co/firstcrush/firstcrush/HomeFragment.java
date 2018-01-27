@@ -26,6 +26,8 @@ import android.support.v4.view.ViewPager;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.youtube.player.YouTubePlayer;
+
 public class HomeFragment extends Fragment{
     public WebView webView;
     View view;
@@ -82,7 +84,6 @@ public class HomeFragment extends Fragment{
                 }
             });
             //End Tab Bar
-
             return view;
         }
 
@@ -111,7 +112,6 @@ public class HomeFragment extends Fragment{
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        //webView.saveState(outState);
     }
 
 
@@ -129,9 +129,6 @@ public class HomeFragment extends Fragment{
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
 
     /*
     @Override
@@ -164,13 +161,13 @@ public class HomeFragment extends Fragment{
         super.onDestroy();
         webView = null;
     }
-
-    @Override
+*/
     public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
+        super.getActivity().onWindowFocusChanged(hasFocus);
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-    }*/
+    }
 }
+

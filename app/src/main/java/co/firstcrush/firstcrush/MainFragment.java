@@ -46,6 +46,7 @@ public class MainFragment extends Fragment{
     private static boolean activityStarted;
     private View mCustomView;
     private RelativeLayout mContentView;
+    private ViewGroup mContentViewContainer;
     private FrameLayout mCustomViewContainer;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
     private MyWebChromeClient mWebChromeClient = null;
@@ -159,7 +160,10 @@ public class MainFragment extends Fragment{
 
     public void onWindowFocusChanged(boolean hasFocus) {
         view.onWindowFocusChanged(hasFocus);
-       // decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
     @Override
@@ -239,8 +243,12 @@ public class MainFragment extends Fragment{
             }
             mOriginalOrientation = getActivity().getRequestedOrientation();
             mContentView = (RelativeLayout) getView();
-            mContentView.setVisibility(View.GONE);
-            ((ViewGroup)mContentView.getParent()).removeView(mContentView);
+            if (mContentView != null)
+            {
+                mContentView.setVisibility(View.GONE);
+                mContentViewContainer=(ViewGroup) mContentView.getParent();
+                mContentViewContainer.removeView(mContentView);
+            }
             mCustomViewContainer = new FrameLayout(getActivity());
             mCustomViewContainer.setLayoutParams(LayoutParameters);
             mCustomViewContainer.setBackgroundResource(android.R.color.black);
@@ -260,22 +268,21 @@ public class MainFragment extends Fragment{
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            if (mCustomView == null) {
-                //Do Nothing
-            } else {
+                if (mCustomView != null) {
+                    // Hide the custom view.
+                    mCustomView.setVisibility(View.GONE);
+                    // Remove the custom view from its container.
+                    mCustomViewContainer = (FrameLayout) mCustomView.getParent();
+                    // Remove the custom view from its container.
+                    mCustomViewContainer.removeView(mCustomView);
+                    mCustomView = null;
+                    mCustomViewContainer.setVisibility(View.GONE);
+                    mCustomViewCallback.onCustomViewHidden();
 
-                // Hide the custom view.
-                mCustomView.setVisibility(View.GONE);
-                // Remove the custom view from its container.
-                mCustomViewContainer.removeView(mCustomView);
-                mCustomView = null;
-                mCustomViewContainer.setVisibility(View.GONE);
-                mCustomViewCallback.onCustomViewHidden();
-                // Show the content view.
-                mContentView.setVisibility(View.VISIBLE);
-                getActivity().setContentView(mContentView);
-            }
-
+                    // Show the content view.
+                    mContentView.setVisibility(View.VISIBLE);
+                    getActivity().setContentView(mContentView);
+                }
         }
     }
 

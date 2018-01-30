@@ -117,14 +117,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        if (navigation.getSelectedItemId() == R.id.navigation_home) {
-            super.onBackPressed();
-        } else {
-            navigation.setSelectedItemId(R.id.navigation_home);
-        }
-    }
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);

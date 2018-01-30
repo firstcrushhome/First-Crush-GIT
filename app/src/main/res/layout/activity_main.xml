@@ -21,7 +21,7 @@
         android:layout_alignParentBottom="true"
         android:animateLayoutChanges="false"
         android:animationCache="false"
-        android:background="@color/colorPrimaryDark"
+        android:background="@android:color/black"
         android:fitsSystemWindows="true"
         app:itemBackground="@android:color/black"
         app:itemIconTint="@drawable/selector"

@@ -130,38 +130,6 @@ public class HomeFragment extends Fragment{
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    @Override
-     protected void onPause() {
-        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
-        //webView.onPause();
-    }*/
-
-    /*@Override
-    protected void onResume() {
-        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
-        webView.onResume();
-        decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
-        if (mCustomView != null) {
-            setContentView(mContentView);;
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        webView = null;
-    }
-*/
     public void onWindowFocusChanged(boolean hasFocus) {
         super.getActivity().onWindowFocusChanged(hasFocus);
         decorView.setSystemUiVisibility(

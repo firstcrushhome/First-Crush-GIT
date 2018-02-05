@@ -30,6 +30,7 @@ public class NewsFragment extends Fragment {
     private static boolean activityStarted;
     private View mCustomView;
     private RelativeLayout mContentView;
+    private ViewGroup mContentViewContainer;
     private MyWebChromeClient mWebChromeClient = null;
     private FrameLayout mCustomViewContainer;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
@@ -93,13 +94,11 @@ public class NewsFragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK
                         && event.getAction() == MotionEvent.ACTION_UP) {
-                    if(webNewsView.canGoBack()&& mCustomView == null) {
+                    if (webNewsView.canGoBack() && mCustomView == null) {
                         handler.sendEmptyMessage(1);
                         webNewsView.goBack();
                         return true;
-                    }
-                    else
-                    {
+                    } else {
                         decorView = getActivity().getWindow().getDecorView();
                         decorView.setSystemUiVisibility(
                                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -126,9 +125,11 @@ public class NewsFragment extends Fragment {
         });
         return newsView;
     }
-    private void webViewGoBack(){
+
+    private void webViewGoBack() {
         webNewsView.goBack();
     }
+
     public boolean onBackPressed() {
         if (webNewsView.canGoBack()) {
             webNewsView.goBack();
@@ -167,14 +168,14 @@ public class NewsFragment extends Fragment {
     }
 
 
-
     public class MyWebChromeClient extends WebChromeClient {
+        private int mOriginalOrientation;
         private Context mContext;
         FrameLayout.LayoutParams LayoutParameters = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
 
         @Override
         public void onShowCustomView(View view, CustomViewCallback callback) {
-            Activity activity = getActivity();
+            super.onShowCustomView(view, callback);
             decorView = getActivity().getWindow().getDecorView();
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -188,10 +189,15 @@ public class NewsFragment extends Fragment {
                 callback.onCustomViewHidden();
                 return;
             }
-
-            mContentView = (RelativeLayout) view.findViewWithTag(R.layout.news_fragment);
-            getView().setVisibility(View.GONE);
-            mCustomViewContainer = new FrameLayout(activity);
+            mOriginalOrientation = getActivity().getRequestedOrientation();
+            //mContentView = (RelativeLayout) getView();
+            mContentView = getActivity().findViewById(R.id.activity_main);
+            if (mContentView != null) {
+                mContentView.setVisibility(View.GONE);
+                mContentViewContainer = (ViewGroup) mContentView.getParent();
+                mContentViewContainer.removeView(mContentView);
+            }
+            mCustomViewContainer = new FrameLayout(getActivity());
             mCustomViewContainer.setLayoutParams(LayoutParameters);
             mCustomViewContainer.setBackgroundResource(android.R.color.black);
             view.setLayoutParams(LayoutParameters);
@@ -204,27 +210,28 @@ public class NewsFragment extends Fragment {
 
         @Override
         public void onHideCustomView() {
+            super.onHideCustomView();
             decorView = getActivity().getWindow().getDecorView();
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            if (mCustomView == null) {
-                mContentView.setVisibility(View.VISIBLE);
-            } else {
+            if (mCustomView != null) {
                 // Hide the custom view.
-                getView().setVisibility(View.GONE);
+                mCustomView.setVisibility(View.GONE);
+                // Remove the custom view from its container.
+                mCustomViewContainer = (FrameLayout) mCustomView.getParent();
                 // Remove the custom view from its container.
                 mCustomViewContainer.removeView(mCustomView);
                 mCustomView = null;
                 mCustomViewContainer.setVisibility(View.GONE);
                 mCustomViewCallback.onCustomViewHidden();
-                mContentView.setVisibility(View.VISIBLE);
+
                 // Show the content view.
+                mContentView.setVisibility(View.VISIBLE);
                 getActivity().setContentView(mContentView);
+
             }
-
-
         }
     }
 }

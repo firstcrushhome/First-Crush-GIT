@@ -45,7 +45,7 @@ public class MainFragment extends Fragment{
     private BottomNavigationViewHelper bottomNavigationViewHelper;
     private static boolean activityStarted;
     private View mCustomView;
-    private RelativeLayout mContentView;
+    private View mContentView;
     private ViewGroup mContentViewContainer;
     private FrameLayout mCustomViewContainer;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
@@ -242,7 +242,8 @@ public class MainFragment extends Fragment{
                 return;
             }
             mOriginalOrientation = getActivity().getRequestedOrientation();
-            mContentView = (RelativeLayout) getView();
+            //mContentView = (RelativeLayout) getView();
+            mContentView = getActivity().findViewById(R.id.activity_main);
             if (mContentView != null)
             {
                 mContentView.setVisibility(View.GONE);
@@ -282,6 +283,7 @@ public class MainFragment extends Fragment{
                     // Show the content view.
                     mContentView.setVisibility(View.VISIBLE);
                     getActivity().setContentView(mContentView);
+
                 }
         }
     }

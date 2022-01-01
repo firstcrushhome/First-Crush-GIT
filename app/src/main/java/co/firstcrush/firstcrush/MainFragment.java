@@ -2,9 +2,9 @@ package co.firstcrush.firstcrush;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,7 +57,7 @@ public class MainFragment extends Fragment{
             webMainView.getSettings().setUserAgentString(ua);
             // Force links and redirects to open in the WebView instead of in a browser
             webMainView.setWebViewClient(new WebViewClient());
-            webMainView.loadUrl("http://www.firstcrush.co");
+            webMainView.loadUrl("https://www.firstcrush.co");
             return view;
         }
 

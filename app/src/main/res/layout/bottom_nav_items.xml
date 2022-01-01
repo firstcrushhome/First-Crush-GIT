@@ -1,64 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent">
-    <item
-<<<<<<< HEAD
-        android:id="@+id/navigation_home"
-=======
-<<<<<<< HEAD
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
+    <fragment
         android:id="@+id/navigation_home"
         android:title="@string/menu_home"
         android:icon="@drawable/ic_action_home"
         />
-    <item
-        android:id="@+id/navigation_news"
-        android:title="News"
-        android:icon="@drawable/ic_action_news"
-        />
-    <item
+    <fragment
         android:id="@+id/navigation_radio"
-=======
-        android:id="@+id/menu_home"
->>>>>>> master
-        android:title="@string/menu_home"
-        android:icon="@drawable/ic_action_home"
-        />
-    <item
-<<<<<<< HEAD
-        android:id="@+id/navigation_radio"
-=======
-        android:id="@+id/menu_radio"
->>>>>>> master
->>>>>>> master
         android:title="@string/menu_radio"
         android:icon="@drawable/ic_action_radio"
         />
-    <item
-<<<<<<< HEAD
+    <fragment
         android:id="@+id/navigation_profile"
         android:title="Profile"
         android:icon="@drawable/ic_action_profile"
         />
-    <item
+    <fragment
         android:id="@+id/navigation_notifications"
-=======
-<<<<<<< HEAD
-        android:id="@+id/navigation_profile"
-        android:title="Profile"
-        android:icon="@drawable/ic_action_profile"
-        />
-    <item
-        android:id="@+id/navigation_notifications"
-=======
-        android:id="@+id/menu_profile"
-        android:title="@string/menu_profile"
-        android:icon="@drawable/ic_action_name"
-        />
-    <item
-        android:id="@+id/menu_notifications"
->>>>>>> master
->>>>>>> master
         android:title="@string/menu_notifications"
         android:icon="@drawable/ic_action_notifications" />
 </menu>
-

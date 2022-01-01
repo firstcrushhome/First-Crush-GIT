@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:design="http://schemas.android.com/apk/res-auto"
     android:hardwareAccelerated="true"
+    android:usesCleartextTraffic="true"
     package="co.firstcrush.firstcrush">
     <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true"
         android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true"/>
@@ -23,7 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:screenOrientation="fullUser"
-            android:name=".SplashScreen">
+            android:name=".SplashScreen"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -34,7 +36,8 @@
                   android:configChanges="keyboard|keyboardHidden|locale|orientation|screenSize"
                   android:launchMode="singleTop"
                   android:name=".MainActivity"
-                  android:windowSoftInputMode="adjustResize">
+                  android:windowSoftInputMode="adjustResize"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -48,17 +51,21 @@
             </intent-filter>
         </activity>
         <provider android:authorities="co.firstcrush.firstcrush.google_measurement_service" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementContentProvider"/>
-        <receiver android:enabled="true" android:name="com.google.android.gms.measurement.AppMeasurementReceiver">
+        <receiver android:enabled="true" android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.android.gms.measurement.UPLOAD"/>
             </intent-filter>
         </receiver>
-        <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementService"/>
+        <service android:enabled="true" android:exported="true" android:name="com.google.android.gms.gcm.GcmReceiver"/>
         <meta-data android:name="onesignal_app_id" android:value="ea063994-c980-468b-8895-fcdd9dd93cf4"/>
         <meta-data android:name="onesignal_google_project_number" android:value="str:105064394158"/>
-        <receiver android:name="com.onesignal.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+        <receiver android:name="com.onesignal.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
                 <category android:name="co.firstcrush.firstcrush"/>
             </intent-filter>
         </receiver>
@@ -66,25 +73,31 @@
         <service android:name="com.onesignal.GcmIntentService"/>
         <service android:name="com.onesignal.SyncService" android:stopWithTask="false"/>
         <activity android:name="com.onesignal.PermissionsActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-        <activity android:name=".HomeFragment" />
+        <activity android:name=".HomeFragment"
+            tools:ignore="Instantiatable" />
 
-        <service android:name="com.onesignal.NotificationRestoreService"/>
-        <receiver android:name="com.onesignal.BootUpReceiver">
+        <service android:name="com.onesignal.NotificationService"/>
+        <receiver android:name="com.onesignal.BootUpReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
             </intent-filter>
         </receiver>
-        <receiver android:name="com.onesignal.UpgradeReceiver">
+        <receiver android:name="com.onesignal.UpgradeReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
             </intent-filter>
         </receiver>
         <amazon:enable-feature android:name="com.amazon.device.messaging" android:required="false"/>
         <!-- Warnings about " is not assignable" can be safely ignored. -->
-        <service android:name="com.onesignal.ADMMessageHandler" android:exported="false" />
+        <service android:name="com.onesignal.ADMMessageHandler" android:exported="true"
+            tools:ignore="Instantiatable" />
         <receiver android:name="com.onesignal.ADMMessageHandler$Receiver"
-            android:permission="com.amazon.device.messaging.permission.SEND" >
+            android:permission="com.amazon.device.messaging.permission.SEND"
+            tools:ignore="Instantiatable"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.amazon.device.messaging.intent.REGISTRATION" />
                 <action android:name="com.amazon.device.messaging.intent.RECEIVE" />

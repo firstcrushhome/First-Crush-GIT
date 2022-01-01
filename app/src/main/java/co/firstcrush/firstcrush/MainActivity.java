@@ -1,28 +1,25 @@
 package co.firstcrush.firstcrush;
-
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
+
+import androidx.core.app.NotificationCompat;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.app.Activity;
-import android.app.Notification;
+
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
+
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
-import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import com.onesignal.OneSignal;
@@ -33,52 +30,46 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
-    private WebView webView;
     private BottomNavigationView navigation;
     private static boolean activityStarted;
-    private MyWebChromeClient mWebChromeClient = null;
     private View mCustomView;
     private RelativeLayout mContentView;
     private FrameLayout mCustomViewContainer;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
-    private ProgressDialog progressBar;
     View decorView;
+    private static final String ONESIGNAL_APP_ID = "ea063994-c980-468b-8895-fcdd9dd93cf4";
 
-    private String mCurrentTab;
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            androidx.fragment.app.Fragment selectedFragment = null;
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    selectedFragment = HomeFragment.newInstance();
-                    break;
-                case R.id.navigation_radio:
-                    selectedFragment = RadioFragment.newInstance();
-                    break;
-                case R.id.navigation_profile:
-                    selectedFragment = ProfileFragment.newInstance();
-                    break;
-                case R.id.navigation_notifications:
-                    selectedFragment = NotificationsFragment.newInstance();
-                    break;
-            }
-            androidx.fragment.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.frame_layout, selectedFragment);
-            transaction.commit();
-            return true;
-        }
-    };
+    private BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener
+            = item -> {
+                androidx.fragment.app.Fragment selectedFragment = null;
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        selectedFragment = HomeFragment.newInstance();
+                        break;
+                    case R.id.navigation_radio:
+                        selectedFragment = RadioFragment.newInstance();
+                        break;
+                    case R.id.navigation_profile:
+                        selectedFragment = ProfileFragment.newInstance();
+                        break;
+                    case R.id.navigation_notifications:
+                        selectedFragment = NotificationsFragment.newInstance();
+                        break;
+                }
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.commit();
+                return true;
+            };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // OneSignal Initialization
+        OneSignal.initWithContext(this);
+        OneSignal.setAppId(ONESIGNAL_APP_ID);
 
-        OneSignal.startInit(this).setNotificationOpenedHandler(new ExampleNotificationOpenedHandler()).init();
         if (activityStarted
                 && getIntent() != null
                 && (getIntent().getFlags() & Intent.FLAG_ACTIVITY_REORDER_TO_FRONT) != 0) {
@@ -91,14 +82,14 @@ public class MainActivity extends AppCompatActivity {
         //Add Bottom Navigation View
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
         //first fragment - one time only
-        androidx.fragment.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, HomeFragment.newInstance());
         transaction.commit();
         //Used to select an item programmatically
         //bottomNavigationView.getMenu().getItem(2).setChecked(true);
-        androidx.core.app.NotificationCompat.Builder builder = new androidx.core.app.NotificationCompat.Builder(this);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setSmallIcon(icon);
         //builder.setLargeIcon(Bitmap.createBitmap(largeicon));
     }
@@ -173,10 +164,7 @@ public class MainActivity extends AppCompatActivity {
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            if (mCustomView == null) {
-                mContentView.setVisibility(View.VISIBLE);
-                setContentView(mContentView);
-            } else {
+            if (mCustomView != null) {
                 // Hide the custom view.
                 mCustomView.setVisibility(View.GONE);
                 // Remove the custom view from its container.
@@ -185,9 +173,9 @@ public class MainActivity extends AppCompatActivity {
                 mCustomViewContainer.setVisibility(View.GONE);
                 mCustomViewCallback.onCustomViewHidden();
                 // Show the content view.
-                mContentView.setVisibility(View.VISIBLE);
-                setContentView(mContentView);
             }
+            mContentView.setVisibility(View.VISIBLE);
+            setContentView(mContentView);
 
 
         }
@@ -195,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         //webView.saveState(outState);
     }
@@ -218,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     // This fires when a notification is opened by tapping on it or one is received while the app is running.
-    private class ExampleNotificationOpenedHandler implements OneSignal.NotificationOpenedHandler {
+    private class ExampleNotificationOpenedHandler {
         public void notificationOpened(String message, JSONObject additionalData, boolean isActive) {
             try {
                 if (additionalData != null) {
@@ -228,10 +216,8 @@ public class MainActivity extends AppCompatActivity {
                             && getIntent() != null
                             && (getIntent().getFlags() & Intent.FLAG_ACTIVITY_REORDER_TO_FRONT) != 0) {
                         finish();
-                        return;
                     }
                 }
-                Log.d("OneSignalExample", "Full additionalData:\n" + additionalData.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

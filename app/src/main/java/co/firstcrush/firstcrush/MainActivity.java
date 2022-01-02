@@ -2,6 +2,8 @@ package co.firstcrush.firstcrush;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import com.onesignal.OneSignal;
+import com.onesignal.OneSignal.OSNotificationOpenedHandler;
 
 import androidx.core.app.NotificationCompat;
 
@@ -22,7 +24,6 @@ import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
-import com.onesignal.OneSignal;
 
 import static co.firstcrush.firstcrush.R.mipmap.icon;
 
@@ -206,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     // This fires when a notification is opened by tapping on it or one is received while the app is running.
-    private class ExampleNotificationOpenedHandler {
+    public class ExampleNotificationOpenedHandler {
         public void notificationOpened(String message, JSONObject additionalData, boolean isActive) {
             try {
                 if (additionalData != null) {

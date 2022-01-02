@@ -4,11 +4,11 @@ plugins{
 }
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
     defaultConfig {
         applicationId "co.firstcrush.firstcrush"
         minSdkVersion 29
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionCode 10
         multiDexEnabled true
         versionName "15.0"
@@ -18,10 +18,17 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
-        release {
-            shrinkResources true
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        buildTypes {
+            debug {
+                debuggable true
+                minifyEnabled false
+                buildConfigField 'boolean', 'ENABLE_CRASHLYTICS', 'false'
+            }
+            release {
+                debuggable false
+                minifyEnabled true
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
         }
     }
     compileOptions{
@@ -45,7 +52,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:20.5.0'
     implementation 'com.google.android.gms:play-services-identity:18.0.0'
     implementation 'com.google.android.gms:play-services-gcm:17.0.0'
-    implementation 'com.onesignal:OneSignal:[4.0.0,4.99.99]'
+    implementation 'com.onesignal:OneSignal:4.6.3'
     implementation 'com.google.android.gms:play-services-analytics:18.0.0'
     implementation 'com.google.android.gms:play-services-location:19.0.0'
     implementation 'com.google.firebase:firebase-appindexing:20.0.0'

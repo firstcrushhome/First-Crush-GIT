@@ -63,7 +63,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/launcher_icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:allowBackup="true"
+        android:fullBackupOnly="true">
 
         <amazon:enable-feature
             android:name="com.amazon.device.messaging"
@@ -71,13 +73,13 @@
 
         <receiver android:name="com.onesignal.NotificationOpenedReceiver"
             tools:ignore="Instantiatable" />
-        <service android:name="com.onesignal.SyncService" android:stopWithTask="false"/>
+        <service android:name="com.onesignal.SyncService" android:stopWithTask="false" tools:replace="android:stopWithTask"/>
         <activity android:name="com.onesignal.PermissionsActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <activity android:name=".HomeFragment"
             tools:ignore="Instantiatable" />
 
         <receiver android:name="com.onesignal.BootUpReceiver"
-            android:exported="false">
+            android:exported="false" tools:replace="android:exported">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
@@ -119,7 +121,9 @@
         android:launchMode="singleTop"
         android:name=".MainActivity"
         android:windowSoftInputMode="adjustResize"
-        android:exported="true">
+        android:exported="true"
+        tools:node="merge"
+        >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.DEFAULT" />

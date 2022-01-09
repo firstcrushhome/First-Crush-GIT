@@ -30,7 +30,6 @@
         android:layout_width="245dp"
         android:layout_height="wrap_content"
         android:fontFamily="cursive"
-        android:textColor="@color/wallet_bright_foreground_disabled_holo_light"
         android:text="@string/app_name"
         android:textSize="52sp"
         android:gravity="center"

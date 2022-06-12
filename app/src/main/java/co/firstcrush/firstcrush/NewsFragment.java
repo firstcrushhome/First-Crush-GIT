@@ -28,7 +28,7 @@ public class NewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View newsView=inflater.inflate(R.layout.news_fragment, container, false);
         webNewsView = (WebView) newsView.findViewById(R.id.web1);
-        webNewsView.loadUrl("http://www.firstcrush.co/news/");
+        webNewsView.loadUrl("https://www.firstcrush.co/news/");
 
         // Enable Javascript
         WebSettings webSettings = webNewsView.getSettings();

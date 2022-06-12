@@ -37,7 +37,7 @@ public class NotificationsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View newsView=inflater.inflate(R.layout.notifications_fragment, container, false);
         webNotificationsView = (WebView) newsView.findViewById(R.id.web1);
-        webNotificationsView.loadUrl("http://www.firstcrush.co/notifications");
+        webNotificationsView.loadUrl("https://www.firstcrush.co/notifications");
 
         // Enable Javascript
         WebSettings webSettings = webNotificationsView.getSettings();

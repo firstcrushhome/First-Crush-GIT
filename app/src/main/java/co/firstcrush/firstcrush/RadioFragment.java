@@ -38,7 +38,7 @@ public class RadioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View newsView=inflater.inflate(R.layout.radio_fragment, container, false);
         webRadioView = (WebView) newsView.findViewById(R.id.web1);
-        webRadioView.loadUrl("http://www.firstcrush.co/first-crush-101-radio/");
+        webRadioView.loadUrl("https://www.firstcrush.co/first-crush-101-radio/");
 
         // Enable Javascript
         WebSettings webSettings = webRadioView.getSettings();

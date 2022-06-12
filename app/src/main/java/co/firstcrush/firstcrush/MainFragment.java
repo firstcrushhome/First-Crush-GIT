@@ -57,7 +57,7 @@ public class MainFragment extends Fragment{
             webMainView.getSettings().setUserAgentString(ua);
             // Force links and redirects to open in the WebView instead of in a browser
             webMainView.setWebViewClient(new WebViewClient());
-            webMainView.loadUrl("http://www.firstcrush.co");
+            webMainView.loadUrl("https://www.firstcrush.co");
             return view;
         }
 

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:amazon="http://schemas.amazon.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:design="http://schemas.android.com/apk/res-auto"
     android:hardwareAccelerated="true"
     package="co.firstcrush.firstcrush">
     <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true"
@@ -11,6 +9,9 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE" />
     <permission android:name="co.firstcrush.firstcrush.permission.RECEIVE_ADM_MESSAGE" android:protectionLevel="signature" />
     <uses-permission android:name="co.firstcrush.firstcrush.permission.RECEIVE_ADM_MESSAGE" />
@@ -21,9 +22,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/launcher_icon"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:screenOrientation="fullUser"
-            android:name=".SplashScreen">
+            android:name=".SplashScreen"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -34,7 +37,8 @@
                   android:configChanges="keyboard|keyboardHidden|locale|orientation|screenSize"
                   android:launchMode="singleTop"
                   android:name=".MainActivity"
-                  android:windowSoftInputMode="adjustResize">
+                  android:windowSoftInputMode="adjustResize"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -43,38 +47,46 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="www.firstcrush.co" />
-                <data android:scheme="http" android:host="radio.firstcrush.co" />
+                <data android:scheme="https" android:host="www.firstcrush.co" />
+                <data android:scheme="https" android:host="radio.firstcrush.co" />
             </intent-filter>
         </activity>
-        <provider android:authorities="co.firstcrush.firstcrush.google_measurement_service" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementContentProvider"/>
-        <receiver android:enabled="true" android:name="com.google.android.gms.measurement.AppMeasurementReceiver">
-            <intent-filter>
-                <action android:name="com.google.android.gms.measurement.UPLOAD"/>
-            </intent-filter>
-        </receiver>
+
         <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementService"/>
         <meta-data android:name="onesignal_app_id" android:value="ea063994-c980-468b-8895-fcdd9dd93cf4"/>
         <meta-data android:name="onesignal_google_project_number" android:value="str:105064394158"/>
-        <receiver android:name="com.onesignal.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+        <receiver
+            android:name="com.onesignal.NotificationDismissReceiver"
+            android:exported="true"/>
+        <receiver
+            android:name="com.onesignal.BootUpReceiver"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-                <category android:name="co.firstcrush.firstcrush"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.onesignal.NotificationOpenedReceiver"/>
-        <service android:name="com.onesignal.GcmIntentService"/>
-        <service android:name="com.onesignal.SyncService" android:stopWithTask="false"/>
-        <activity android:name="com.onesignal.PermissionsActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-        <activity android:name=".HomeFragment" />
+        <receiver
+            android:name="com.onesignal.UpgradeReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
 
-        <service android:name="com.onesignal.NotificationRestoreService"/>
-        <receiver android:name="com.onesignal.BootUpReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
-            </intent-filter>
-        </receiver>
+        <activity
+            android:name="com.onesignal.NotificationOpenedReceiver"
+            android:noHistory="true"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="true" />
+        <activity
+            android:name="com.onesignal.NotificationOpenedReceiverAndroid22AndOlder"
+            android:noHistory="true"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="true" />
         <receiver android:name="com.onesignal.UpgradeReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>

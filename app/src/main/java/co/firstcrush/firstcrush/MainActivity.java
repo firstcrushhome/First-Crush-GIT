@@ -1,16 +1,16 @@
 package co.firstcrush.firstcrush;
 
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.NotificationCompat;
+import androidx.appcompat.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.core.app.NotificationCompat;
+
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -22,10 +22,13 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+
+import com.onesignal.OSNotificationAction;
 import com.onesignal.OneSignal;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import com.onesignal.OSNotificationOpenedResult;
 
 import static co.firstcrush.firstcrush.R.mipmap.icon;
 
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            android.support.v4.app.Fragment selectedFragment = null;
+            androidx.fragment.app.Fragment selectedFragment = null;
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     selectedFragment = HomeFragment.newInstance();
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = NotificationsFragment.newInstance();
                     break;
             }
-            android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            androidx.fragment.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.frame_layout, selectedFragment);
             transaction.commit();
             return true;
@@ -75,7 +78,17 @@ public class MainActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        OneSignal.startInit(this).setNotificationOpenedHandler(new ExampleNotificationOpenedHandler()).init();
+        OneSignal.initWithContext(this);
+        OneSignal.setNotificationOpenedHandler(
+                new OneSignal.OSNotificationOpenedHandler() {
+                    @Override
+                    public void notificationOpened(OSNotificationOpenedResult result) {
+                        String actionId = result.getAction().getActionId();
+                        OSNotificationAction.ActionType type = result.getAction().getType(); // "ActionTaken" | "Opened"
+
+                        String title = result.getNotification().getTitle();
+                    }
+                });
         if (activityStarted
                 && getIntent() != null
                 && (getIntent().getFlags() & Intent.FLAG_ACTIVITY_REORDER_TO_FRONT) != 0) {
@@ -90,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationViewHelper.disableShiftMode(navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         //first fragment - one time only
-        android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        androidx.fragment.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, HomeFragment.newInstance());
         transaction.commit();
         //Used to select an item programmatically
@@ -248,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }*/
     // This fires when a notification is opened by tapping on it or one is received while the app is running.
-    private class ExampleNotificationOpenedHandler implements OneSignal.NotificationOpenedHandler {
+    private abstract class ExampleNotificationOpenedHandler implements OneSignal.OSNotificationOpenedHandler {
         public void notificationOpened(String message, JSONObject additionalData, boolean isActive) {
             try {
                 if (additionalData != null) {

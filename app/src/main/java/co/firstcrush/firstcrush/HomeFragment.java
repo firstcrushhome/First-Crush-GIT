@@ -1,19 +1,13 @@
 package co.firstcrush.firstcrush;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +16,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 public class HomeFragment extends Fragment{
@@ -33,9 +28,9 @@ public class HomeFragment extends Fragment{
     private RelativeLayout mContentView;
     private FrameLayout mCustomViewContainer;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
-    private ProgressDialog progressBar;
+    private ProgressBar progressBar;
     View decorView;
-    private android.app.FragmentManager fragmentManager;
+    private androidx.fragment.app.FragmentManager fragmentManager;
 
 
     public static HomeFragment newInstance() {
@@ -51,16 +46,16 @@ public class HomeFragment extends Fragment{
             view = inflater.inflate(R.layout.home_fragment, container, false);
 
             //Add Tab Bar
-            TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+            TabLayout tabLayout = view.findViewById(R.id.tab_layout);
             tabLayout.addTab(tabLayout.newTab().setText("Home"));
             tabLayout.addTab(tabLayout.newTab().setText("News"));
             tabLayout.addTab(tabLayout.newTab().setText("Trailers"));
             tabLayout.addTab(tabLayout.newTab().setText("Travel"));
             tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-            final ViewPager viewPager = (ViewPager) view.findViewById(R.id.pager);
+            final ViewPager viewPager = view.findViewById(R.id.pager);
             final PagerAdapter adapter = new PagerAdapter
-                    (getFragmentManager(), tabLayout.getTabCount());
+                    (getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
             viewPager.setAdapter(adapter);
             viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
             tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -129,46 +124,4 @@ public class HomeFragment extends Fragment{
     }
 
 
-
-
-    /*
-    @Override
-     protected void onPause() {
-        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
-        //webView.onPause();
-    }*/
-
-    /*@Override
-    protected void onResume() {
-        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
-        webView.onResume();
-        decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
-        if (mCustomView != null) {
-            setContentView(mContentView);;
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        webView = null;
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-    }*/
 }

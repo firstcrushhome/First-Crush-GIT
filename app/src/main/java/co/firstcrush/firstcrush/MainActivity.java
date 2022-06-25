@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.onesignal.OSNotificationAction;
@@ -30,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import com.onesignal.OSNotificationOpenedResult;
 
+import static co.firstcrush.firstcrush.R.id.navigation_home;
 import static co.firstcrush.firstcrush.R.mipmap.icon;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,37 +43,33 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout mContentView;
     private FrameLayout mCustomViewContainer;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
-    private ProgressDialog progressBar;
+    private ProgressBar progressBar;
     View decorView;
 
     private String mCurrentTab;
 
-    private BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            androidx.fragment.app.Fragment selectedFragment = null;
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    selectedFragment = HomeFragment.newInstance();
-                    break;
-                case R.id.navigation_radio:
-                    selectedFragment = RadioFragment.newInstance();
-                    break;
-                case R.id.navigation_profile:
-                    selectedFragment = ProfileFragment.newInstance();
-                    break;
-                case R.id.navigation_notifications:
-                    selectedFragment = NotificationsFragment.newInstance();
-                    break;
-            }
-            androidx.fragment.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.frame_layout, selectedFragment);
-            transaction.commit();
-            return true;
-        }
-    };
+    private final BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener
+            = item -> {
+                androidx.fragment.app.Fragment selectedFragment = null;
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        selectedFragment = HomeFragment.newInstance();
+                        break;
+                    case R.id.navigation_radio:
+                        selectedFragment = RadioFragment.newInstance();
+                        break;
+                    case R.id.navigation_profile:
+                        selectedFragment = ProfileFragment.newInstance();
+                        break;
+                    case R.id.navigation_notifications:
+                        selectedFragment = NotificationsFragment.newInstance();
+                        break;
+                }
+                androidx.fragment.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.commit();
+                return true;
+            };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,14 +78,11 @@ public class MainActivity extends AppCompatActivity {
 
         OneSignal.initWithContext(this);
         OneSignal.setNotificationOpenedHandler(
-                new OneSignal.OSNotificationOpenedHandler() {
-                    @Override
-                    public void notificationOpened(OSNotificationOpenedResult result) {
-                        String actionId = result.getAction().getActionId();
-                        OSNotificationAction.ActionType type = result.getAction().getType(); // "ActionTaken" | "Opened"
+                result -> {
+                    String actionId = result.getAction().getActionId();
+                    OSNotificationAction.ActionType type = result.getAction().getType(); // "ActionTaken" | "Opened"
 
-                        String title = result.getNotification().getTitle();
-                    }
+                    String title = result.getNotification().getTitle();
                 });
         if (activityStarted
                 && getIntent() != null
@@ -115,10 +110,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (navigation.getSelectedItemId() == R.id.navigation_home) {
+        if (navigation.getSelectedItemId() == navigation_home) {
             super.onBackPressed();
         } else {
-            navigation.setSelectedItemId(R.id.navigation_home);
+            navigation.setSelectedItemId(navigation_home);
         }
     }
     @Override
@@ -212,10 +207,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (navigation.getSelectedItemId() == R.id.navigation_home) {
+        if (navigation.getSelectedItemId() == navigation_home) {
             super.onBackPressed();
         } else {
-            navigation.setSelectedItemId(R.id.navigation_home);
+            navigation.setSelectedItemId(navigation_home);
         }
             return super.onKeyDown(keyCode, event);
     }

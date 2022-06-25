@@ -14,6 +14,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 public class MainFragment extends Fragment{
@@ -25,9 +26,8 @@ public class MainFragment extends Fragment{
     private RelativeLayout mContentView;
     private FrameLayout mCustomViewContainer;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
-    private ProgressDialog progressBar;
+    private ProgressBar progressBar;
     View decorView;
-    private android.app.FragmentManager fragmentManager;
 
 
     public static MainFragment newInstance() {
@@ -49,7 +49,6 @@ public class MainFragment extends Fragment{
             webSettings.setAppCacheEnabled(true);
             webSettings.setUseWideViewPort(true);
             webSettings.setLoadWithOverviewMode(true);
-            webSettings.setSaveFormData(true);
             webSettings.supportMultipleWindows();
 
             String ua = "Chrome";

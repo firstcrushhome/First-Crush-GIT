@@ -12,6 +12,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 public class TravelFragment extends Fragment {
@@ -22,14 +23,14 @@ public class TravelFragment extends Fragment {
     private RelativeLayout mContentView;
     private FrameLayout mCustomViewContainer;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
-    private ProgressDialog progressBar;
+    private ProgressBar progressBar;
     private WebView webTravelView1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View travelView=inflater.inflate(R.layout.travel_fragment, container, false);
         webTravelView = (WebView) travelView.findViewById(R.id.web1);
-        webTravelView.loadUrl("http://www.firstcrush.co/travel/");
+        webTravelView.loadUrl("https://www.firstcrush.co/travel/");
 
         // Enable Javascript
         WebSettings webSettings = webTravelView.getSettings();

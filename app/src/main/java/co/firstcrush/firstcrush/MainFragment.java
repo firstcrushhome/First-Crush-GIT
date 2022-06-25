@@ -3,6 +3,8 @@ package co.firstcrush.firstcrush;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
@@ -43,8 +45,6 @@ public class MainFragment extends Fragment{
             view = inflater.inflate(R.layout.main_fragment, container, false);
             webMainView = (WebView) view.findViewById(R.id.web1);
             WebSettings webSettings = webMainView.getSettings();
-            // Enable Javascript
-            webSettings.setJavaScriptEnabled(true);
             webSettings.setDomStorageEnabled(true);
             webSettings.setAppCacheEnabled(true);
             webSettings.setUseWideViewPort(true);
@@ -86,7 +86,7 @@ public class MainFragment extends Fragment{
 
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         //webView.saveState(outState);
     }

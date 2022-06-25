@@ -38,10 +38,8 @@ public class TrailersFragment extends Fragment {
         webSettings.setAppCacheEnabled(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
-        webSettings.setSaveFormData(true);
         //webSettings.setPluginState(WebSettings.PluginState.ON);
         webSettings.supportMultipleWindows();
-        webSettings.setJavaScriptEnabled(true);
         String ua ="Chrome";
 
         webTrailerView.getSettings().setUserAgentString(ua);

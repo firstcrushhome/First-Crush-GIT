@@ -34,13 +34,11 @@ public class TravelFragment extends Fragment {
 
         // Enable Javascript
         WebSettings webSettings = webTravelView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
         // Enable Javascript
         webSettings.setDomStorageEnabled(true);
         webSettings.setAppCacheEnabled(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
-        webSettings.setSaveFormData(true);
         //webSettings.setPluginState(WebSettings.PluginState.ON);
         webSettings.supportMultipleWindows();
         String ua ="Chrome";

@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     private String mCurrentTab;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         //Add Bottom Navigation View
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         BottomNavigationViewHelper.disableShiftMode(navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
         //first fragment - one time only
         androidx.fragment.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, HomeFragment.newInstance());

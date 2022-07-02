@@ -230,13 +230,13 @@ public class MainActivity extends AppCompatActivity {
             return super.onKeyDown(keyCode, event);
     }
 
-   /* @Override
+   @Override
      protected void onPause() {
         super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
         //webView.onPause();
-    }*/
+    }
 
-   /* @Override
+   @Override
     protected void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
         //webView.onResume();
@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-    }*/
+    }
     // This fires when a notification is opened by tapping on it or one is received while the app is running.
     private abstract class ExampleNotificationOpenedHandler implements OneSignal.OSNotificationOpenedHandler {
         public void notificationOpened(String message, JSONObject additionalData, boolean isActive) {

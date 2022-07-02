@@ -46,7 +46,7 @@ public class NotificationsFragment extends Fragment {
         // Force links and redirects to open in the WebView instead of in a browser
         webNotificationsView.setWebViewClient(new WebViewClient());
         // Enable Javascript
-
+        webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setAppCacheEnabled(true);
         webSettings.setUseWideViewPort(true);

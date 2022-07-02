@@ -42,7 +42,7 @@ public class ProfileFragment extends Fragment {
 
         // Enable Javascript
         WebSettings webSettings = webProfileView.getSettings();
-
+        webSettings.setJavaScriptEnabled(true);
         // Force links and redirects to open in the WebView instead of in a browser
         webProfileView.setWebViewClient(new WebViewClient());
         // Enable Javascript

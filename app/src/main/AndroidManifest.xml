@@ -43,7 +43,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="www.firstcrush.co" />
+                <data android:scheme="https" android:host="www.firstcrush.co" />
                 <data android:scheme="http" android:host="radio.firstcrush.co" />
             </intent-filter>
         </activity>

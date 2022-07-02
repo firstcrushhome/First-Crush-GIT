@@ -35,6 +35,7 @@ public class TravelFragment extends Fragment {
         // Enable Javascript
         WebSettings webSettings = webTravelView.getSettings();
         // Enable Javascript
+        webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setAppCacheEnabled(true);
         webSettings.setUseWideViewPort(true);

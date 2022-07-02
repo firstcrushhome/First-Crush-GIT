@@ -45,6 +45,7 @@ public class MainFragment extends Fragment{
             view = inflater.inflate(R.layout.main_fragment, container, false);
             webMainView = (WebView) view.findViewById(R.id.web1);
             WebSettings webSettings = webMainView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
             webSettings.setDomStorageEnabled(true);
             webSettings.setAppCacheEnabled(true);
             webSettings.setUseWideViewPort(true);

@@ -34,6 +34,7 @@ public class TrailersFragment extends Fragment {
         // Enable Javascript
         WebSettings webSettings = webTrailerView.getSettings();
         // Enable Javascript
+        webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setAppCacheEnabled(true);
         webSettings.setUseWideViewPort(true);

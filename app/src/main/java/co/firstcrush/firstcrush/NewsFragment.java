@@ -37,7 +37,7 @@ public class NewsFragment extends Fragment {
         // Force links and redirects to open in the WebView instead of in a browser
         webNewsView.setWebViewClient(new WebViewClient());
         // Enable Javascript
-
+        webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setAppCacheEnabled(true);
         webSettings.setUseWideViewPort(true);

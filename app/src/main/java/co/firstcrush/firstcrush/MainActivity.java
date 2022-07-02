@@ -3,6 +3,7 @@ package co.firstcrush.firstcrush;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         OneSignal.initWithContext(this);
         OneSignal.setNotificationOpenedHandler(
                 result -> {
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Add Bottom Navigation View
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        BottomNavigationViewHelper.disableShiftMode(navigation);
+        //BottomNavigationViewHelper.disableShiftMode(navigation);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
         //first fragment - one time only
         androidx.fragment.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -211,21 +212,34 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         } else {
             navigation.setSelectedItemId(navigation_home);
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                if ((mCustomView == null)&& webView.canGoBack()) {
+                    webView.goBack();
+                    return true;
+                }
+                else
+                {
+                    decorView = getWindow().getDecorView();
+                    decorView.setSystemUiVisibility(
+                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+                }
+            }
         }
             return super.onKeyDown(keyCode, event);
     }
 
-    /*
-    @Override
+   /* @Override
      protected void onPause() {
         super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
         //webView.onPause();
     }*/
 
-    /*@Override
+   /* @Override
     protected void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
-        webView.onResume();
+        //webView.onResume();
         decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE

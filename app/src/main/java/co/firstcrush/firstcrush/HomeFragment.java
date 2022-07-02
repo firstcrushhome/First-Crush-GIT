@@ -19,6 +19,8 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import java.util.Objects;
+
 public class HomeFragment extends Fragment{
     public WebView webView;
     View view;
@@ -54,8 +56,9 @@ public class HomeFragment extends Fragment{
             tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
             final ViewPager viewPager = view.findViewById(R.id.pager);
-            final PagerAdapter adapter = new PagerAdapter
-                    (getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
+            final PagerAdapter adapter;
+            adapter = new PagerAdapter
+                    (requireActivity().getSupportFragmentManager(), tabLayout.getTabCount());
             viewPager.setAdapter(adapter);
             viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
             tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

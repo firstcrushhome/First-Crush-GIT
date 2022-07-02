@@ -51,7 +51,7 @@ public class TrailersFragment extends Fragment {
         return trailersView;
     }
 
-    public boolean onBackPressed() {
+    public boolean handleonBackPressed() {
         if (webTrailerView.canGoBack()) {
             webTrailerView.goBack();
             return true;

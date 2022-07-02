@@ -2,12 +2,15 @@
 <RelativeLayout
     android:id="@+id/activity_main"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="bottom"
+        android:fitsSystemWindows="true"
         android:layout_height="match_parent">
     </FrameLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -20,7 +23,7 @@
         android:layout_alignParentBottom="true"
         android:animateLayoutChanges="false"
         android:animationCache="false"
-        android:background="@color/colorPrimaryDark"
+        android:background="@android:color/black"
         android:fitsSystemWindows="true"
         app:itemBackground="@android:color/black"
         app:itemIconTint="@drawable/selector"

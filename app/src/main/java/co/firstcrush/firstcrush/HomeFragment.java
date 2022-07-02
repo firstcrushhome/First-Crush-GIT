@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment{
 
             //Add Tab Bar
             TabLayout tabLayout = view.findViewById(R.id.tab_layout);
-            tabLayout.addTab(tabLayout.newTab().setText("Home"));
+            tabLayout.addTab(tabLayout.newTab().setText("Featured"));
             tabLayout.addTab(tabLayout.newTab().setText("News"));
             tabLayout.addTab(tabLayout.newTab().setText("Trailers"));
             tabLayout.addTab(tabLayout.newTab().setText("Travel"));

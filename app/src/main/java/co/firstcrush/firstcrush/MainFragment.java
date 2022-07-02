@@ -50,10 +50,8 @@ public class MainFragment extends Fragment{
     private Handler handler = new Handler(Looper.getMainLooper()){
         @Override
         public void handleMessage(Message message) {
-            switch (message.what) {
-                case 1:{
-                    webViewGoBack();
-                }break;
+            if (message.what == 1) {
+                webViewGoBack();
             }
         }
     };
@@ -85,40 +83,37 @@ public class MainFragment extends Fragment{
             webMainView.loadUrl("https://www.firstcrush.co");
 
 
-            webMainView.setOnKeyListener(new View.OnKeyListener() {
-
-                public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    if (keyCode == KeyEvent.KEYCODE_BACK
-                            && event.getAction() == MotionEvent.ACTION_UP) {
-                        if(webMainView.canGoBack()&& mCustomView == null) {
-                            handler.sendEmptyMessage(1);
-                            webMainView.goBack();
-                            return true;
-                        }
-                        else
-                        {
-                            decorView = getActivity().getWindow().getDecorView();
-                            decorView.setSystemUiVisibility(
-                                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-                        }
-                    }
-
-                    if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
-                        handler.sendEmptyMessage(2);
+            webMainView.setOnKeyListener((v, keyCode, event) -> {
+                if (keyCode == KeyEvent.KEYCODE_BACK
+                        && event.getAction() == MotionEvent.ACTION_UP) {
+                    if(webMainView.canGoBack()&& mCustomView == null) {
+                        handler.sendEmptyMessage(1);
+                        webMainView.goBack();
                         return true;
                     }
-                    if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
-                        handler.sendEmptyMessage(3);
-                        return true;
+                    else
+                    {
+                        decorView = requireActivity().getWindow().getDecorView();
+                        decorView.setSystemUiVisibility(
+                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
                     }
-                    if ((keyCode == KeyEvent.KEYCODE_HOME)) {
-                        handler.sendEmptyMessage(4);
-                        return true;
-                    }
-                    return false;
                 }
+
+                if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+                    handler.sendEmptyMessage(2);
+                    return true;
+                }
+                if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
+                    handler.sendEmptyMessage(3);
+                    return true;
+                }
+                if ((keyCode == KeyEvent.KEYCODE_HOME)) {
+                    handler.sendEmptyMessage(4);
+                    return true;
+                }
+                return false;
             });
             return view;
         }
@@ -169,7 +164,7 @@ public class MainFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
-        decorView = getActivity().getWindow().getDecorView();
+        decorView = requireActivity().getWindow().getDecorView();
         webMainView.onResume();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -181,7 +176,7 @@ public class MainFragment extends Fragment{
     public void onStop() {
         super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
         if (mCustomView != null) {
-            getActivity().setContentView(mContentView);;
+            getActivity().setContentView(mContentView);
         }
     }
 
@@ -198,7 +193,7 @@ public class MainFragment extends Fragment{
         @Override
         public void onShowCustomView(View view, CustomViewCallback callback) {
             super.onShowCustomView(view, callback);
-            decorView = getActivity().getWindow().getDecorView();
+            decorView = requireActivity().getWindow().getDecorView();
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -234,7 +229,7 @@ public class MainFragment extends Fragment{
         @Override
         public void onHideCustomView() {
             super.onHideCustomView();
-            decorView = getActivity().getWindow().getDecorView();
+            decorView = requireActivity().getWindow().getDecorView();
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -252,7 +247,7 @@ public class MainFragment extends Fragment{
 
                 // Show the content view.
                 mContentView.setVisibility(View.VISIBLE);
-                getActivity().setContentView(mContentView);
+                requireActivity().setContentView(mContentView);
 
             }
         }
@@ -265,8 +260,8 @@ public class MainFragment extends Fragment{
                     if (additionalData.has("actionSelected"))
                         Log.d("OneSignalExample", "OneSignal notification button with id " + additionalData.getString("actionSelected") + " pressed");
                     if (activityStarted
-                            && getActivity().getIntent() != null
-                            && (getActivity().getIntent().getFlags() & Intent.FLAG_ACTIVITY_REORDER_TO_FRONT) != 0) {
+                            && null != Objects.requireNonNull(requireActivity().getIntent())
+                            && 0 != (requireActivity().getIntent().getFlags() & Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)) {
                         getActivity().finish();
                         return;
                     }

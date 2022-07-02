@@ -25,5 +25,7 @@
         app:itemBackground="@android:color/black"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
-        app:menu="@menu/navigation" />
+        app:menu="@menu/navigation"
+        app:labelVisibilityMode="labeled"
+        />
 </RelativeLayout>

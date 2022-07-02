@@ -38,7 +38,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View newsView=inflater.inflate(R.layout.profile_fragment, container, false);
         webProfileView = (WebView) newsView.findViewById(R.id.web1);
-        webProfileView.loadUrl("https://www.firstcrush.co/your-profile");
+        webProfileView.loadUrl("https://www.firstcrush.co/login");
 
         // Enable Javascript
         WebSettings webSettings = webProfileView.getSettings();

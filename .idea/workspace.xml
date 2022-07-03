@@ -15,19 +15,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="08 July 2022 Progress: Webview Alignment Fixed">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/NewsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/NewsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/NotificationsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/NotificationsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/ProfileFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/RadioFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/RadioFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/SearchFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/TrailersFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/TrailersFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/TravelFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/TravelFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_splashscreen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_splashscreen.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/main_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/main_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/radio_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/radio_fragment.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2584,7 +2572,21 @@
       <option name="project" value="LOCAL" />
       <updated>1656875278250</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="08 July 2022 Progress: Webview Alignment Fixed">
+      <created>1656880513797</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1656880513797</updated>
+    </task>
+    <task id="LOCAL-00021" summary="08 July 2022 Progress: Webview Alignment Fixed">
+      <created>1656880623070</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1656880623070</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TodoView">

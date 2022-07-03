@@ -96,7 +96,7 @@ public class ProfileFragment extends Fragment{
                     progressBar.setVisibility(View.INVISIBLE);
             }
         });
-        webProfileView.loadUrl("https://www.firstcrush.co/your-profile");
+        webProfileView.loadUrl("https://www.firstcrush.co/login");
 
 
         webProfileView.setOnKeyListener((v, keyCode, event) -> {

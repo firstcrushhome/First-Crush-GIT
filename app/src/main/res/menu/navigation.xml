@@ -6,6 +6,11 @@
         android:icon="@drawable/ic_action_home"
         />
     <item
+        android:id="@+id/search"
+        android:title="@string/search"
+        android:icon="?android:attr/actionModeWebSearchDrawable"
+        />
+    <item
         android:id="@+id/navigation_radio"
         android:title="@string/menu_radio"
         android:icon="@drawable/ic_action_radio"

@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        am.setMode(AudioManager.MODE_IN_COMMUNICATION);
 
         OneSignal.initWithContext(this);
         OneSignal.setNotificationOpenedHandler(

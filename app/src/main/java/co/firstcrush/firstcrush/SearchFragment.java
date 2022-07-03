@@ -152,7 +152,7 @@ public class SearchFragment extends Fragment{
     @Override
     public void onPause() {
         super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
-        webSearchView.onPause();
+        //webSearchView.onPause();
     }
 
 

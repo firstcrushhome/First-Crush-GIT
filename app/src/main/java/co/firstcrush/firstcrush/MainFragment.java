@@ -3,6 +3,7 @@ package co.firstcrush.firstcrush;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
 
@@ -43,6 +44,8 @@ public class MainFragment extends Fragment{
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
     private ProgressBar progressBar;
     private ViewGroup mContentViewContainer;
+    private MyWebChromeClient mWebChromeClient = null;
+    AudioManager audioManager;
     View decorView;
 
     private Handler handler = new Handler(Looper.getMainLooper()){
@@ -65,6 +68,9 @@ public class MainFragment extends Fragment{
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             view = inflater.inflate(R.layout.main_fragment, container, false);
             webMainView = view.findViewById(R.id.web1);
+            progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
+
+            progressBar.setVisibility(View.VISIBLE);
             WebSettings webSettings = webMainView.getSettings();
             webSettings.setJavaScriptEnabled(true);
             webSettings.setDomStorageEnabled(true);
@@ -73,11 +79,23 @@ public class MainFragment extends Fragment{
             webSettings.setLoadWithOverviewMode(true);
             webSettings.supportMultipleWindows();
 
+            webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+
             String ua = "Chrome";
 
             webMainView.getSettings().setUserAgentString(ua);
             // Force links and redirects to open in the WebView instead of in a browser
-            webMainView.setWebViewClient(new WebViewClient());
+            webMainView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+            // Force links and redirects to open in the WebView instead of in a browser
+            mWebChromeClient = new MyWebChromeClient();
+            webMainView.setWebChromeClient(mWebChromeClient);
+            webMainView.setWebViewClient(new WebViewClient() {
+
+                public void onPageFinished(WebView view, String url) {
+                    if (progressBar != null)
+                        progressBar.setVisibility(View.INVISIBLE);
+                }
+            });
             webMainView.loadUrl("https://www.firstcrush.co");
 
 

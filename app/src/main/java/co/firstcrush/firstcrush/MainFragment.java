@@ -1,15 +1,13 @@
 package co.firstcrush.firstcrush;
 
-import android.app.ProgressDialog;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.tabs.TabLayout;
 import com.onesignal.OneSignal;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -66,7 +64,7 @@ public class MainFragment extends Fragment{
     }
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             view = inflater.inflate(R.layout.main_fragment, container, false);
-            webMainView = (WebView) view.findViewById(R.id.web1);
+            webMainView = view.findViewById(R.id.web1);
             WebSettings webSettings = webMainView.getSettings();
             webSettings.setJavaScriptEnabled(true);
             webSettings.setDomStorageEnabled(true);
@@ -115,11 +113,12 @@ public class MainFragment extends Fragment{
                 }
                 return false;
             });
+
+
             return view;
         }
 
     private void webViewGoBack(){
-
         webMainView.goBack();
     }
 

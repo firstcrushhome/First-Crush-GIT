@@ -26,11 +26,16 @@ public class SearchFragment extends Fragment {
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
     private ProgressBar progressBar;
 
+    public static SearchFragment newInstance() {
+        SearchFragment fragment = new SearchFragment();
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View newsView=inflater.inflate(R.layout.news_fragment, container, false);
-        webSearchView = (WebView) newsView.findViewById(R.id.web1);
-        webSearchView.loadUrl("https://www.firstcrush.co/search/");
+        View searchView=inflater.inflate(R.layout.search_fragment, container, false);
+        webSearchView = (WebView) searchView.findViewById(R.id.web1);
+        webSearchView.loadUrl("https://www.firstcrush.co/search-content/");
 
         // Enable Javascript
         WebSettings webSettings = webSearchView.getSettings();
@@ -50,7 +55,7 @@ public class SearchFragment extends Fragment {
         webSearchView.getSettings().setUserAgentString(ua);
         // Force links and redirects to open in the WebView instead of in a browser
         webSearchView.setWebViewClient(new WebViewClient());
-        return newsView;
+        return searchView;
     }
 
     public boolean onBackPressed() {

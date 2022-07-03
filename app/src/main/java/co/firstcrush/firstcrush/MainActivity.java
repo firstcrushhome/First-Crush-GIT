@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private WebView webView;
     private BottomNavigationView navigation;
     private static boolean activityStarted;
-    private MyWebChromeClient mWebChromeClient = null;
     private View mCustomView;
     private RelativeLayout mContentView;
     private FrameLayout mCustomViewContainer;
@@ -55,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         selectedFragment = HomeFragment.newInstance();
+                        break;
+                    case R.id.search:
+                        selectedFragment = SearchFragment.newInstance();
                         break;
                     case R.id.navigation_radio:
                         selectedFragment = RadioFragment.newInstance();
@@ -110,14 +112,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        if (navigation.getSelectedItemId() == navigation_home) {
-            super.onBackPressed();
-        } else {
-            navigation.setSelectedItemId(navigation_home);
-        }
-    }
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -139,136 +133,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public class MyWebChromeClient extends WebChromeClient {
-        private Context mContext;
-        FrameLayout.LayoutParams LayoutParameters = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
-
-        @Override
-        public void onShowCustomView(View view, CustomViewCallback callback) {
-            decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-            // if a view already exists then immediately terminate the new one
-            if (mCustomView != null) {
-                callback.onCustomViewHidden();
-                return;
-            }
-            mContentView = (RelativeLayout) findViewById(R.id.activity_main);
-            mContentView.setVisibility(View.GONE);
-            mCustomViewContainer = new FrameLayout(MainActivity.this);
-            mCustomViewContainer.setLayoutParams(LayoutParameters);
-            mCustomViewContainer.setBackgroundResource(android.R.color.black);
-            view.setLayoutParams(LayoutParameters);
-            mCustomViewContainer.addView(view);
-            mCustomView = view;
-            mCustomViewCallback = callback;
-            mCustomViewContainer.setVisibility(View.VISIBLE);
-            setContentView(mCustomViewContainer);
-
-        }
-
-        @Override
-        public void onHideCustomView() {
-            decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            if (mCustomView == null) {
-                mContentView.setVisibility(View.VISIBLE);
-                setContentView(mContentView);
-            } else {
-                // Hide the custom view.
-                mCustomView.setVisibility(View.GONE);
-                // Remove the custom view from its container.
-                mCustomViewContainer.removeView(mCustomView);
-                mCustomView = null;
-                mCustomViewContainer.setVisibility(View.GONE);
-                mCustomViewCallback.onCustomViewHidden();
-                // Show the content view.
-                mContentView.setVisibility(View.VISIBLE);
-                setContentView(mContentView);
-            }
-
-
-        }
-
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        //webView.saveState(outState);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (navigation.getSelectedItemId() == navigation_home) {
-            super.onBackPressed();
-        } else {
-            navigation.setSelectedItemId(navigation_home);
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                if ((mCustomView == null)&& webView.canGoBack()) {
-                    webView.goBack();
-                    return true;
-                }
-                else
-                {
-                    decorView = getWindow().getDecorView();
-                    decorView.setSystemUiVisibility(
-                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-                }
-            }
-        }
-            return super.onKeyDown(keyCode, event);
-    }
-
-   @Override
-     protected void onPause() {
-        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
-        //webView.onPause();
-    }
-
-   @Override
-    protected void onResume() {
-        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
-        //webView.onResume();
-        decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
-        if (mCustomView != null) {
-            setContentView(mContentView);;
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        webView = null;
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-    }
     // This fires when a notification is opened by tapping on it or one is received while the app is running.
     private abstract class ExampleNotificationOpenedHandler implements OneSignal.OSNotificationOpenedHandler {
         public void notificationOpened(String message, JSONObject additionalData, boolean isActive) {

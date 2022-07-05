@@ -55,6 +55,12 @@ public class MainFragment extends Fragment{
             if (message.what == 1) {
                 webViewGoBack();
             }
+            if (message.what == 2) {
+                onKeyDown();
+            }
+            if (message.what == 3) {
+                onKeyUp();
+            }
         }
     };
     public static MainFragment newInstance() {
@@ -145,7 +151,19 @@ public class MainFragment extends Fragment{
         Log.w("MainFrag","back");
     }
 
+    public boolean onKeyUp() {
+        AudioManager am = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+        am.adjustStreamVolume(AudioManager.STREAM_MUSIC,
+                AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
+        return true;
+    }
 
+    public boolean onKeyDown() {
+        AudioManager am = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+                am.adjustStreamVolume(AudioManager.STREAM_MUSIC,
+                        AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
+                return true;
+    }
 
     public void onWindowFocusChanged(boolean hasFocus) {
         view.onWindowFocusChanged(hasFocus);

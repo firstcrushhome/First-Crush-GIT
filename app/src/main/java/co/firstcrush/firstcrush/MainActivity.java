@@ -81,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        am.setMode(AudioManager.MODE_IN_COMMUNICATION);
+        //am.setMode(AudioManager.MODE_IN_COMMUNICATION);
+
 
         OneSignal.initWithContext(this);
         OneSignal.setNotificationOpenedHandler(
@@ -123,23 +124,39 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        super.onKeyUp(keyCode, event);
-        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP)
-        {
-            Toast.makeText(MainActivity.this,"Up working",Toast.LENGTH_SHORT).show();
-            return true;
+        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_VOLUME_UP:
+                am.adjustStreamVolume(AudioManager.STREAM_MUSIC,
+                        AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
+                return true;
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                am.adjustStreamVolume(AudioManager.STREAM_MUSIC,
+                        AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
+                return true;
+            default:
+                // return false;
+                // Update based on @Rene comment below:
+                return super.onKeyDown(keyCode, event);
         }
-        return false;
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        super.onKeyDown(keyCode, event);
-        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
-        {
-            Toast.makeText(MainActivity.this,"Down working",Toast.LENGTH_SHORT).show();
-            return true;
+        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_VOLUME_UP:
+                am.adjustStreamVolume(AudioManager.STREAM_MUSIC,
+                AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
+                return true;
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                am.adjustStreamVolume(AudioManager.STREAM_MUSIC,
+                AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
+                return true;
+            default:
+                // return false;
+                // Update based on @Rene comment below:
+                return super.onKeyDown(keyCode, event);
         }
-        return false;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -27,6 +27,7 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -119,17 +120,20 @@ public class MainFragment extends Fragment{
 
                 if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
                     handler.sendEmptyMessage(2);
+                    Log.w("vol","down");
                     return true;
                 }
                 if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
                     handler.sendEmptyMessage(3);
+                    Log.w("vol","up");
                     return true;
                 }
                 if ((keyCode == KeyEvent.KEYCODE_HOME)) {
                     handler.sendEmptyMessage(4);
+                    Log.w("vol","home");
                     return true;
                 }
-                return false;
+                    return false;
             });
 
 
@@ -138,7 +142,9 @@ public class MainFragment extends Fragment{
 
     private void webViewGoBack(){
         webMainView.goBack();
+        Log.w("MainFrag","back");
     }
+
 
 
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -149,10 +155,12 @@ public class MainFragment extends Fragment{
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
+
     @Override
     public void onPause() {
         super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
         webMainView.onPause();
+        Log.w("MainFrag","pause");
     }
 
 
@@ -178,15 +186,40 @@ public class MainFragment extends Fragment{
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+   @Override
     public void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
-        decorView = requireActivity().getWindow().getDecorView();
-        webMainView.onResume();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+       webMainView.onResume();
+
+       decorView = getActivity().getWindow().getDecorView();
+       decorView.setSystemUiVisibility(
+               View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                       | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                       | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+       decorView = getActivity().getWindow().getDecorView();
+       decorView.setSystemUiVisibility(
+               View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                       | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                       | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                       | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                       | View.SYSTEM_UI_FLAG_FULLSCREEN
+                       | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+       if (mCustomView != null) {
+           // Hide the custom view.
+           mCustomView.setVisibility(View.GONE);
+           // Remove the custom view from its container.
+           mCustomViewContainer = (FrameLayout) mCustomView.getParent();
+           // Remove the custom view from its container.
+           mCustomViewContainer.removeView(mCustomView);
+           mCustomView = null;
+           mCustomViewContainer.setVisibility(View.GONE);
+           mCustomViewCallback.onCustomViewHidden();
+
+           // Show the content view.
+           mContentView.setVisibility(View.VISIBLE);
+           getActivity().setContentView(mContentView);
+       }
+       Log.w("MainFrag","resume");
     }
 
     @Override
@@ -195,12 +228,14 @@ public class MainFragment extends Fragment{
         if (mCustomView != null) {
             getActivity().setContentView(mContentView);
         }
+        Log.w("MainFrag","stop");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         webMainView = null;
+        Log.w("MainFrag","destroy");
     }
     public class MyWebChromeClient extends WebChromeClient {
         private int mOriginalOrientation;
@@ -210,7 +245,7 @@ public class MainFragment extends Fragment{
         @Override
         public void onShowCustomView(View view, CustomViewCallback callback) {
             super.onShowCustomView(view, callback);
-            decorView = requireActivity().getWindow().getDecorView();
+            decorView = getActivity().getWindow().getDecorView();
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -246,7 +281,7 @@ public class MainFragment extends Fragment{
         @Override
         public void onHideCustomView() {
             super.onHideCustomView();
-            decorView = requireActivity().getWindow().getDecorView();
+            decorView = getActivity().getWindow().getDecorView();
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -264,7 +299,7 @@ public class MainFragment extends Fragment{
 
                 // Show the content view.
                 mContentView.setVisibility(View.VISIBLE);
-                requireActivity().setContentView(mContentView);
+                getActivity().setContentView(mContentView);
 
             }
         }

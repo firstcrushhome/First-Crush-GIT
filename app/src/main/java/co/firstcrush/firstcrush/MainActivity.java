@@ -24,6 +24,7 @@ import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.onesignal.OSNotificationAction;
 import com.onesignal.OneSignal;
@@ -120,7 +121,26 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        super.onKeyUp(keyCode, event);
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP)
+        {
+            Toast.makeText(MainActivity.this,"Up working",Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        super.onKeyDown(keyCode, event);
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
+        {
+            Toast.makeText(MainActivity.this,"Down working",Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

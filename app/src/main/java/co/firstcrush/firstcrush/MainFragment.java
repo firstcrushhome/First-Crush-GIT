@@ -237,7 +237,6 @@ public class MainFragment extends Fragment{
            mContentView.setVisibility(View.VISIBLE);
            getActivity().setContentView(mContentView);
        }
-       Log.w("MainFrag","resume");
     }
 
     @Override

@@ -54,6 +54,12 @@ public class RadioFragment extends Fragment{
             if (message.what == 1) {
                 webViewGoBack();
             }
+            if (message.what == 2) {
+                onKeyDown();
+            }
+            if (message.what == 3) {
+                onKeyUp();
+            }
         }
     };
     public static RadioFragment newInstance() {
@@ -140,6 +146,20 @@ public class RadioFragment extends Fragment{
         webRadioView.goBack();
     }
 
+    public boolean onKeyUp() {
+        AudioManager am = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+        am.adjustStreamVolume(AudioManager.STREAM_MUSIC,
+                AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);
+        return true;
+    }
+
+    public boolean onKeyDown() {
+        AudioManager am = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+        am.adjustStreamVolume(AudioManager.STREAM_MUSIC,
+                AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
+        return true;
+    }
+
 
     public void onWindowFocusChanged(boolean hasFocus) {
         view.onWindowFocusChanged(hasFocus);
@@ -181,12 +201,36 @@ public class RadioFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
-        decorView = requireActivity().getWindow().getDecorView();
         webRadioView.onResume();
+
+        decorView = getActivity().getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        decorView = getActivity().getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        if (mCustomView != null) {
+            // Hide the custom view.
+            mCustomView.setVisibility(View.GONE);
+            // Remove the custom view from its container.
+            mCustomViewContainer = (FrameLayout) mCustomView.getParent();
+            // Remove the custom view from its container.
+            mCustomViewContainer.removeView(mCustomView);
+            mCustomView = null;
+            mCustomViewContainer.setVisibility(View.GONE);
+            mCustomViewCallback.onCustomViewHidden();
+
+            // Show the content view.
+            mContentView.setVisibility(View.VISIBLE);
+            getActivity().setContentView(mContentView);
+        }
     }
 
     @Override

@@ -4,6 +4,7 @@ package co.firstcrush.firstcrush;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
 
@@ -22,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -104,6 +106,7 @@ public class MainFragment extends Fragment{
                     if (progressBar != null)
                         progressBar.setVisibility(View.INVISIBLE);
                 }
+
             });
             webMainView.loadUrl("https://www.firstcrush.co");
 

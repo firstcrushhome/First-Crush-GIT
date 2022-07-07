@@ -83,8 +83,10 @@ public class NewsFragment extends Fragment{
         webSettings.setDomStorageEnabled(true);
         webSettings.setAppCacheEnabled(true);
         webSettings.setUseWideViewPort(true);
-        webSettings.setLoadWithOverviewMode(true);
+        webSettings.setLoadWithOverviewMode(false);
         webSettings.supportMultipleWindows();
+
+        webSettings.setAllowFileAccess(true);
 
         webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 
@@ -209,14 +211,6 @@ public class NewsFragment extends Fragment{
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        decorView = getActivity().getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         if (mCustomView != null) {
             // Hide the custom view.
             mCustomView.setVisibility(View.GONE);

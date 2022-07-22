@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+<<<<<<< HEAD
     <item
         android:id="@+id/navigation_home"
         android:title="@string/menu_home"
@@ -24,5 +25,30 @@
         android:id="@+id/navigation_notifications"
         android:title="@string/menu_notifications"
         android:icon="@drawable/ic_action_notifications" />
+=======
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_action_home"
+        android:title="Home" />
+    <item
+        android:id="@+id/navigation_news"
+        android:title="News"
+        android:icon="@drawable/ic_action_news"
+        />
+    <item
+        android:id="@+id/navigation_radio"
+        android:icon="@drawable/ic_action_radio"
+        android:title="Radio" />
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_action_profile"
+        android:title="Profile" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/ic_action_notifications"
+        android:title="Notifications" />
+>>>>>>> master
 
 </menu>

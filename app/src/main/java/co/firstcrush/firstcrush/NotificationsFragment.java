@@ -100,9 +100,20 @@ public class NotificationsFragment extends Fragment{
         webNotificationsView.setWebChromeClient(mWebChromeClient);
         webNotificationsView.setWebViewClient(new WebViewClient() {
 
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView webView, String urlNewString) {
+                webView.loadUrl(urlNewString);
+                progressBar.setVisibility(View.VISIBLE);
+                return true;
+            }
+
+            @Override
             public void onPageFinished(WebView view, String url) {
-                if (progressBar != null)
-                    progressBar.setVisibility(View.INVISIBLE);
+                if (progressBar != null) {
+                    progressBar.setVisibility(View.GONE);
+                }
+                super.onPageFinished(view, url);
+
             }
         });
         webNotificationsView.loadUrl("http://www.firstcrush.co/notifications");

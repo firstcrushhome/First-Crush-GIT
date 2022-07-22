@@ -99,10 +99,20 @@ public class RadioFragment extends Fragment{
         mWebChromeClient = new MyWebChromeClient();
         webRadioView.setWebChromeClient(mWebChromeClient);
         webRadioView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView webView, String urlNewString) {
+                webView.loadUrl(urlNewString);
+                progressBar.setVisibility(View.VISIBLE);
+                return true;
+            }
 
+            @Override
             public void onPageFinished(WebView view, String url) {
-                if (progressBar != null)
-                    progressBar.setVisibility(View.INVISIBLE);
+                if (progressBar != null) {
+                    progressBar.setVisibility(View.GONE);
+                }
+                super.onPageFinished(view, url);
+
             }
         });
         webRadioView.loadUrl("https://www.firstcrush.co/first-crush-101-radio/");

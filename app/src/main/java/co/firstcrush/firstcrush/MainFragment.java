@@ -86,7 +86,6 @@ public class MainFragment extends Fragment{
             webMainView = view.findViewById(R.id.web1);
             progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 
-            //progressBar.setProgress(1, true);
             WebSettings webSettings = webMainView.getSettings();
             webSettings.setBuiltInZoomControls(false);
             webSettings.setJavaScriptEnabled(true);
@@ -110,42 +109,20 @@ public class MainFragment extends Fragment{
             mWebChromeClient = new MyWebChromeClient();
             webMainView.setWebChromeClient(mWebChromeClient);
             webMainView.setWebViewClient(new WebViewClient() {
-                private int running = 0; // Could be public if you want a timer to check.
+
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView webView, String urlNewString) {
-                    running++;
                     webView.loadUrl(urlNewString);
                     progressBar.setVisibility(View.VISIBLE);
-                   // progressBar.setProgress(running);
-                    Log.e(TAG, "Inside should override URL " + running );
                     return true;
                 }
 
                 @Override
-                public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                    running = Math.max(running, 1); // First request move it to 1.
-                    Log.e(TAG, "Inside Page Started " + webMainView.getProgress() );
-                    //progressBar.setProgress(webMainView.getProgress());
-                        //progressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
-                    //progressBar.setVisibility(View.VISIBLE);
-                }
-
-                @Override
                 public void onPageFinished(WebView view, String url) {
-
-                    Log.e(TAG, "Page Loading Finished " + running );
                         if (progressBar != null) {
-                            Log.e(TAG, "Progress Bar Progress " + progressBar.getProgress() );
                             progressBar.setVisibility(View.GONE);
                         }
                     super.onPageFinished(view, url);
-                    if (webMainView.getProgress() == 100) {
-                        Log.e(TAG, "Page Loading Finished " + webMainView.getProgress() );
-                        //progressBar.setVisibility(View.GONE);
-                        //webMainView.setVisibility(View.VISIBLE);
-                    }
-
-                   // Log.e(TAG, "Progress Bar Status" + progressBar.getProgress() );
 
                 }
             });

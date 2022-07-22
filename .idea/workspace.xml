@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="warn" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
@@ -14,18 +14,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="22 July 2022 Progress: Progress Bar implemented">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/NewsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/NewsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/NotificationsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/NotificationsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/ProfileFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/RadioFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/RadioFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/SearchFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/TrailersFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/TrailersFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/TravelFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/TravelFragment.java" afterDir="false" />
-    </list>
+    <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="22 July 2022 Progress: Picture in Picture mode added" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -2711,7 +2700,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658491923634</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="22 July 2022 Progress: Picture in Picture mode added">
+      <created>1658504944324</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1658504944324</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2802,7 +2798,8 @@
     <MESSAGE value="06 July 2022 Progress: Minor Bug Fixes" />
     <MESSAGE value="22 July 2022 Progress: Minor Bug Fixes" />
     <MESSAGE value="22 July 2022 Progress: Progress Bar implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="22 July 2022 Progress: Progress Bar implemented" />
+    <MESSAGE value="22 July 2022 Progress: Picture in Picture mode added" />
+    <option name="LAST_COMMIT_MESSAGE" value="22 July 2022 Progress: Picture in Picture mode added" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/FullScreenActivity.java" />

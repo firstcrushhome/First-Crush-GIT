@@ -234,7 +234,7 @@ public class MainFragment extends Fragment{
                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-       /*if (mCustomView != null) {
+       if (mCustomView != null) {
            // Hide the custom view.
            mCustomView.setVisibility(View.GONE);
            // Remove the custom view from its container.
@@ -248,7 +248,7 @@ public class MainFragment extends Fragment{
            // Show the content view.
            mContentView.setVisibility(View.VISIBLE);
            getActivity().setContentView(mContentView);
-       }*/
+       }
     }
 
     @Override

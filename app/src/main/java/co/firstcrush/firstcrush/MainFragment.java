@@ -1,8 +1,14 @@
 package co.firstcrush.firstcrush;
 
 
+import static android.content.ContentValues.TAG;
+
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -80,7 +86,7 @@ public class MainFragment extends Fragment{
             webMainView = view.findViewById(R.id.web1);
             progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 
-            progressBar.setVisibility(View.VISIBLE);
+            //progressBar.setProgress(1, true);
             WebSettings webSettings = webMainView.getSettings();
             webSettings.setBuiltInZoomControls(false);
             webSettings.setJavaScriptEnabled(true);
@@ -104,13 +110,46 @@ public class MainFragment extends Fragment{
             mWebChromeClient = new MyWebChromeClient();
             webMainView.setWebChromeClient(mWebChromeClient);
             webMainView.setWebViewClient(new WebViewClient() {
-
-                public void onPageFinished(WebView view, String url) {
-                    if (progressBar != null)
-                        progressBar.setVisibility(View.INVISIBLE);
+                private int running = 0; // Could be public if you want a timer to check.
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView webView, String urlNewString) {
+                    running++;
+                    webView.loadUrl(urlNewString);
+                    progressBar.setVisibility(View.VISIBLE);
+                   // progressBar.setProgress(running);
+                    Log.e(TAG, "Inside should override URL " + running );
+                    return true;
                 }
 
+                @Override
+                public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                    running = Math.max(running, 1); // First request move it to 1.
+                    Log.e(TAG, "Inside Page Started " + webMainView.getProgress() );
+                    //progressBar.setProgress(webMainView.getProgress());
+                        //progressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
+                    //progressBar.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onPageFinished(WebView view, String url) {
+
+                    Log.e(TAG, "Page Loading Finished " + running );
+                        if (progressBar != null) {
+                            Log.e(TAG, "Progress Bar Progress " + progressBar.getProgress() );
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    super.onPageFinished(view, url);
+                    if (webMainView.getProgress() == 100) {
+                        Log.e(TAG, "Page Loading Finished " + webMainView.getProgress() );
+                        //progressBar.setVisibility(View.GONE);
+                        //webMainView.setVisibility(View.VISIBLE);
+                    }
+
+                   // Log.e(TAG, "Progress Bar Status" + progressBar.getProgress() );
+
+                }
             });
+
             webMainView.loadUrl("https://www.firstcrush.co");
 
 
@@ -153,7 +192,6 @@ public class MainFragment extends Fragment{
 
     private void webViewGoBack(){
         webMainView.goBack();
-        Log.w("MainFrag","back");
     }
 
     public boolean onKeyUp() {
@@ -219,7 +257,7 @@ public class MainFragment extends Fragment{
                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-       if (mCustomView != null) {
+       /*if (mCustomView != null) {
            // Hide the custom view.
            mCustomView.setVisibility(View.GONE);
            // Remove the custom view from its container.
@@ -233,7 +271,7 @@ public class MainFragment extends Fragment{
            // Show the content view.
            mContentView.setVisibility(View.VISIBLE);
            getActivity().setContentView(mContentView);
-       }
+       }*/
     }
 
     @Override
@@ -242,14 +280,12 @@ public class MainFragment extends Fragment{
         if (mCustomView != null) {
             getActivity().setContentView(mContentView);
         }
-        Log.w("MainFrag","stop");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         webMainView = null;
-        Log.w("MainFrag","destroy");
     }
     public class MyWebChromeClient extends WebChromeClient {
         private int mOriginalOrientation;

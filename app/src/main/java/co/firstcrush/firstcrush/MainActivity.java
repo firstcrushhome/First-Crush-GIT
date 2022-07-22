@@ -102,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
         activityStarted = true;
         setContentView(R.layout.activity_main);
 
+
+
+
         //Add Bottom Navigation View
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         //BottomNavigationViewHelper.disableShiftMode(navigation);

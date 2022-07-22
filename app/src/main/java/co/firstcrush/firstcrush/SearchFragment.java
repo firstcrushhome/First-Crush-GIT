@@ -34,8 +34,8 @@ import org.json.JSONObject;
 
 import java.util.Objects;
 
-public class NotificationsFragment extends Fragment{
-    public WebView webNotificationsView;
+public class SearchFragment extends Fragment{
+    public WebView webSearchView;
     View view;
     private BottomNavigationViewHelper bottomNavigationViewHelper;
     private static boolean activityStarted;
@@ -63,8 +63,8 @@ public class NotificationsFragment extends Fragment{
             }
         }
     };
-    public static NotificationsFragment newInstance() {
-        NotificationsFragment fragment = new NotificationsFragment();
+    public static SearchFragment newInstance() {
+        SearchFragment fragment = new SearchFragment();
         return fragment;
     }
 
@@ -73,12 +73,12 @@ public class NotificationsFragment extends Fragment{
         super.onCreate(savedInstanceState);
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.notifications_fragment, container, false);
-        webNotificationsView = view.findViewById(R.id.web1);
+        view = inflater.inflate(R.layout.search_fragment, container, false);
+        webSearchView = view.findViewById(R.id.web1);
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 
         progressBar.setVisibility(View.VISIBLE);
-        WebSettings webSettings = webNotificationsView.getSettings();
+        WebSettings webSettings = webSearchView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setAppCacheEnabled(true);
@@ -92,28 +92,28 @@ public class NotificationsFragment extends Fragment{
 
         String ua = "Chrome";
 
-        webNotificationsView.getSettings().setUserAgentString(ua);
+        webSearchView.getSettings().setUserAgentString(ua);
         // Force links and redirects to open in the WebView instead of in a browser
-        webNotificationsView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webSearchView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         // Force links and redirects to open in the WebView instead of in a browser
         mWebChromeClient = new MyWebChromeClient();
-        webNotificationsView.setWebChromeClient(mWebChromeClient);
-        webNotificationsView.setWebViewClient(new WebViewClient() {
+        webSearchView.setWebChromeClient(mWebChromeClient);
+        webSearchView.setWebViewClient(new WebViewClient() {
 
             public void onPageFinished(WebView view, String url) {
                 if (progressBar != null)
                     progressBar.setVisibility(View.INVISIBLE);
             }
         });
-        webNotificationsView.loadUrl("http://www.firstcrush.co/notifications");
+        webSearchView.loadUrl("https://www.firstcrush.co/search-content/");
 
 
-        webNotificationsView.setOnKeyListener((v, keyCode, event) -> {
+        webSearchView.setOnKeyListener((v, keyCode, event) -> {
             if (keyCode == KeyEvent.KEYCODE_BACK
                     && event.getAction() == MotionEvent.ACTION_UP) {
-                if(webNotificationsView.canGoBack()&& mCustomView == null) {
+                if(webSearchView.canGoBack()&& mCustomView == null) {
                     handler.sendEmptyMessage(1);
-                    webNotificationsView.goBack();
+                    webSearchView.goBack();
                     return true;
                 }
                 else
@@ -146,7 +146,7 @@ public class NotificationsFragment extends Fragment{
     }
 
     private void webViewGoBack(){
-        webNotificationsView.goBack();
+        webSearchView.goBack();
     }
 
     public boolean onKeyUp() {
@@ -175,14 +175,14 @@ public class NotificationsFragment extends Fragment{
     @Override
     public void onPause() {
         super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
-        webNotificationsView.onPause();
+        //webSearchView.onPause();
     }
 
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        webNotificationsView.saveState(outState);
+        webSearchView.saveState(outState);
     }
 
 
@@ -204,7 +204,7 @@ public class NotificationsFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
-        webNotificationsView.onResume();
+        webSearchView.onResume();
 
         decorView = getActivity().getWindow().getDecorView();
         decorView.setSystemUiVisibility(
@@ -239,7 +239,7 @@ public class NotificationsFragment extends Fragment{
     @Override
     public void onDestroy() {
         super.onDestroy();
-        webNotificationsView = null;
+        webSearchView = null;
     }
     public class MyWebChromeClient extends WebChromeClient {
         private int mOriginalOrientation;
@@ -250,6 +250,7 @@ public class NotificationsFragment extends Fragment{
         public void onShowCustomView(View view, CustomViewCallback callback) {
             super.onShowCustomView(view, callback);
             decorView = requireActivity().getWindow().getDecorView();
+            getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -286,7 +287,6 @@ public class NotificationsFragment extends Fragment{
         public void onHideCustomView() {
             super.onHideCustomView();
             decorView = requireActivity().getWindow().getDecorView();
-            getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION

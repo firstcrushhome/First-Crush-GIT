@@ -2,8 +2,7 @@ package co.firstcrush.firstcrush;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import static java.lang.Thread.sleep;
 
@@ -20,7 +19,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    sleep(3000);
+                    sleep(2000);
                     Intent intent= new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
                     finish();

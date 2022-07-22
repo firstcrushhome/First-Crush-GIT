@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FirstCrush2.iml" filepath="$PROJECT_DIR$/FirstCrush2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libs/libs.iml" filepath="$PROJECT_DIR$/libs/libs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/First-Crush-GIT.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/First-Crush-GIT.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/First-Crush-GIT.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/First-Crush-GIT.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/First-Crush-GIT.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/First-Crush-GIT.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/First-Crush-GIT.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/First-Crush-GIT.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/libs/First-Crush-GIT.libs.iml" filepath="$PROJECT_DIR$/.idea/modules/libs/First-Crush-GIT.libs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/StudioProjects.First-Crush-GIT.iml" filepath="$PROJECT_DIR$/.idea/modules/StudioProjects.First-Crush-GIT.iml" />
     </modules>
   </component>
 </project>

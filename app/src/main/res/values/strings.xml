@@ -6,8 +6,10 @@
     <string name="text_notifications">Notifications Fragment</string>
     <string name="text_search">Search Fragment</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home">Featured</string>
     <string name="menu_radio">Radio</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_notifications">Notifications</string>
+    <string name="first_crush">First Crush</string>
+    <string name="search">Search</string>
 </resources>

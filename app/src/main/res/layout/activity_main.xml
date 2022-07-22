@@ -1,57 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
     android:id="@+id/activity_main"
-<<<<<<< HEAD
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:layout_alignParentStart="true"
+    android:layout_gravity="bottom"
+    android:fitsSystemWindows="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="bottom"
+        android:fitsSystemWindows="true"
         android:layout_height="match_parent">
     </FrameLayout>
-=======
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <WebView
-        android:id="@+id/web1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
->>>>>>> master
-    <android.support.design.widget.BottomNavigationView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-<<<<<<< HEAD
-        android:layout_alignParentLeft="true"
-=======
->>>>>>> master
-        android:layout_gravity="bottom"
-        android:layout_marginTop="462dp"
         android:layout_alignParentBottom="true"
         android:animateLayoutChanges="false"
         android:animationCache="false"
-<<<<<<< HEAD
-        android:background="@color/colorPrimaryDark"
+        android:background="@android:color/black"
         android:fitsSystemWindows="true"
         app:itemBackground="@android:color/black"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
-=======
-        android:background="@color/colorPrimary"
-        android:fitsSystemWindows="true"
-        app:itemIconTint="@android:color/white"
-        app:itemTextColor="@android:color/white"
->>>>>>> master
-        app:menu="@menu/navigation" />
+        app:menu="@menu/navigation"
+        app:labelVisibilityMode="labeled"
+        />
 </RelativeLayout>

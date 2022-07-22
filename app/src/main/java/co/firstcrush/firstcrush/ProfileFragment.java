@@ -182,6 +182,7 @@ public class ProfileFragment extends Fragment{
     @RequiresApi(api = Build.VERSION_CODES.S)
     @Override
     public void onPause() {
+        super.onPause();
         if(getActivity().isInPictureInPictureMode()) {
             Display display = getActivity().getWindowManager().getDefaultDisplay();
             Point size = new Point();

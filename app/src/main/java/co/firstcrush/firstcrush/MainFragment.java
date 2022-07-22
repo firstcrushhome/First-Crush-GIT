@@ -259,7 +259,6 @@ public void onUserLeaveHint(){
     @Override
     public void onPause() {
         super.onPause();
-        if(getActivity().isInPictureInPictureMode()) {
             Display display = getActivity().getWindowManager().getDefaultDisplay();
             Point size = new Point();
             display.getSize(size);
@@ -268,7 +267,6 @@ public void onUserLeaveHint(){
             Rational aspectRatio = new Rational(width, height);
             final Rect sourceRectHint = new Rect();
             getActivity().enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
-        }
         }
 
     @Override

@@ -166,18 +166,15 @@ public class RadioFragment extends Fragment{
     @Override
     public void onPause() {
         super.onPause();
-        if(getActivity().isInPictureInPictureMode()) {
-            Display display = getActivity().getWindowManager().getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            int width = size.x + (size.x / 2);
-            int height = size.y;
-            Rational aspectRatio = new Rational(width, height);
-            final Rect sourceRectHint = new Rect();
-            getActivity().enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
-        }
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x + (size.x / 2);
+        int height = size.y;
+        Rational aspectRatio = new Rational(width, height);
+        final Rect sourceRectHint = new Rect();
+        getActivity().enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
     }
-
     private void webViewGoBack(){
         webRadioView.goBack();
     }

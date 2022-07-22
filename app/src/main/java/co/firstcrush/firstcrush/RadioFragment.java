@@ -88,7 +88,7 @@ public class RadioFragment extends Fragment{
 
         webSettings.setAllowFileAccess(true);
 
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
         String ua = "Chrome";
 

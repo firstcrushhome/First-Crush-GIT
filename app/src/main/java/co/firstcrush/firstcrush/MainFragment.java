@@ -93,7 +93,7 @@ public class MainFragment extends Fragment{
             webSettings.setDomStorageEnabled(true);
             webSettings.setAllowFileAccess(true);
 
-            webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+            webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
             String ua = "Chrome";
 
@@ -134,17 +134,14 @@ public class MainFragment extends Fragment{
 
                 if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
                     handler.sendEmptyMessage(2);
-                    Log.w("vol","down");
                     return true;
                 }
                 if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
                     handler.sendEmptyMessage(3);
-                    Log.w("vol","up");
                     return true;
                 }
                 if ((keyCode == KeyEvent.KEYCODE_HOME)) {
                     handler.sendEmptyMessage(4);
-                    Log.w("vol","home");
                     return true;
                 }
                     return false;

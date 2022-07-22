@@ -3,24 +3,32 @@ package co.firstcrush.firstcrush;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.PictureInPictureParams;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.util.Rational;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -195,13 +203,9 @@ public class MainFragment extends Fragment{
     }
 
 
-    @Override
-    public void onPause() {
-        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
-        webMainView.onPause();
-    }
-
-
+public void onUserLeaveHint(){
+        //if(iwanttobeinpipmo)
+}
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -228,7 +232,7 @@ public class MainFragment extends Fragment{
     public void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
        webMainView.onResume();
-
+       Log.w("myApp", "Inside Resume");
        decorView = getActivity().getWindow().getDecorView();
        decorView.setSystemUiVisibility(
                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -251,9 +255,33 @@ public class MainFragment extends Fragment{
        }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.S)
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(getActivity().isInPictureInPictureMode()) {
+            Display display = getActivity().getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int width = size.x + (size.x / 2);
+            int height = size.y;
+            Rational aspectRatio = new Rational(width, height);
+            final Rect sourceRectHint = new Rect();
+            getActivity().enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
+        }
+        }
+
     @Override
     public void onStop() {
         super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
+        if (mCustomView != null) {
+            getActivity().setContentView(mContentView);
+        }
+    }
+
+    @Override
+    public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode);
         if (mCustomView != null) {
             getActivity().setContentView(mContentView);
         }
@@ -264,6 +292,8 @@ public class MainFragment extends Fragment{
         super.onDestroy();
         webMainView = null;
     }
+
+
     public class MyWebChromeClient extends WebChromeClient {
         private int mOriginalOrientation;
         private Context mContext;

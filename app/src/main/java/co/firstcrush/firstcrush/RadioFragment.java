@@ -1,19 +1,26 @@
 package co.firstcrush.firstcrush;
 
 
+import android.app.PictureInPictureParams;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.util.Rational;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -153,6 +160,20 @@ public class RadioFragment extends Fragment{
 
 
         return view;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.S)
+    @Override
+    public void onPause() {
+        super.onPause();
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x + (size.x / 2);
+        int height = size.y;
+        Rational aspectRatio = new Rational(width, height);
+        final Rect sourceRectHint = new Rect();
+        getActivity().enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
     }
 
     private void webViewGoBack(){

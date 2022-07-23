@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Add Bottom Navigation View
-        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation = findViewById(R.id.navigation);
         //BottomNavigationViewHelper.disableShiftMode(navigation);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
         //first fragment - one time only

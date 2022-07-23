@@ -1,12 +1,21 @@
 package co.firstcrush.firstcrush;
 
+import android.app.PictureInPictureParams;
 import android.app.ProgressDialog;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 
 
 import com.google.android.material.tabs.TabLayout;
+
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+
+import android.util.Rational;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,8 +60,8 @@ public class HomeFragment extends Fragment{
             TabLayout tabLayout = view.findViewById(R.id.tab_layout);
             tabLayout.addTab(tabLayout.newTab().setText("Featured"));
             tabLayout.addTab(tabLayout.newTab().setText("News"));
-            tabLayout.addTab(tabLayout.newTab().setText("Trailers"));
             tabLayout.addTab(tabLayout.newTab().setText("Travel"));
+            tabLayout.addTab(tabLayout.newTab().setText("Trailers"));
             tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
             final ViewPager viewPager = view.findViewById(R.id.pager);
@@ -83,9 +92,18 @@ public class HomeFragment extends Fragment{
         }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.S)
     @Override
     public void onPause() {
-        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
+        super.onPause();
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x + (size.x / 2);
+        int height = size.y;
+        Rational aspectRatio = new Rational(width, height);
+        final Rect sourceRectHint = new Rect();
+        getActivity().enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
     }
 
     @Override

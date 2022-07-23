@@ -230,9 +230,9 @@ public void onUserLeaveHint(){
 
    @Override
     public void onResume() {
-        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
+       super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
        webMainView.onResume();
-       Log.w("myApp", "Inside Resume");
+
        decorView = getActivity().getWindow().getDecorView();
        decorView.setSystemUiVisibility(
                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -277,13 +277,27 @@ public void onUserLeaveHint(){
         }
     }
 
-    @Override
+    /*@Override
     public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
         super.onPictureInPictureModeChanged(isInPictureInPictureMode);
-        if (mCustomView != null) {
-            getActivity().setContentView(mContentView);
+        if (isInPictureInPictureMode=false) {
+            if (mCustomView != null) {
+                // Hide the custom view.
+                mCustomView.setVisibility(View.GONE);
+                // Remove the custom view from its container.
+                mCustomViewContainer = (FrameLayout) mCustomView.getParent();
+                // Remove the custom view from its container.
+                mCustomViewContainer.removeView(mCustomView);
+                mCustomView = null;
+                mCustomViewContainer.setVisibility(View.GONE);
+                mCustomViewCallback.onCustomViewHidden();
+
+                // Show the content view.
+                mContentView.setVisibility(View.VISIBLE);
+                getActivity().setContentView(mContentView);
+            }
         }
-    }
+    }*/
 
     @Override
     public void onDestroy() {

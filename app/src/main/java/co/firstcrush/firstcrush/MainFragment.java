@@ -232,42 +232,13 @@ public void onUserLeaveHint(){
     public void onResume() {
        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
        webMainView.onResume();
-
-       decorView = getActivity().getWindow().getDecorView();
-       decorView.setSystemUiVisibility(
-               View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                       | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                       | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-       if (mCustomView != null) {
-           // Hide the custom view.
-           mCustomView.setVisibility(View.GONE);
-           // Remove the custom view from its container.
-           mCustomViewContainer = (FrameLayout) mCustomView.getParent();
-           // Remove the custom view from its container.
-           mCustomViewContainer.removeView(mCustomView);
-           mCustomView = null;
-           mCustomViewContainer.setVisibility(View.GONE);
-           mCustomViewCallback.onCustomViewHidden();
-
-           // Show the content view.
-           mContentView.setVisibility(View.VISIBLE);
-           getActivity().setContentView(mContentView);
-       }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.S)
-    @Override
+
     public void onPause() {
         super.onPause();
-            Display display = getActivity().getWindowManager().getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            int width = size.x + (size.x / 2);
-            int height = size.y;
-            Rational aspectRatio = new Rational(width, height);
-            final Rect sourceRectHint = new Rect();
-            getActivity().enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
-        }
+        webMainView.onPause();
+             }
 
     @Override
     public void onStop() {
@@ -276,28 +247,6 @@ public void onUserLeaveHint(){
             getActivity().setContentView(mContentView);
         }
     }
-
-    /*@Override
-    public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
-        super.onPictureInPictureModeChanged(isInPictureInPictureMode);
-        if (isInPictureInPictureMode=false) {
-            if (mCustomView != null) {
-                // Hide the custom view.
-                mCustomView.setVisibility(View.GONE);
-                // Remove the custom view from its container.
-                mCustomViewContainer = (FrameLayout) mCustomView.getParent();
-                // Remove the custom view from its container.
-                mCustomViewContainer.removeView(mCustomView);
-                mCustomView = null;
-                mCustomViewContainer.setVisibility(View.GONE);
-                mCustomViewCallback.onCustomViewHidden();
-
-                // Show the content view.
-                mContentView.setVisibility(View.VISIBLE);
-                getActivity().setContentView(mContentView);
-            }
-        }
-    }*/
 
     @Override
     public void onDestroy() {

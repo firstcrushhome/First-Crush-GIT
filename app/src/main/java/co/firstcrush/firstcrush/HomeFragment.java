@@ -2,6 +2,7 @@ package co.firstcrush.firstcrush;
 
 import android.app.PictureInPictureParams;
 import android.app.ProgressDialog;
+import android.content.res.Configuration;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
@@ -74,7 +75,7 @@ public class HomeFragment extends Fragment{
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
                     viewPager.setCurrentItem(tab.getPosition());
-
+                    onPictureInPictureModeChanged(false);
                 }
                 @Override
                 public void onTabUnselected(TabLayout.Tab tab) {

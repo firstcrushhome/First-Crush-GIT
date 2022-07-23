@@ -219,7 +219,6 @@ public class MainFragment extends Fragment{
 
     public void onPause() {
         super.onPause();
-        webMainView.onPause();
              }
 
     @Override

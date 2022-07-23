@@ -150,23 +150,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode, Configuration newConfig) {
-
-        if (getLifecycle().getCurrentState() == Lifecycle.State.CREATED) {
-            //when user click on Close button of PIP this will trigger.
-            finishAndRemoveTask();
-
-            super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
-        }
-        else {
-            if (getLifecycle().getCurrentState() == Lifecycle.State.STARTED){
-                //when PIP maximize this will trigger
-            }
-            super.onPictureInPictureModeChanged(isInPictureInPictureMode,
-                    newConfig);
-        }
-    }
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);

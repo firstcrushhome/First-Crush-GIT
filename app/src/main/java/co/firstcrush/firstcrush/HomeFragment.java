@@ -77,7 +77,6 @@ public class HomeFragment extends Fragment{
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
                     viewPager.setCurrentItem(tab.getPosition());
-                    onPictureInPictureModeChanged(false);
                 }
                 @Override
                 public void onTabUnselected(TabLayout.Tab tab) {

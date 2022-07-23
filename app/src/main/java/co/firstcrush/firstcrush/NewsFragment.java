@@ -1,26 +1,20 @@
 package co.firstcrush.firstcrush;
 
 
-import android.app.PictureInPictureParams;
+
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.media.AudioManager;
-import android.os.Build;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-import android.util.Rational;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;

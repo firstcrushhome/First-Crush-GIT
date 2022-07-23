@@ -1,19 +1,29 @@
 package co.firstcrush.firstcrush;
 
+import android.app.PictureInPictureParams;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.core.app.NotificationCompat;
+import androidx.lifecycle.Lifecycle;
 
 import android.util.Log;
+import android.util.Rational;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -123,7 +133,39 @@ public class MainActivity extends AppCompatActivity {
         String appLinkAction = appLinkIntent.getAction();
         Uri appLinkData = appLinkIntent.getData();
     }
+    @RequiresApi(api = Build.VERSION_CODES.S)
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        Log.e("Picture","User Left PiP");
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x + (size.x);
+        int height = size.y;
+        Rational aspectRatio = new Rational(width, height);
+        final Rect sourceRectHint = new Rect();
+        enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
 
+    }
+
+    @Override
+    public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode, Configuration newConfig) {
+
+        if (getLifecycle().getCurrentState() == Lifecycle.State.CREATED) {
+            //when user click on Close button of PIP this will trigger.
+            finishAndRemoveTask();
+
+            super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig);
+        }
+        else {
+            if (getLifecycle().getCurrentState() == Lifecycle.State.STARTED){
+                //when PIP maximize this will trigger
+            }
+            super.onPictureInPictureModeChanged(isInPictureInPictureMode,
+                    newConfig);
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

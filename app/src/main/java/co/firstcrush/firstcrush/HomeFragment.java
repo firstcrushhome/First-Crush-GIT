@@ -13,8 +13,10 @@ import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.util.Rational;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -86,26 +88,15 @@ public class HomeFragment extends Fragment{
                 public void onTabReselected(TabLayout.Tab tab) {
 
                 }
+
+
             });
             //End Tab Bar
 
+
+
             return view;
         }
-
-
-    @RequiresApi(api = Build.VERSION_CODES.S)
-    @Override
-    public void onPause() {
-        super.onPause();
-        Display display = getActivity().getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = size.x + (size.x / 2);
-        int height = size.y;
-        Rational aspectRatio = new Rational(width, height);
-        final Rect sourceRectHint = new Rect();
-        getActivity().enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
-    }
 
     @Override
     public void onResume() {

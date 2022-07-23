@@ -1,34 +1,22 @@
 package co.firstcrush.firstcrush;
 
 
-import static android.content.ContentValues.TAG;
 
-import android.app.PictureInPictureParams;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.graphics.SurfaceTexture;
+import android.content.res.Configuration;
 import android.media.AudioManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-import android.util.Rational;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -37,14 +25,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -66,7 +52,7 @@ public class MainFragment extends Fragment{
     AudioManager audioManager;
     View decorView;
 
-    private Handler handler = new Handler(Looper.getMainLooper()){
+    private final Handler handler = new Handler(Looper.getMainLooper()){
         @Override
         public void handleMessage(Message message) {
             if (message.what == 1) {
@@ -92,7 +78,7 @@ public class MainFragment extends Fragment{
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             view = inflater.inflate(R.layout.main_fragment, container, false);
             webMainView = view.findViewById(R.id.web1);
-            progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
+            progressBar = view.findViewById(R.id.progressbar);
 
             WebSettings webSettings = webMainView.getSettings();
             webSettings.setBuiltInZoomControls(false);
@@ -202,10 +188,6 @@ public class MainFragment extends Fragment{
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
-
-public void onUserLeaveHint(){
-        //if(iwanttobeinpipmo)
-}
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);

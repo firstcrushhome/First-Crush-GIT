@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
 
@@ -120,8 +121,15 @@ public class MainFragment extends Fragment{
 
                 }
             });
-
-            webMainView.loadUrl("https://www.firstcrush.co");
+            Intent appLinkIntent = getActivity().getIntent();
+            String appLinkAction = appLinkIntent.getAction();
+            Uri appLinkData = appLinkIntent.getData();
+            if (appLinkData == null) {
+                webMainView.loadUrl("https://www.firstcrush.co");
+            }
+            else {
+                webMainView.loadUrl(appLinkData.toString());
+            }
 
 
             webMainView.setOnKeyListener((v, keyCode, event) -> {

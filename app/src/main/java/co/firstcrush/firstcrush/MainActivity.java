@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         //am.setMode(AudioManager.MODE_IN_COMMUNICATION);
@@ -129,9 +129,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setSmallIcon(icon);
         //builder.setLargeIcon(Bitmap.createBitmap(largeicon));
         // ATTENTION: This was auto-generated to handle app links.
-        Intent appLinkIntent = getIntent();
-        String appLinkAction = appLinkIntent.getAction();
-        Uri appLinkData = appLinkIntent.getData();
+
     }
     @RequiresApi(api = Build.VERSION_CODES.S)
     @Override

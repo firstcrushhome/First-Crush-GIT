@@ -219,6 +219,27 @@ public class SearchFragment extends Fragment{
     public void onResume() {
         super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
         webSearchView.onResume();
+
+        decorView = getActivity().getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        if (mCustomView != null) {
+            // Hide the custom view.
+            mCustomView.setVisibility(View.GONE);
+            // Remove the custom view from its container.
+            mCustomViewContainer = (FrameLayout) mCustomView.getParent();
+            // Remove the custom view from its container.
+            mCustomViewContainer.removeView(mCustomView);
+            mCustomView = null;
+            mCustomViewContainer.setVisibility(View.GONE);
+            mCustomViewCallback.onCustomViewHidden();
+
+            // Show the content view.
+            mContentView.setVisibility(View.VISIBLE);
+            getActivity().setContentView(mContentView);
+        }
     }
 
     @Override

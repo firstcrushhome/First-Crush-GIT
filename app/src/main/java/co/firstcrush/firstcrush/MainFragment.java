@@ -1,8 +1,10 @@
 package co.firstcrush.firstcrush;
 
 
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import com.onesignal.OneSignal;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -23,14 +26,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,7 +53,7 @@ public class MainFragment extends Fragment{
     AudioManager audioManager;
     View decorView;
 
-    private Handler handler = new Handler(Looper.getMainLooper()){
+    private final Handler handler = new Handler(Looper.getMainLooper()){
         @Override
         public void handleMessage(Message message) {
             if (message.what == 1) {
@@ -78,9 +79,8 @@ public class MainFragment extends Fragment{
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             view = inflater.inflate(R.layout.main_fragment, container, false);
             webMainView = view.findViewById(R.id.web1);
-            progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
+            progressBar = view.findViewById(R.id.progressbar);
 
-            progressBar.setVisibility(View.VISIBLE);
             WebSettings webSettings = webMainView.getSettings();
             webSettings.setBuiltInZoomControls(false);
             webSettings.setJavaScriptEnabled(true);
@@ -93,7 +93,7 @@ public class MainFragment extends Fragment{
             webSettings.setDomStorageEnabled(true);
             webSettings.setAllowFileAccess(true);
 
-            webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+            webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
             String ua = "Chrome";
 
@@ -105,13 +105,31 @@ public class MainFragment extends Fragment{
             webMainView.setWebChromeClient(mWebChromeClient);
             webMainView.setWebViewClient(new WebViewClient() {
 
-                public void onPageFinished(WebView view, String url) {
-                    if (progressBar != null)
-                        progressBar.setVisibility(View.INVISIBLE);
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView webView, String urlNewString) {
+                    webView.loadUrl(urlNewString);
+                    progressBar.setVisibility(View.VISIBLE);
+                    return true;
                 }
 
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                        if (progressBar != null) {
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    super.onPageFinished(view, url);
+
+                }
             });
-            webMainView.loadUrl("https://www.firstcrush.co");
+            Intent appLinkIntent = getActivity().getIntent();
+            String appLinkAction = appLinkIntent.getAction();
+            Uri appLinkData = appLinkIntent.getData();
+            if (appLinkData == null) {
+                webMainView.loadUrl("https://www.firstcrush.co");
+            }
+            else {
+                webMainView.loadUrl(appLinkData.toString());
+            }
 
 
             webMainView.setOnKeyListener((v, keyCode, event) -> {
@@ -134,17 +152,14 @@ public class MainFragment extends Fragment{
 
                 if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
                     handler.sendEmptyMessage(2);
-                    Log.w("vol","down");
                     return true;
                 }
                 if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
                     handler.sendEmptyMessage(3);
-                    Log.w("vol","up");
                     return true;
                 }
                 if ((keyCode == KeyEvent.KEYCODE_HOME)) {
                     handler.sendEmptyMessage(4);
-                    Log.w("vol","home");
                     return true;
                 }
                     return false;
@@ -156,7 +171,6 @@ public class MainFragment extends Fragment{
 
     private void webViewGoBack(){
         webMainView.goBack();
-        Log.w("MainFrag","back");
     }
 
     public boolean onKeyUp() {
@@ -182,14 +196,6 @@ public class MainFragment extends Fragment{
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
-
-    @Override
-    public void onPause() {
-        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
-        webMainView.onPause();
-    }
-
-
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -214,7 +220,7 @@ public class MainFragment extends Fragment{
 
    @Override
     public void onResume() {
-        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
+       super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
        webMainView.onResume();
 
        decorView = getActivity().getWindow().getDecorView();
@@ -239,21 +245,26 @@ public class MainFragment extends Fragment{
        }
     }
 
+
+    public void onPause() {
+        super.onPause();
+             }
+
     @Override
     public void onStop() {
         super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
         if (mCustomView != null) {
             getActivity().setContentView(mContentView);
         }
-        Log.w("MainFrag","stop");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         webMainView = null;
-        Log.w("MainFrag","destroy");
     }
+
+
     public class MyWebChromeClient extends WebChromeClient {
         private int mOriginalOrientation;
         private Context mContext;

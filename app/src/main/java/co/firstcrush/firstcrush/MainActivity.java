@@ -1,19 +1,29 @@
 package co.firstcrush.firstcrush;
 
+import android.app.PictureInPictureParams;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.core.app.NotificationCompat;
+import androidx.lifecycle.Lifecycle;
 
 import android.util.Log;
+import android.util.Rational;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -79,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         //am.setMode(AudioManager.MODE_IN_COMMUNICATION);
@@ -102,8 +112,11 @@ public class MainActivity extends AppCompatActivity {
         activityStarted = true;
         setContentView(R.layout.activity_main);
 
+
+
+
         //Add Bottom Navigation View
-        navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation = findViewById(R.id.navigation);
         //BottomNavigationViewHelper.disableShiftMode(navigation);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
         //first fragment - one time only
@@ -116,9 +129,22 @@ public class MainActivity extends AppCompatActivity {
         builder.setSmallIcon(icon);
         //builder.setLargeIcon(Bitmap.createBitmap(largeicon));
         // ATTENTION: This was auto-generated to handle app links.
-        Intent appLinkIntent = getIntent();
-        String appLinkAction = appLinkIntent.getAction();
-        Uri appLinkData = appLinkIntent.getData();
+
+    }
+    @RequiresApi(api = Build.VERSION_CODES.S)
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        Log.e("Picture","User Left PiP");
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x + (size.x);
+        int height = size.y;
+        Rational aspectRatio = new Rational(width, height);
+        final Rect sourceRectHint = new Rect();
+        enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
+
     }
 
     @Override

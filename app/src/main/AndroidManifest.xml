@@ -43,7 +43,7 @@
         <activity
             android:screenOrientation="fullUser"
             android:supportsPictureInPicture="true"
-            android:configChanges="keyboard|keyboardHidden|locale|orientation|screenSize"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:launchMode="singleTop"
             android:name=".MainActivity"
             android:exported="true"

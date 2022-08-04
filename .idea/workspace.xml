@@ -14,9 +14,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="06 July 2022 Progress: Minor Bug Fixes">
+    <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="29 July 2022 Progress: Picture in Picture mode added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/home_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/home_fragment.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +71,9 @@
     <option name="KEY_ALIAS" value="DefaultKey" />
     <option name="REMEMBER_PASSWORDS" value="true" />
     <option name="BUILD_TARGET_KEY" value="apk" />
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -2121,6 +2125,7 @@
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.SignV1" value="true" />
     <property name="ExportApk.SignV2" value="true" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
@@ -2664,7 +2669,119 @@
       <option name="project" value="LOCAL" />
       <updated>1657228444116</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="22 July 2022 Progress: Minor Bug Fixes">
+      <created>1658475072722</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1658475072722</updated>
+    </task>
+    <task id="LOCAL-00034" summary="22 July 2022 Progress: Minor Bug Fixes">
+      <created>1658475358422</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1658475358422</updated>
+    </task>
+    <task id="LOCAL-00035" summary="22 July 2022 Progress: Progress Bar implemented">
+      <created>1658491167088</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1658491167088</updated>
+    </task>
+    <task id="LOCAL-00036" summary="22 July 2022 Progress: Progress Bar implemented">
+      <created>1658491781795</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1658491781795</updated>
+    </task>
+    <task id="LOCAL-00037" summary="22 July 2022 Progress: Progress Bar implemented">
+      <created>1658491923634</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1658491923634</updated>
+    </task>
+    <task id="LOCAL-00038" summary="22 July 2022 Progress: Picture in Picture mode added">
+      <created>1658504944324</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1658504944324</updated>
+    </task>
+    <task id="LOCAL-00039" summary="22 July 2022 Progress: Picture in Picture mode added">
+      <created>1658505184003</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1658505184003</updated>
+    </task>
+    <task id="LOCAL-00040" summary="22 July 2022 Progress: Picture in Picture mode added">
+      <created>1658507482892</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1658507482892</updated>
+    </task>
+    <task id="LOCAL-00041" summary="23 July 2022 Progress: Picture in Picture mode added">
+      <created>1658545934432</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1658545934432</updated>
+    </task>
+    <task id="LOCAL-00042" summary="23 July 2022 Progress: Picture in Picture mode added">
+      <created>1658547441775</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1658547441775</updated>
+    </task>
+    <task id="LOCAL-00043" summary="23 July 2022 Progress: Picture in Picture mode added">
+      <created>1658554741402</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1658554741402</updated>
+    </task>
+    <task id="LOCAL-00044" summary="23 July 2022 Progress: Picture in Picture mode added">
+      <created>1658555127745</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1658555127745</updated>
+    </task>
+    <task id="LOCAL-00045" summary="29 July 2022 Progress: Picture in Picture mode added">
+      <created>1659118052302</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1659118052302</updated>
+    </task>
+    <task id="LOCAL-00046" summary="29 July 2022 Progress: Picture in Picture mode added">
+      <created>1659118285471</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1659118285472</updated>
+    </task>
+    <task id="LOCAL-00047" summary="29 July 2022 Progress: Picture in Picture mode added">
+      <created>1659118941171</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1659118941171</updated>
+    </task>
+    <task id="LOCAL-00048" summary="29 July 2022 Progress: Picture in Picture mode added">
+      <created>1659119680327</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1659119680327</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2753,7 +2870,12 @@
     <MESSAGE value="08 July 2022 Progress: Webview Alignment Fixed" />
     <MESSAGE value="05 July 2022 Progress: Webview Fullscreen Fixed" />
     <MESSAGE value="06 July 2022 Progress: Minor Bug Fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="06 July 2022 Progress: Minor Bug Fixes" />
+    <MESSAGE value="22 July 2022 Progress: Minor Bug Fixes" />
+    <MESSAGE value="22 July 2022 Progress: Progress Bar implemented" />
+    <MESSAGE value="22 July 2022 Progress: Picture in Picture mode added" />
+    <MESSAGE value="23 July 2022 Progress: Picture in Picture mode added" />
+    <MESSAGE value="29 July 2022 Progress: Picture in Picture mode added" />
+    <option name="LAST_COMMIT_MESSAGE" value="29 July 2022 Progress: Picture in Picture mode added" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/FullScreenActivity.java" />

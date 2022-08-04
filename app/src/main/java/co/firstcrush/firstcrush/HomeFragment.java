@@ -1,12 +1,24 @@
 package co.firstcrush.firstcrush;
 
+import android.app.PictureInPictureParams;
 import android.app.ProgressDialog;
+import android.content.res.Configuration;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 
 
 import com.google.android.material.tabs.TabLayout;
+
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 import androidx.viewpager.widget.ViewPager;
+
+import android.util.Log;
+import android.util.Rational;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,8 +63,8 @@ public class HomeFragment extends Fragment{
             TabLayout tabLayout = view.findViewById(R.id.tab_layout);
             tabLayout.addTab(tabLayout.newTab().setText("Featured"));
             tabLayout.addTab(tabLayout.newTab().setText("News"));
-            tabLayout.addTab(tabLayout.newTab().setText("Trailers"));
             tabLayout.addTab(tabLayout.newTab().setText("Travel"));
+            tabLayout.addTab(tabLayout.newTab().setText("Trailers"));
             tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
             final ViewPager viewPager = view.findViewById(R.id.pager);
@@ -65,7 +77,6 @@ public class HomeFragment extends Fragment{
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
                     viewPager.setCurrentItem(tab.getPosition());
-
                 }
                 @Override
                 public void onTabUnselected(TabLayout.Tab tab) {
@@ -76,17 +87,15 @@ public class HomeFragment extends Fragment{
                 public void onTabReselected(TabLayout.Tab tab) {
 
                 }
+
+
             });
             //End Tab Bar
 
+
+
             return view;
         }
-
-
-    @Override
-    public void onPause() {
-        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
-    }
 
     @Override
     public void onResume() {

@@ -276,15 +276,12 @@ public class MainFragment extends Fragment{
 
         mySwipeRefreshLayout.getViewTreeObserver()
                 .addOnScrollChangedListener(mOnScrollChangedListener =
-                        new ViewTreeObserver.OnScrollChangedListener() {
-                            @Override
-                            public void onScrollChanged() {
-                                if (webMainView.getScrollY() == 0)
-                                    mySwipeRefreshLayout.setEnabled(true);
-                                else
-                                    mySwipeRefreshLayout.setEnabled(false);
+                        () -> {
+                            if (webMainView.getScrollY() == 0)
+                                mySwipeRefreshLayout.setEnabled(true);
+                            else
+                                mySwipeRefreshLayout.setEnabled(false);
 
-                            }
                         });
     }
 

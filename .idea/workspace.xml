@@ -14,9 +14,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="29 July 2022 Progress: Picture in Picture mode added">
+    <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="04 August: Version 17 Initial check in">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/main_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/main_fragment.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +80,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Version-15.0" />
+        <entry key="$PROJECT_DIR$" value="Version-16.0" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -2444,13 +2447,6 @@
       <option name="presentableId" value="Default" />
       <updated>1502534258456</updated>
     </task>
-    <task id="LOCAL-00001" summary="18 Jun 2022 Progress: Fixed all Android X issues, only manifest merge issue left">
-      <created>1655577524098</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1655577524098</updated>
-    </task>
     <task id="LOCAL-00002" summary="18 Jun 2022 Progress: Fixed all Android X issues, only manifest merge issue left">
       <created>1655577675855</created>
       <option name="number" value="00002" />
@@ -2787,7 +2783,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659121133847</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="04 August: Version 17 Initial check in">
+      <created>1659598622170</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1659598622171</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2881,7 +2884,8 @@
     <MESSAGE value="22 July 2022 Progress: Picture in Picture mode added" />
     <MESSAGE value="23 July 2022 Progress: Picture in Picture mode added" />
     <MESSAGE value="29 July 2022 Progress: Picture in Picture mode added" />
-    <option name="LAST_COMMIT_MESSAGE" value="29 July 2022 Progress: Picture in Picture mode added" />
+    <MESSAGE value="04 August: Version 17 Initial check in" />
+    <option name="LAST_COMMIT_MESSAGE" value="04 August: Version 17 Initial check in" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/FullScreenActivity.java" />

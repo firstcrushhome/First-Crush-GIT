@@ -4,7 +4,6 @@ package co.firstcrush.firstcrush;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +11,7 @@ import com.onesignal.OneSignal;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -24,6 +23,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -52,6 +52,8 @@ public class MainFragment extends Fragment{
     private MyWebChromeClient mWebChromeClient = null;
     AudioManager audioManager;
     View decorView;
+    SwipeRefreshLayout mySwipeRefreshLayout;
+    ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
 
     private final Handler handler = new Handler(Looper.getMainLooper()){
         @Override
@@ -67,6 +69,7 @@ public class MainFragment extends Fragment{
             }
         }
     };
+
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
         return fragment;
@@ -79,6 +82,8 @@ public class MainFragment extends Fragment{
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             view = inflater.inflate(R.layout.main_fragment, container, false);
             webMainView = view.findViewById(R.id.web1);
+            mySwipeRefreshLayout = view.findViewById(R.id.swipeContainer);
+
             progressBar = view.findViewById(R.id.progressbar);
 
             WebSettings webSettings = webMainView.getSettings();
@@ -117,6 +122,8 @@ public class MainFragment extends Fragment{
                         if (progressBar != null) {
                             progressBar.setVisibility(View.GONE);
                         }
+                    mySwipeRefreshLayout.clearAnimation();
+                        mySwipeRefreshLayout.setRefreshing(false);
                     super.onPageFinished(view, url);
 
                 }
@@ -129,9 +136,21 @@ public class MainFragment extends Fragment{
             }
             else {
                 webMainView.loadUrl(appLinkData.toString());
+                Log.w("App Link",appLinkData.toString());
             }
 
+            mySwipeRefreshLayout.setOnRefreshListener(
+                    new SwipeRefreshLayout.OnRefreshListener() {
+                        @Override
+                        public void onRefresh() {
 
+                            webMainView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+                            webMainView.reload();
+// This is important as it forces webview to load from the instead of reloading from cache
+
+                        }
+                    }
+            );
             webMainView.setOnKeyListener((v, keyCode, event) -> {
                 if (keyCode == KeyEvent.KEYCODE_BACK
                         && event.getAction() == MotionEvent.ACTION_UP) {
@@ -251,12 +270,35 @@ public class MainFragment extends Fragment{
              }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+
+        mySwipeRefreshLayout.getViewTreeObserver()
+                .addOnScrollChangedListener(mOnScrollChangedListener =
+                        new ViewTreeObserver.OnScrollChangedListener() {
+                            @Override
+                            public void onScrollChanged() {
+                                if (webMainView.getScrollY() == 0)
+                                    mySwipeRefreshLayout.setEnabled(true);
+                                else
+                                    mySwipeRefreshLayout.setEnabled(false);
+
+                            }
+                        });
+    }
+
+    @Override
     public void onStop() {
         super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
         if (mCustomView != null) {
             getActivity().setContentView(mContentView);
         }
+        mySwipeRefreshLayout.getViewTreeObserver()
+                .removeOnScrollChangedListener(mOnScrollChangedListener);
     }
+
+
 
     @Override
     public void onDestroy() {

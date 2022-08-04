@@ -10,6 +10,7 @@ import com.onesignal.OneSignal;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -21,6 +22,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -49,6 +51,8 @@ public class NewsFragment extends Fragment{
     private MyWebChromeClient mWebChromeClient = null;
     AudioManager audioManager;
     View decorView;
+    SwipeRefreshLayout mySwipeRefreshLayoutNews;
+    ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
 
     private Handler handler = new Handler(Looper.getMainLooper()){
         @Override
@@ -113,12 +117,26 @@ public class NewsFragment extends Fragment{
                 if (progressBar != null) {
                     progressBar.setVisibility(View.GONE);
                 }
+                mySwipeRefreshLayoutNews.clearAnimation();
+                mySwipeRefreshLayoutNews.setRefreshing(false);
                 super.onPageFinished(view, url);
 
             }
         });
         webNewsView.loadUrl("https://www.firstcrush.co/news/");
 
+        mySwipeRefreshLayoutNews.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+
+                        webNewsView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+                        webNewsView.reload();
+// This is important as it forces webview to load from the instead of reloading from cache
+
+                    }
+                }
+        );
 
         webNewsView.setOnKeyListener((v, keyCode, event) -> {
             if (keyCode == KeyEvent.KEYCODE_BACK
@@ -237,12 +255,31 @@ public class NewsFragment extends Fragment{
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+
+        mySwipeRefreshLayoutNews.getViewTreeObserver()
+                .addOnScrollChangedListener(mOnScrollChangedListener =
+                        () -> {
+                            if (webNewsView.getScrollY() == 0)
+                                mySwipeRefreshLayoutNews.setEnabled(true);
+                            else
+                                mySwipeRefreshLayoutNews.setEnabled(false);
+
+                        });
+    }
+
+    @Override
     public void onStop() {
         super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
         if (mCustomView != null) {
             getActivity().setContentView(mContentView);
         }
+        mySwipeRefreshLayoutNews.getViewTreeObserver()
+                .removeOnScrollChangedListener(mOnScrollChangedListener);
     }
+
 
     @Override
     public void onDestroy() {

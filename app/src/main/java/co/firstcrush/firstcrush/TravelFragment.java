@@ -14,6 +14,7 @@ import com.onesignal.OneSignal;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -27,6 +28,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -55,6 +57,8 @@ public class TravelFragment extends Fragment{
     private MyWebChromeClient mWebChromeClient = null;
     AudioManager audioManager;
     View decorView;
+    SwipeRefreshLayout mySwipeRefreshLayoutTravel;
+    ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
 
     private Handler handler = new Handler(Looper.getMainLooper()){
         @Override
@@ -83,6 +87,8 @@ public class TravelFragment extends Fragment{
         view = inflater.inflate(R.layout.travel_fragment, container, false);
         webTravelView = view.findViewById(R.id.web1);
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
+
+        mySwipeRefreshLayoutTravel = view.findViewById(R.id.swipeContainer);
 
         progressBar.setVisibility(View.VISIBLE);
         WebSettings webSettings = webTravelView.getSettings();
@@ -119,12 +125,24 @@ public class TravelFragment extends Fragment{
                 if (progressBar != null) {
                     progressBar.setVisibility(View.GONE);
                 }
+                mySwipeRefreshLayoutTravel.clearAnimation();
+                mySwipeRefreshLayoutTravel.setRefreshing(false);
                 super.onPageFinished(view, url);
 
             }
         });
         webTravelView.loadUrl("https://www.firstcrush.co/Travel/");
+        mySwipeRefreshLayoutTravel.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        webTravelView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+                        webTravelView.reload();
+// This is important as it forces webview to load from the instead of reloading from cache
 
+                    }
+                }
+        );
 
         webTravelView.setOnKeyListener((v, keyCode, event) -> {
             if (keyCode == KeyEvent.KEYCODE_BACK
@@ -242,11 +260,29 @@ public class TravelFragment extends Fragment{
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+
+        mySwipeRefreshLayoutTravel.getViewTreeObserver()
+                .addOnScrollChangedListener(mOnScrollChangedListener =
+                        () -> {
+                            if (webTravelView.getScrollY() == 0)
+                                mySwipeRefreshLayoutTravel.setEnabled(true);
+                            else
+                                mySwipeRefreshLayoutTravel.setEnabled(false);
+
+                        });
+    }
+
+    @Override
     public void onStop() {
         super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
         if (mCustomView != null) {
             getActivity().setContentView(mContentView);
         }
+        mySwipeRefreshLayoutTravel.getViewTreeObserver()
+                .removeOnScrollChangedListener(mOnScrollChangedListener);
     }
 
     @Override

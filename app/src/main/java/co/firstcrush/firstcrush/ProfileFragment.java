@@ -1,32 +1,27 @@
 package co.firstcrush.firstcrush;
 
 
-import android.app.PictureInPictureParams;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.media.AudioManager;
-import android.os.Build;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-import android.util.Rational;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -55,6 +50,8 @@ public class ProfileFragment extends Fragment{
     private MyWebChromeClient mWebChromeClient = null;
     AudioManager audioManager;
     View decorView;
+    SwipeRefreshLayout mySwipeRefreshLayoutProfile;
+    ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
 
     private Handler handler = new Handler(Looper.getMainLooper()){
         @Override
@@ -81,8 +78,11 @@ public class ProfileFragment extends Fragment{
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.profile_fragment, container, false);
+        mySwipeRefreshLayoutProfile = view.findViewById(R.id.swipeContainer);
         webProfileView = view.findViewById(R.id.web1);
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
+
+        mySwipeRefreshLayoutProfile = view.findViewById(R.id.swipeContainer);
 
         progressBar.setVisibility(View.VISIBLE);
         WebSettings webSettings = webProfileView.getSettings();
@@ -117,12 +117,25 @@ public class ProfileFragment extends Fragment{
                 if (progressBar != null) {
                     progressBar.setVisibility(View.GONE);
                 }
+                mySwipeRefreshLayoutProfile.clearAnimation();
+                mySwipeRefreshLayoutProfile.setRefreshing(false);
                 super.onPageFinished(view, url);
 
             }
         });
         webProfileView.loadUrl("https://www.firstcrush.co/login");
+        mySwipeRefreshLayoutProfile.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
 
+                        webProfileView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+                        webProfileView.reload();
+// This is important as it forces webview to load from the instead of reloading from cache
+
+                    }
+                }
+        );
 
         webProfileView.setOnKeyListener((v, keyCode, event) -> {
             if (keyCode == KeyEvent.KEYCODE_BACK
@@ -241,13 +254,33 @@ public class ProfileFragment extends Fragment{
         }
     }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+        mySwipeRefreshLayoutProfile.getViewTreeObserver()
+                .addOnScrollChangedListener(mOnScrollChangedListener =
+                        () -> {
+                            if (webProfileView.getScrollY() == 0)
+                                mySwipeRefreshLayoutProfile.setEnabled(true);
+                            else
+                                mySwipeRefreshLayoutProfile.setEnabled(false);
+
+                        });
+    }
+
     @Override
     public void onStop() {
         super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
         if (mCustomView != null) {
             getActivity().setContentView(mContentView);
         }
+        mySwipeRefreshLayoutProfile.getViewTreeObserver()
+                .removeOnScrollChangedListener(mOnScrollChangedListener);
     }
+
 
     @Override
     public void onDestroy() {

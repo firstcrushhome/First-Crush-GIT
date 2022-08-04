@@ -1,32 +1,28 @@
 package co.firstcrush.firstcrush;
 
 
-import android.app.PictureInPictureParams;
+
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.media.AudioManager;
-import android.os.Build;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-import android.util.Rational;
-import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -55,6 +51,8 @@ public class SearchFragment extends Fragment{
     private MyWebChromeClient mWebChromeClient = null;
     AudioManager audioManager;
     View decorView;
+    SwipeRefreshLayout mySwipeRefreshLayoutSearch;
+    ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
 
     private Handler handler = new Handler(Looper.getMainLooper()){
         @Override
@@ -82,7 +80,9 @@ public class SearchFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.search_fragment, container, false);
         webSearchView = view.findViewById(R.id.web1);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
+        progressBar = view.findViewById(R.id.progressbar);
+
+        mySwipeRefreshLayoutSearch = view.findViewById(R.id.swipeContainer);
 
         progressBar.setVisibility(View.VISIBLE);
         WebSettings webSettings = webSearchView.getSettings();
@@ -119,12 +119,25 @@ public class SearchFragment extends Fragment{
                 if (progressBar != null) {
                     progressBar.setVisibility(View.GONE);
                 }
+                mySwipeRefreshLayoutSearch.clearAnimation();
+                mySwipeRefreshLayoutSearch.setRefreshing(false);
                 super.onPageFinished(view, url);
 
             }
         });
         webSearchView.loadUrl("https://www.firstcrush.co/search-content/");
+        mySwipeRefreshLayoutSearch.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
 
+                        webSearchView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+                        webSearchView.reload();
+// This is important as it forces webview to load from the instead of reloading from cache
+
+                    }
+                }
+        );
 
         webSearchView.setOnKeyListener((v, keyCode, event) -> {
             if (keyCode == KeyEvent.KEYCODE_BACK
@@ -243,12 +256,29 @@ public class SearchFragment extends Fragment{
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        mySwipeRefreshLayoutSearch.getViewTreeObserver()
+                .addOnScrollChangedListener(mOnScrollChangedListener =
+                        () -> {
+                            if (webSearchView.getScrollY() == 0)
+                                mySwipeRefreshLayoutSearch.setEnabled(true);
+                            else
+                                mySwipeRefreshLayoutSearch.setEnabled(false);
+
+                        });
+    }
+
+    @Override
     public void onStop() {
         super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
         if (mCustomView != null) {
             getActivity().setContentView(mContentView);
         }
+        mySwipeRefreshLayoutSearch.getViewTreeObserver()
+                .removeOnScrollChangedListener(mOnScrollChangedListener);
     }
+
 
     @Override
     public void onDestroy() {

@@ -14,6 +14,7 @@ import com.onesignal.OneSignal;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -27,6 +28,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -55,6 +57,8 @@ public class NotificationsFragment extends Fragment{
     private MyWebChromeClient mWebChromeClient = null;
     AudioManager audioManager;
     View decorView;
+    SwipeRefreshLayout mySwipeRefreshLayoutNotifications;
+    ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
 
     private Handler handler = new Handler(Looper.getMainLooper()){
         @Override
@@ -83,6 +87,8 @@ public class NotificationsFragment extends Fragment{
         view = inflater.inflate(R.layout.notifications_fragment, container, false);
         webNotificationsView = view.findViewById(R.id.web1);
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
+
+        mySwipeRefreshLayoutNotifications = view.findViewById(R.id.swipeContainer);
 
         progressBar.setVisibility(View.VISIBLE);
         WebSettings webSettings = webNotificationsView.getSettings();
@@ -119,12 +125,25 @@ public class NotificationsFragment extends Fragment{
                 if (progressBar != null) {
                     progressBar.setVisibility(View.GONE);
                 }
+                mySwipeRefreshLayoutNotifications.clearAnimation();
+                mySwipeRefreshLayoutNotifications.setRefreshing(false);
                 super.onPageFinished(view, url);
 
             }
         });
         webNotificationsView.loadUrl("http://www.firstcrush.co/notifications");
+        mySwipeRefreshLayoutNotifications.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
 
+                        webNotificationsView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+                        webNotificationsView.reload();
+// This is important as it forces webview to load from the instead of reloading from cache
+
+                    }
+                }
+        );
 
         webNotificationsView.setOnKeyListener((v, keyCode, event) -> {
             if (keyCode == KeyEvent.KEYCODE_BACK
@@ -241,12 +260,31 @@ public class NotificationsFragment extends Fragment{
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+
+        mySwipeRefreshLayoutNotifications.getViewTreeObserver()
+                .addOnScrollChangedListener(mOnScrollChangedListener =
+                        () -> {
+                            if (webNotificationsView.getScrollY() == 0)
+                                mySwipeRefreshLayoutNotifications.setEnabled(true);
+                            else
+                                mySwipeRefreshLayoutNotifications.setEnabled(false);
+
+                        });
+    }
+
+    @Override
     public void onStop() {
         super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
         if (mCustomView != null) {
             getActivity().setContentView(mContentView);
         }
+        mySwipeRefreshLayoutNotifications.getViewTreeObserver()
+                .removeOnScrollChangedListener(mOnScrollChangedListener);
     }
+
 
     @Override
     public void onDestroy() {

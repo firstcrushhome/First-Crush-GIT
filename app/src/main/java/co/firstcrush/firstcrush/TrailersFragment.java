@@ -14,6 +14,7 @@ import com.onesignal.OneSignal;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -27,6 +28,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -55,6 +57,8 @@ public class TrailersFragment extends Fragment{
     private MyWebChromeClient mWebChromeClient = null;
     AudioManager audioManager;
     View decorView;
+    SwipeRefreshLayout mySwipeRefreshLayoutTrailers;
+    ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
 
     private Handler handler = new Handler(Looper.getMainLooper()){
         @Override
@@ -83,6 +87,8 @@ public class TrailersFragment extends Fragment{
         view = inflater.inflate(R.layout.trailers_fragment, container, false);
         webTrailersView = view.findViewById(R.id.web1);
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
+
+        mySwipeRefreshLayoutTrailers = view.findViewById(R.id.swipeContainer);
 
         progressBar.setVisibility(View.VISIBLE);
         WebSettings webSettings = webTrailersView.getSettings();
@@ -119,13 +125,25 @@ public class TrailersFragment extends Fragment{
                 if (progressBar != null) {
                     progressBar.setVisibility(View.GONE);
                 }
+                mySwipeRefreshLayoutTrailers.clearAnimation();
+                mySwipeRefreshLayoutTrailers.setRefreshing(false);
                 super.onPageFinished(view, url);
 
             }
         });
         webTrailersView.loadUrl("https://www.firstcrush.co/trailers/");
 
+        mySwipeRefreshLayoutTrailers.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        webTrailersView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+                        webTrailersView.reload();
+// This is important as it forces webview to load from the instead of reloading from cache
 
+                    }
+                }
+        );
         webTrailersView.setOnKeyListener((v, keyCode, event) -> {
             if (keyCode == KeyEvent.KEYCODE_BACK
                     && event.getAction() == MotionEvent.ACTION_UP) {
@@ -242,12 +260,31 @@ public class TrailersFragment extends Fragment{
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+
+        mySwipeRefreshLayoutTrailers.getViewTreeObserver()
+                .addOnScrollChangedListener(mOnScrollChangedListener =
+                        () -> {
+                            if (webTrailersView.getScrollY() == 0)
+                                mySwipeRefreshLayoutTrailers.setEnabled(true);
+                            else
+                                mySwipeRefreshLayoutTrailers.setEnabled(false);
+
+                        });
+    }
+
+    @Override
     public void onStop() {
         super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
         if (mCustomView != null) {
             getActivity().setContentView(mContentView);
         }
+        mySwipeRefreshLayoutTrailers.getViewTreeObserver()
+                .removeOnScrollChangedListener(mOnScrollChangedListener);
     }
+
 
     @Override
     public void onDestroy() {

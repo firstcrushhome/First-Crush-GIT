@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.AudioManager;
+import android.media.session.MediaSession;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -93,7 +94,8 @@ public class MainActivity extends AppCompatActivity {
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         //am.setMode(AudioManager.MODE_IN_COMMUNICATION);
-
+        MediaSession session = new MediaSession(this, "MusicService");
+        session.setActive(true);
 
         OneSignal.initWithContext(this);
         OneSignal.setNotificationOpenedHandler(
@@ -141,11 +143,16 @@ public class MainActivity extends AppCompatActivity {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int width = size.x + (size.x);
-        int height = size.y;
+        int width=854;
+        int height = 480;
         Rational aspectRatio = new Rational(width, height);
-        final Rect sourceRectHint = new Rect();
-        enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
+
+        PictureInPictureParams.Builder pictureInPictureParamsBuilder;
+        pictureInPictureParamsBuilder=new PictureInPictureParams.Builder();
+        pictureInPictureParamsBuilder.setAspectRatio(aspectRatio).setAutoEnterEnabled(true);
+        enterPictureInPictureMode(pictureInPictureParamsBuilder.build());
+        //final Rect sourceRectHint = new Rect();
+        //enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
 
     }
 
@@ -186,6 +193,9 @@ public class MainActivity extends AppCompatActivity {
             case KeyEvent.KEYCODE_VOLUME_DOWN:
                 am.adjustStreamVolume(AudioManager.STREAM_MUSIC,
                 AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
+                return true;
+            case KeyEvent.KEYCODE_MEDIA_PLAY:
+                getMediaController().dispatchMediaButtonEvent(event);
                 return true;
             default:
                 // return false;

@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -116,6 +117,20 @@ public class MainFragment extends Fragment{
                     webView.loadUrl(urlNewString);
                     Log.w("App Link",urlNewString);
                     progressBar.setVisibility(View.VISIBLE);
+                    return true;
+                }
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+
+                    if((String.valueOf(request.getUrl())).contains("firstcrush.co")) {
+                        webMainView.loadUrl(String.valueOf(request.getUrl()));
+                        Log.w("App Link","Internal Link");
+                        progressBar.setVisibility(View.VISIBLE);
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, request.getUrl());
+                        view.getContext().startActivity(intent);
+                    }
+
                     return true;
                 }
 

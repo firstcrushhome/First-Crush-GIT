@@ -93,6 +93,7 @@ public class ProfileFragment extends Fragment{
         webSettings.setLoadWithOverviewMode(false);
         webSettings.supportMultipleWindows();
         webSettings.setAllowFileAccess(true);
+        webSettings.setAllowContentAccess(true);
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
         String ua = "Chrome";

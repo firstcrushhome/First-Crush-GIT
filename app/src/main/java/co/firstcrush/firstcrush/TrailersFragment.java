@@ -98,6 +98,7 @@ public class TrailersFragment extends Fragment{
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(false);
         webSettings.supportMultipleWindows();
+        webSettings.setAllowContentAccess(true);
 
         webSettings.setAllowFileAccess(true);
 

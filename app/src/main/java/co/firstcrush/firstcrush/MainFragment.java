@@ -97,6 +97,7 @@ public class MainFragment extends Fragment{
             webSettings.setAllowFileAccess(true);
             webSettings.setDomStorageEnabled(true);
             webSettings.setAllowFileAccess(true);
+            webSettings.setAllowContentAccess(true);
 
             webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
@@ -113,6 +114,7 @@ public class MainFragment extends Fragment{
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView webView, String urlNewString) {
                     webView.loadUrl(urlNewString);
+                    Log.w("App Link",urlNewString);
                     progressBar.setVisibility(View.VISIBLE);
                     return true;
                 }
@@ -133,6 +135,7 @@ public class MainFragment extends Fragment{
             Uri appLinkData = appLinkIntent.getData();
             if (appLinkData == null) {
                 webMainView.loadUrl("https://www.firstcrush.co");
+                Log.w("App Link","Home Page Link");
             }
             else {
                 webMainView.loadUrl(appLinkData.toString());

@@ -98,7 +98,7 @@ public class TravelFragment extends Fragment{
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(false);
         webSettings.supportMultipleWindows();
-
+        webSettings.setAllowContentAccess(true);
         webSettings.setAllowFileAccess(true);
 
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);

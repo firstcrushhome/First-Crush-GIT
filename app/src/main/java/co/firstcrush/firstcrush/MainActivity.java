@@ -113,8 +113,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
         //Add Bottom Navigation View
         navigation = findViewById(R.id.navigation);
         //BottomNavigationViewHelper.disableShiftMode(navigation);
@@ -130,6 +128,10 @@ public class MainActivity extends AppCompatActivity {
         //builder.setLargeIcon(Bitmap.createBitmap(largeicon));
         // ATTENTION: This was auto-generated to handle app links.
 
+        // ATTENTION: This was auto-generated to handle app links.
+        Intent appLinkIntent = getIntent();
+        String appLinkAction = appLinkIntent.getAction();
+        Uri appLinkData = appLinkIntent.getData();
     }
     @RequiresApi(api = Build.VERSION_CODES.S)
     @Override

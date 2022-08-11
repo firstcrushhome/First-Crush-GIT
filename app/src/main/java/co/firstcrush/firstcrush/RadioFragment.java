@@ -97,6 +97,7 @@ public class RadioFragment extends Fragment{
         webSettings.setAppCacheEnabled(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(false);
+        webSettings.setAllowContentAccess(true);
         webSettings.supportMultipleWindows();
 
         webSettings.setAllowFileAccess(true);

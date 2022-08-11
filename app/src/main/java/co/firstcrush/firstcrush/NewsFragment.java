@@ -80,7 +80,8 @@ public class NewsFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.news_fragment, container, false);
         webNewsView = view.findViewById(R.id.web1);
-        progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
+        mySwipeRefreshLayoutNews = view.findViewById(R.id.swipeContainer);
+        progressBar = view.findViewById(R.id.progressbar);
 
         progressBar.setVisibility(View.VISIBLE);
         WebSettings webSettings = webNewsView.getSettings();
@@ -90,7 +91,7 @@ public class NewsFragment extends Fragment{
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(false);
         webSettings.supportMultipleWindows();
-
+        webSettings.setAllowContentAccess(true);
         webSettings.setAllowFileAccess(true);
 
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);

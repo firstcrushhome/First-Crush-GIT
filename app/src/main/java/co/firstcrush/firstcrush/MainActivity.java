@@ -8,20 +8,27 @@ import android.content.res.Configuration;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.AudioManager;
+import android.media.session.MediaController;
 import android.media.session.MediaSession;
+import android.media.session.MediaSessionManager;
+import android.media.session.PlaybackState;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.browser.trusted.Token;
 import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.Lifecycle;
 
+import android.os.RemoteException;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Rational;
 import android.view.Display;
@@ -58,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
     private ProgressBar progressBar;
     View decorView;
+    private final Token mSessionToken;
+
+    private MediaController mController;
+
 
     private String mCurrentTab;
 
@@ -86,18 +97,37 @@ public class MainActivity extends AppCompatActivity {
                 transaction.commit();
                 return true;
             };
+
+    public MainActivity() {
+        mSessionToken = null;
+        mController = null;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        //am.setMode(AudioManager.MODE_IN_COMMUNICATION);
+        am.setMode(AudioManager.MODE_IN_COMMUNICATION);
         MediaSession session = new MediaSession(this, "MusicService");
+        session.setFlags(MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS);
+        PlaybackState state = new PlaybackState.Builder()
+                .setActions(PlaybackState.ACTION_PLAY)
+                .setState(PlaybackState.STATE_STOPPED, PlaybackState.PLAYBACK_POSITION_UNKNOWN, 0)
+                .build();
+        MediaSessionManager manager = (MediaSessionManager) getSystemService(Context.MEDIA_SESSION_SERVICE);
+
         session.setActive(true);
 
+
         OneSignal.initWithContext(this);
+        OneSignal.setAppId("ea063994-c980-468b-8895-fcdd9dd93cf4");
+
+        // promptForPushNotifications will show the native Android notification permission prompt.
+        // We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 7)
+        OneSignal.promptForPushNotifications();
         OneSignal.setNotificationOpenedHandler(
                 result -> {
                     String actionId = result.getAction().getActionId();
@@ -139,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onUserLeaveHint() {
         super.onUserLeaveHint();
-        Log.e("Picture","User Left PiP");
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -149,12 +178,13 @@ public class MainActivity extends AppCompatActivity {
 
         PictureInPictureParams.Builder pictureInPictureParamsBuilder;
         pictureInPictureParamsBuilder=new PictureInPictureParams.Builder();
-        pictureInPictureParamsBuilder.setAspectRatio(aspectRatio).setAutoEnterEnabled(true);
+        pictureInPictureParamsBuilder.setAspectRatio(aspectRatio);
         enterPictureInPictureMode(pictureInPictureParamsBuilder.build());
         //final Rect sourceRectHint = new Rect();
         //enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

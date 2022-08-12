@@ -14,7 +14,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="11 August: Swipe Refresh implemented progress">
+    <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="11 August: PiP Aspect Ratio fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" afterDir="false" />
@@ -2488,8 +2488,8 @@
     </configuration>
     <list>
       <item itemvalue="Android App.app" />
-      <item itemvalue="Gradle.FirstCrush2 [signingReport]" />
       <item itemvalue="Android App.URL https://www.firstcrush.co" />
+      <item itemvalue="Gradle.FirstCrush2 [signingReport]" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -2503,13 +2503,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1502534258456</updated>
-    </task>
-    <task id="LOCAL-00006" summary="25 Jun 2022 Progress: Resolved errors">
-      <created>1656171013922</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1656171013922</updated>
     </task>
     <task id="LOCAL-00007" summary="07 July 2022 Progress: Resolved errors">
       <created>1656779658929</created>
@@ -2847,7 +2840,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660229157855</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="11 August: PiP Aspect Ratio fixed">
+      <created>1660239999434</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1660239999434</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2945,7 +2945,8 @@
     <MESSAGE value="04 August: Swipe Refresh implemented" />
     <MESSAGE value="04 August: Swipe Refresh implemented progress" />
     <MESSAGE value="11 August: Swipe Refresh implemented progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="11 August: Swipe Refresh implemented progress" />
+    <MESSAGE value="11 August: PiP Aspect Ratio fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="11 August: PiP Aspect Ratio fixed" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/FullScreenActivity.java" />

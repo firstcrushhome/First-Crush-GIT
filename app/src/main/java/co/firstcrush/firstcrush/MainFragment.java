@@ -121,17 +121,16 @@ public class MainFragment extends Fragment{
                 }
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-
-                    if((String.valueOf(request.getUrl())).contains("firstcrush.co")) {
+                    if((String.valueOf(request.getUrl().getHost())).contains("firstcrush.co")) {
                         webMainView.loadUrl(String.valueOf(request.getUrl()));
                         Log.w("App Link","Internal Link");
                         progressBar.setVisibility(View.VISIBLE);
+                        return false;
                     } else {
                         Intent intent = new Intent(Intent.ACTION_VIEW, request.getUrl());
-                        view.getContext().startActivity(intent);
+                        startActivity(intent);
+                        return true;
                     }
-
-                    return true;
                 }
 
                 @Override

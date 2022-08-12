@@ -4,7 +4,9 @@ package co.firstcrush.firstcrush;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
@@ -33,6 +35,7 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -84,7 +87,8 @@ public class MainFragment extends Fragment{
             view = inflater.inflate(R.layout.main_fragment, container, false);
             webMainView = view.findViewById(R.id.web1);
             mySwipeRefreshLayout = view.findViewById(R.id.swipeContainer);
-
+            mySwipeRefreshLayout.setColorSchemeColors(Color.WHITE);
+            mySwipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.cardview_dark_background);
             progressBar = view.findViewById(R.id.progressbar);
 
             WebSettings webSettings = webMainView.getSettings();
@@ -164,7 +168,7 @@ public class MainFragment extends Fragment{
                             webMainView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
                             webMainView.reload();
 // This is important as it forces webview to load from the instead of reloading from cache
-
+                            progressBar.setVisibility(View.VISIBLE);
                         }
                     }
             );
@@ -209,6 +213,14 @@ public class MainFragment extends Fragment{
         webMainView.goBack();
     }
 
+    @Override
+    public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode);
+        if (isInPictureInPictureMode) {
+            //Toast.makeText(getContext(), "Entering Pip", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public boolean onKeyUp() {
         AudioManager am = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         am.adjustStreamVolume(AudioManager.STREAM_MUSIC,
@@ -223,14 +235,6 @@ public class MainFragment extends Fragment{
                 return true;
     }
 
-
-    public void onWindowFocusChanged(boolean hasFocus) {
-        view.onWindowFocusChanged(hasFocus);
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-    }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {

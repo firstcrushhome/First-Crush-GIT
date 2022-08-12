@@ -1,13 +1,11 @@
 package co.firstcrush.firstcrush;
 
 import android.app.PictureInPictureParams;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.session.MediaController;
 import android.media.session.MediaSession;
 import android.media.session.MediaSessionManager;
@@ -16,19 +14,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import androidx.browser.trusted.Token;
 import androidx.core.app.NotificationCompat;
-import androidx.lifecycle.Lifecycle;
 
-import android.os.RemoteException;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.Rational;
 import android.view.Display;
@@ -37,7 +29,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
@@ -52,7 +43,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import com.onesignal.OSNotificationOpenedResult;
 
-import static co.firstcrush.firstcrush.R.id.navigation_home;
 import static co.firstcrush.firstcrush.R.mipmap.icon;
 
 public class MainActivity extends AppCompatActivity {
@@ -65,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
     private ProgressBar progressBar;
     View decorView;
-    private final Token mSessionToken;
+    private MediaSession.Token mSessionToken;
 
     private MediaController mController;
 
@@ -169,13 +159,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onUserLeaveHint() {
         super.onUserLeaveHint();
+
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         int width=854;
         int height = 480;
         Rational aspectRatio = new Rational(width, height);
-
         PictureInPictureParams.Builder pictureInPictureParamsBuilder;
         pictureInPictureParamsBuilder=new PictureInPictureParams.Builder();
         pictureInPictureParamsBuilder.setAspectRatio(aspectRatio);
@@ -184,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
         //enterPictureInPictureMode(new PictureInPictureParams.Builder().setAspectRatio(aspectRatio).setSourceRectHint(sourceRectHint).setAutoEnterEnabled(true).build());
 
     }
+
 
 
     @Override

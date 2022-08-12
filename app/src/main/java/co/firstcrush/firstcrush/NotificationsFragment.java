@@ -4,6 +4,7 @@ package co.firstcrush.firstcrush;
 import android.app.PictureInPictureParams;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.AudioManager;
@@ -89,6 +90,8 @@ public class NotificationsFragment extends Fragment{
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 
         mySwipeRefreshLayoutNotifications = view.findViewById(R.id.swipeContainer);
+        mySwipeRefreshLayoutNotifications.setColorSchemeColors(Color.WHITE);
+        mySwipeRefreshLayoutNotifications.setProgressBackgroundColorSchemeResource(R.color.cardview_dark_background);
 
         progressBar.setVisibility(View.VISIBLE);
         WebSettings webSettings = webNotificationsView.getSettings();

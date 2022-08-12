@@ -4,6 +4,7 @@ package co.firstcrush.firstcrush;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
@@ -81,6 +82,8 @@ public class NewsFragment extends Fragment{
         view = inflater.inflate(R.layout.news_fragment, container, false);
         webNewsView = view.findViewById(R.id.web1);
         mySwipeRefreshLayoutNews = view.findViewById(R.id.swipeContainer);
+        mySwipeRefreshLayoutNews.setColorSchemeColors(Color.WHITE);
+        mySwipeRefreshLayoutNews.setProgressBackgroundColorSchemeResource(R.color.cardview_dark_background);
         progressBar = view.findViewById(R.id.progressbar);
 
         progressBar.setVisibility(View.VISIBLE);

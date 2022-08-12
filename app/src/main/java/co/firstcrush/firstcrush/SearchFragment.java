@@ -4,6 +4,7 @@ package co.firstcrush.firstcrush;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
@@ -25,6 +26,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -83,7 +85,8 @@ public class SearchFragment extends Fragment{
         progressBar = view.findViewById(R.id.progressbar);
 
         mySwipeRefreshLayoutSearch = view.findViewById(R.id.swipeContainer);
-
+        mySwipeRefreshLayoutSearch.setColorSchemeColors(Color.WHITE);
+        mySwipeRefreshLayoutSearch.setProgressBackgroundColorSchemeResource(R.color.cardview_dark_background);
         progressBar.setVisibility(View.VISIBLE);
         WebSettings webSettings = webSearchView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -110,9 +113,23 @@ public class SearchFragment extends Fragment{
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView, String urlNewString) {
-                webView.loadUrl(urlNewString);
+                webSearchView.loadUrl(urlNewString);
+                Log.w("App Link",urlNewString);
                 progressBar.setVisibility(View.VISIBLE);
                 return true;
+            }
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                if((String.valueOf(request.getUrl().getHost())).contains("firstcrush.co")) {
+                    webSearchView.loadUrl(String.valueOf(request.getUrl()));
+                    Log.w("App Link","Internal Link");
+                    progressBar.setVisibility(View.VISIBLE);
+                    return false;
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, request.getUrl());
+                    startActivity(intent);
+                    return true;
+                }
             }
 
             @Override

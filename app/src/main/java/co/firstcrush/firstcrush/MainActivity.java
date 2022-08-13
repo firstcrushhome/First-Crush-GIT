@@ -215,9 +215,6 @@ public class MainActivity extends AppCompatActivity {
                 am.adjustStreamVolume(AudioManager.STREAM_MUSIC,
                 AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);
                 return true;
-            case KeyEvent.KEYCODE_MEDIA_PLAY:
-                getMediaController().dispatchMediaButtonEvent(event);
-                return true;
             default:
                 // return false;
                 // Update based on @Rene comment below:

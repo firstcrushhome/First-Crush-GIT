@@ -1,6 +1,9 @@
 package co.firstcrush.firstcrush;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.PictureInPictureParams;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
@@ -111,6 +114,41 @@ public class MainActivity extends AppCompatActivity {
 
         session.setActive(true);
 
+        final BroadcastReceiver myReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if(intent.getAction().equalsIgnoreCase("android.bluetooth.BluetoothDevice.ACTION_ACL_CONNECTED")) {
+                    Log.d(TAG,"Bluetooth connect");
+                }
+                String intentAction = intent.getAction();
+                if (!Intent.ACTION_MEDIA_BUTTON.equals(intentAction)) {
+                    return;
+                }
+                KeyEvent event = (KeyEvent) intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
+                if (event == null) {
+                    return;
+                }
+
+                int action = event.getAction();
+                if (event.getKeyCode() == 126 || event.getKeyCode() == 127) {
+                    // do something
+                    if (action == KeyEvent.ACTION_DOWN) {
+
+                        Toast.makeText(context,"BUTTON PRESSED!", Toast.LENGTH_LONG).show();
+
+                        if(event.isLongPress()==true)
+                        {
+                            Toast.makeText(context,"Finally long press worked!!", Toast.LENGTH_LONG).show();
+
+                        }
+
+
+                    }
+
+
+                }
+            }
+        };
 
         OneSignal.initWithContext(this);
         OneSignal.setAppId("ea063994-c980-468b-8895-fcdd9dd93cf4");

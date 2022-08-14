@@ -1,9 +1,7 @@
 package co.firstcrush.firstcrush;
 
 import static android.content.ContentValues.TAG;
-import static android.provider.ContactsContract.Intents.Insert.ACTION;
 
-import android.app.Notification;
 import android.app.PictureInPictureParams;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -14,10 +12,7 @@ import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.session.MediaController;
 import android.media.session.MediaSession;
-import android.media.session.MediaSessionManager;
 import android.media.session.PlaybackState;
 import android.net.Uri;
 import android.os.Build;
@@ -29,8 +24,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.media.session.MediaButtonReceiver;
 
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
@@ -39,13 +32,8 @@ import android.view.Display;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.onesignal.OSNotificationAction;
@@ -53,27 +41,20 @@ import com.onesignal.OneSignal;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.onesignal.OSNotificationOpenedResult;
 
 import static co.firstcrush.firstcrush.R.mipmap.icon;
 import static co.firstcrush.firstcrush.R.mipmap.largeicon;
 
 public class MainActivity extends AppCompatActivity {
-    private WebView webView;
     private BottomNavigationView navigation;
     private static boolean activityStarted;
-    private View mCustomView;
-    private RelativeLayout mContentView;
-    private FrameLayout mCustomViewContainer;
-    private WebChromeClient.CustomViewCallback mCustomViewCallback;
-    private ProgressBar progressBar;
-    View decorView;
-    private MediaSession.Token mSessionToken;
-
-    private MediaController mController;
+    private ComponentName mRemoteControlResponder;
+    private AudioManager am;
+    MediaButtonIntentReceiver mMediaButtonReceiver = new MediaButtonIntentReceiver();
+    IntentFilter mediaFilter = new IntentFilter(Intent.ACTION_MEDIA_BUTTON);
+    MediaSession.Callback callback;
 
 
-    private String mCurrentTab;
 
     private final BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
@@ -101,18 +82,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             };
 
-    public MainActivity() {
-        mSessionToken = null;
-        mController = null;
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         //Bluetooth Device Connectivity
@@ -123,9 +95,17 @@ public class MainActivity extends AppCompatActivity {
 
         //Initiate Media & Audio Session
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        am.setMode(AudioManager.MODE_IN_COMMUNICATION);
-        MediaSession session = new MediaSession(this, "MusicService");
+        am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        mRemoteControlResponder = new ComponentName(getPackageName(),
+                MediaButtonIntentReceiver.class.getName());
+        mediaFilter.setPriority(2139999999);
+        registerReceiver(mMediaButtonReceiver, mediaFilter);
+        am.setMode(AudioManager.MODE_NORMAL);
+
+
+        MediaSession session = new MediaSession(getApplicationContext(), "FirstCrush");
+        session.setActive(true);
+
         session.setFlags(MediaSession.FLAG_HANDLES_MEDIA_BUTTONS|MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS);
         PlaybackState state = new PlaybackState.Builder()
                 .setActions(PlaybackState.ACTION_PLAY | PlaybackState.ACTION_PAUSE | PlaybackState.ACTION_PLAY_PAUSE |
@@ -133,24 +113,111 @@ public class MainActivity extends AppCompatActivity {
              .setState(PlaybackState.STATE_PLAYING, 0, 0, 0)
               .build();
 
+
         //Now Playing Notification
         //MediaSessionCompat mediaSession = MediaSessionCompat(this, "First Crush");
-        Notification.Builder mBuilder = new Notification.Builder(this,"First Crush");
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,"First Crush");
         mBuilder.setSmallIcon(icon);
         mBuilder.setContentTitle("Track title");
         mBuilder.setContentText("Artist - Album");
         mBuilder.setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(), largeicon));
-      // mBuilder.setMediaSession(session.getSessionToken());
+        mBuilder.setStyle(new androidx.media.app.NotificationCompat.MediaStyle().setShowActionsInCompactView(0).setMediaSession(MediaSessionCompat.Token.fromToken(session.getSessionToken())));
         mBuilder.build();
+
+
+        //Media Session Callback Implementation
+
+       callback = new MediaSession.Callback() {
+
+            @Override
+            public boolean onMediaButtonEvent(final Intent mediaButtonEvent) {
+                Toast.makeText(getApplicationContext(), "Inside Broadcast", Toast.LENGTH_SHORT).show();
+                final String intentAction = mediaButtonEvent.getAction();
+                if (Intent.ACTION_MEDIA_BUTTON.equals(intentAction)) {
+                    final KeyEvent event = mediaButtonEvent.getParcelableExtra(
+                            Intent.EXTRA_KEY_EVENT);
+                    if (event == null) {
+                        return super.onMediaButtonEvent(mediaButtonEvent);
+                    }
+                    final int keycode = event.getKeyCode();
+                    final int action = event.getAction();
+                    if (event.getRepeatCount() == 0 && action == KeyEvent.ACTION_DOWN) {
+                        switch (keycode) {
+                            // Do what you want in here
+                            case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
+                                Toast.makeText(getApplicationContext(), "Play Pause called", Toast.LENGTH_SHORT).show();
+
+                                break;
+                            case KeyEvent.KEYCODE_MEDIA_PAUSE:
+                                Toast.makeText(getApplicationContext(), "Pause called", Toast.LENGTH_SHORT).show();
+                                break;
+                            case KeyEvent.KEYCODE_MEDIA_PLAY:
+                                Toast.makeText(getApplicationContext(), "Play called", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                        startService(new Intent(getApplicationContext(), MediaButtonIntentReceiver.class));
+                        return true;
+                    }
+                }
+                return false;
+
+            }
+
+            //Override Methods Media Session Callback
+
+            @Override
+            public void onSkipToNext() {
+                Log.e(TAG, "onSkipToNext called (media button pressed)");
+                Toast.makeText(getApplicationContext(), "onSkipToNext called", Toast.LENGTH_SHORT).show();
+           // Handle this button press.
+                super.onSkipToNext();
+            }
+
+            @Override
+            public void onSkipToPrevious() {
+                Log.e(TAG, "onSkipToPrevious called (media button pressed)");
+                Toast.makeText(getApplicationContext(), "onSkipToPrevious called", Toast.LENGTH_SHORT).show();
+                // Handle this button press.
+                super.onSkipToPrevious();
+            }
+
+            @Override
+            public void onPause() {
+                Log.e(TAG, "onPause called (media button pressed)");
+                Toast.makeText(getApplicationContext(), "onPause called", Toast.LENGTH_SHORT).show();
+                 // Pause the player.
+                super.onPause();
+            }
+
+            @Override
+            public void onPlay() {
+                Log.e(TAG, "onPlay called (media button pressed)");
+                 // Start player/playback.
+                super.onPlay();
+            }
+
+            @Override
+            public void onStop() {
+                Log.e(TAG, "onStop called (media button pressed)");
+                // Stop and/or reset the player.
+                super.onStop();
+            }
+
+
+        };
+
+        session.setPlaybackState(state);
+        session.setCallback(callback);
         session.setActive(true);
 
-        //The BroadcastReceiver that listens for bluetooth broadcasts
+
+//The BroadcastReceiver that listens for bluetooth broadcasts
         final BroadcastReceiver BTReceiver = new BroadcastReceiver() {
 
             @Override
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
-                Toast.makeText( getApplicationContext(), "Inside Broadcast", Toast.LENGTH_SHORT).show();
+                Toast.makeText( getApplicationContext(), "Inside BT Broadcast", Toast.LENGTH_SHORT).show();
                 if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
                     //Do something if connected
                     Toast.makeText(getApplicationContext(), "BT Connected", Toast.LENGTH_SHORT).show();
@@ -163,106 +230,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         this.registerReceiver(BTReceiver, filter);
-        session.setCallback(new MediaSession.Callback() {
-
-            @Override
-            public boolean onMediaButtonEvent(final Intent mediaButtonIntent) {
-                String intentAction = mediaButtonIntent.getAction();
-                Toast.makeText( getApplicationContext(), "Inside Broadcast", Toast.LENGTH_SHORT).show();
-                if (Intent.ACTION_MEDIA_BUTTON.equals(intentAction))
-                {
-                    KeyEvent event = (KeyEvent)mediaButtonIntent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
-                    if (event != null)
-                    {
-                        int action = event.getAction();
-                        if (action == KeyEvent.ACTION_DOWN) {
-                            Toast.makeText(getApplicationContext(), "ACTION DOWN", Toast.LENGTH_SHORT).show();
-                            long stopTimeOfGame_millis = System.currentTimeMillis();
 
 
-                        }
-                        if (action == KeyEvent.ACTION_UP) {
-                            Toast.makeText(getApplicationContext(), "ACTION UP", Toast.LENGTH_SHORT).show();
-
-                            long test = System.currentTimeMillis();
-
-                        }
-                        if (action == KeyEvent.KEYCODE_MEDIA_PAUSE) {
-                            Toast.makeText(getApplicationContext(), "PAUSE", Toast.LENGTH_SHORT).show();
-
-                            long test = System.currentTimeMillis();
-
-                        }
-                        if (action == KeyEvent.KEYCODE_MEDIA_NEXT) {
-                            Toast.makeText(getApplicationContext(), "NEXT", Toast.LENGTH_SHORT).show();
-
-                            long test = System.currentTimeMillis();
-
-                        }
-                        if (action == KeyEvent.KEYCODE_MEDIA_PREVIOUS) {
-                            Toast.makeText(getApplicationContext(), "PREVIOUS", Toast.LENGTH_SHORT).show();
-
-                            long test = System.currentTimeMillis();
-
-                        }
-                    }
-
-                }
-                return super.onMediaButtonEvent(mediaButtonIntent);
-            }
-
-            @Override
-            public void onSkipToNext() {
-                Log.d(TAG, "onSkipToNext called (media button pressed)");
-                Toast.makeText(getApplicationContext(), "onSkipToNext called", Toast.LENGTH_SHORT).show();
-           // Handle this button press.
-                super.onSkipToNext();
-            }
-
-            @Override
-            public void onSkipToPrevious() {
-                Log.d(TAG, "onSkipToPrevious called (media button pressed)");
-                Toast.makeText(getApplicationContext(), "onSkipToPrevious called", Toast.LENGTH_SHORT).show();
-                // Handle this button press.
-                super.onSkipToPrevious();
-            }
-
-            @Override
-            public void onPause() {
-                Log.d(TAG, "onPause called (media button pressed)");
-                Toast.makeText(getApplicationContext(), "onPause called", Toast.LENGTH_SHORT).show();
-                 // Pause the player.
-                super.onPause();
-            }
-
-            @Override
-            public void onPlay() {
-                Log.d(TAG, "onPlay called (media button pressed)");
-                 // Start player/playback.
-                super.onPlay();
-            }
-
-            @Override
-            public void onStop() {
-                Log.d(TAG, "onStop called (media button pressed)");
-                // Stop and/or reset the player.
-                super.onStop();
-            }
-
-        });
-
-
-        session.setPlaybackState(state);
-
-        session.setFlags(MediaSession.FLAG_HANDLES_MEDIA_BUTTONS | MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS);
-
-        session.setActive(true);
-
-
-
-        MediaButtonIntentReceiver r = new MediaButtonIntentReceiver();
-        filter.setPriority(10000);
-        registerReceiver(r, filter);
 
         OneSignal.initWithContext(this);
         OneSignal.setAppId("ea063994-c980-468b-8895-fcdd9dd93cf4");
@@ -388,6 +357,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        am.registerMediaButtonEventReceiver(
+                mRemoteControlResponder);
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        am.unregisterMediaButtonEventReceiver(
+                mRemoteControlResponder);
     }
 
     // This fires when a notification is opened by tapping on it or one is received while the app is running.

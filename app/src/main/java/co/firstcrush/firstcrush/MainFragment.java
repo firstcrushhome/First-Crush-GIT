@@ -74,6 +74,9 @@ public class MainFragment extends Fragment{
             if (message.what == 5) {
                 onPause();
             }
+            if (message.what == 6) {
+                onPause();
+            }
         }
     };
 
@@ -200,6 +203,10 @@ public class MainFragment extends Fragment{
                 }
                 if ((keyCode == KeyEvent.KEYCODE_MEDIA_PAUSE)) {
                     handler.sendEmptyMessage(5);
+                    return true;
+                }
+                if ((keyCode == KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)) {
+                    handler.sendEmptyMessage(6);
                     return true;
                 }
                     return false;

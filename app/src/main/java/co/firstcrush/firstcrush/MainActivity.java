@@ -104,23 +104,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        //Bluetooth Device Connectivity
         IntentFilter filter = new IntentFilter(Intent.ACTION_MEDIA_BUTTON);
         filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
 
-
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //Initiate Media & Audio Session
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         am.setMode(AudioManager.MODE_IN_COMMUNICATION);
         MediaSession session = new MediaSession(this, "MusicService");
         session.setFlags(MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS);
-        //PlaybackState state = new PlaybackState.Builder()
-          //    .setActions(PlaybackState.ACTION_PLAY)
-           //  .setState(PlaybackState.STATE_STOPPED, PlaybackState.PLAYBACK_POSITION_UNKNOWN, 0)
-              //.build();
         PlaybackState state = new PlaybackState.Builder()
                 .setActions(PlaybackState.ACTION_PLAY | PlaybackState.ACTION_PAUSE | PlaybackState.ACTION_PLAY_PAUSE |
                         PlaybackState.ACTION_SKIP_TO_NEXT | PlaybackState.ACTION_SKIP_TO_PREVIOUS)
@@ -128,21 +128,15 @@ public class MainActivity extends AppCompatActivity {
               .build();
         MediaSessionManager manager = (MediaSessionManager) getSystemService(Context.MEDIA_SESSION_SERVICE);
 
-        ((AudioManager)getSystemService(AUDIO_SERVICE)).registerMediaButtonEventReceiver(
-                new ComponentName(
-                        getPackageName(),
-                        MediaButtonIntentReceiver.class.getName()));
-
         session.setActive(true);
-
-        MediaSession audioSession = new MediaSession(getApplicationContext(), "TAG");
 
         //The BroadcastReceiver that listens for bluetooth broadcasts
         final BroadcastReceiver BTReceiver = new BroadcastReceiver() {
+
             @Override
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
-
+                Toast.makeText( getApplicationContext(), "Inside Broadcast", Toast.LENGTH_SHORT).show();
                 if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
                     //Do something if connected
                     Toast.makeText(getApplicationContext(), "BT Connected", Toast.LENGTH_SHORT).show();
@@ -155,12 +149,12 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         this.registerReceiver(BTReceiver, filter);
-        audioSession.setCallback(new MediaSession.Callback() {
+        session.setCallback(new MediaSession.Callback() {
 
             @Override
             public boolean onMediaButtonEvent(final Intent mediaButtonIntent) {
                 String intentAction = mediaButtonIntent.getAction();
-
+                Toast.makeText( getApplicationContext(), "Inside Broadcast", Toast.LENGTH_SHORT).show();
                 if (Intent.ACTION_MEDIA_BUTTON.equals(intentAction))
                 {
                     KeyEvent event = (KeyEvent)mediaButtonIntent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
@@ -244,11 +238,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        audioSession.setPlaybackState(state);
+        session.setPlaybackState(state);
 
-        audioSession.setFlags(MediaSession.FLAG_HANDLES_MEDIA_BUTTONS | MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS);
+        session.setFlags(MediaSession.FLAG_HANDLES_MEDIA_BUTTONS | MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS);
 
-        audioSession.setActive(true);
+        session.setActive(true);
 
 
 

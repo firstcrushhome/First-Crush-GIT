@@ -120,13 +120,6 @@ public class MainFragment extends Fragment{
             webMainView.setWebViewClient(new WebViewClient() {
 
                 @Override
-                public boolean shouldOverrideUrlLoading(WebView webView, String urlNewString) {
-                    webView.loadUrl(urlNewString);
-                    Log.w("App Link",urlNewString);
-                    progressBar.setVisibility(View.VISIBLE);
-                    return true;
-                }
-                @Override
                 public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                     if((String.valueOf(request.getUrl().getHost())).contains("firstcrush.co")) {
                         webMainView.loadUrl(String.valueOf(request.getUrl()));

@@ -18,16 +18,18 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String intentAction = intent.getAction();
         if (!Intent.ACTION_MEDIA_BUTTON.equals(intentAction)) {
+            Toast.makeText(context, "BUTTON PRESSED1 !", Toast.LENGTH_SHORT).show();
             return;
         }
         KeyEvent event = (KeyEvent)intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
         if (event == null) {
+            Toast.makeText(context, "BUTTON PRESSED2!", Toast.LENGTH_SHORT).show();
             return;
         }
         int action = event.getAction();
         if (action == KeyEvent.ACTION_DOWN) {
             // do something
-            Toast.makeText(context, "BUTTON PRESSED!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "BUTTON PRESSED3!", Toast.LENGTH_SHORT).show();
         }
         abortBroadcast();
     }

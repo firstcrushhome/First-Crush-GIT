@@ -3,6 +3,7 @@ package co.firstcrush.firstcrush;
 import static android.content.ContentValues.TAG;
 import static android.provider.ContactsContract.Intents.Insert.ACTION;
 
+import android.app.Notification;
 import android.app.PictureInPictureParams;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -10,6 +11,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -27,7 +29,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.media.session.MediaButtonReceiver;
 
+import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.util.Rational;
 import android.view.Display;
@@ -51,6 +56,7 @@ import org.json.JSONObject;
 import com.onesignal.OSNotificationOpenedResult;
 
 import static co.firstcrush.firstcrush.R.mipmap.icon;
+import static co.firstcrush.firstcrush.R.mipmap.largeicon;
 
 public class MainActivity extends AppCompatActivity {
     private WebView webView;
@@ -120,14 +126,21 @@ public class MainActivity extends AppCompatActivity {
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         am.setMode(AudioManager.MODE_IN_COMMUNICATION);
         MediaSession session = new MediaSession(this, "MusicService");
-        session.setFlags(MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS);
+        session.setFlags(MediaSession.FLAG_HANDLES_MEDIA_BUTTONS|MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS);
         PlaybackState state = new PlaybackState.Builder()
                 .setActions(PlaybackState.ACTION_PLAY | PlaybackState.ACTION_PAUSE | PlaybackState.ACTION_PLAY_PAUSE |
                         PlaybackState.ACTION_SKIP_TO_NEXT | PlaybackState.ACTION_SKIP_TO_PREVIOUS)
              .setState(PlaybackState.STATE_PLAYING, 0, 0, 0)
               .build();
         MediaSessionManager manager = (MediaSessionManager) getSystemService(Context.MEDIA_SESSION_SERVICE);
-
+        NotificationCompat.Builder notification;
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
+        mBuilder.setSmallIcon(icon);
+        mBuilder.setContentTitle("Track title");
+        mBuilder.setContentText("Artist - Album");
+        mBuilder.setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(), largeicon));
+        //mBuilder.setMediaSession(session.getSessionToken());
+        mBuilder.build();
         session.setActive(true);
 
         //The BroadcastReceiver that listens for bluetooth broadcasts
@@ -293,6 +306,8 @@ public class MainActivity extends AppCompatActivity {
         String appLinkAction = appLinkIntent.getAction();
         Uri appLinkData = appLinkIntent.getData();
     }
+
+
     @RequiresApi(api = Build.VERSION_CODES.S)
     @Override
     protected void onUserLeaveHint() {

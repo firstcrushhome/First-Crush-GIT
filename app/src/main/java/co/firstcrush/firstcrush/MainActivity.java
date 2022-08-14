@@ -132,14 +132,15 @@ public class MainActivity extends AppCompatActivity {
                         PlaybackState.ACTION_SKIP_TO_NEXT | PlaybackState.ACTION_SKIP_TO_PREVIOUS)
              .setState(PlaybackState.STATE_PLAYING, 0, 0, 0)
               .build();
-        MediaSessionManager manager = (MediaSessionManager) getSystemService(Context.MEDIA_SESSION_SERVICE);
-        NotificationCompat.Builder notification;
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
+
+        //Now Playing Notification
+        //MediaSessionCompat mediaSession = MediaSessionCompat(this, "First Crush");
+        Notification.Builder mBuilder = new Notification.Builder(this,"First Crush");
         mBuilder.setSmallIcon(icon);
         mBuilder.setContentTitle("Track title");
         mBuilder.setContentText("Artist - Album");
         mBuilder.setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(), largeicon));
-        //mBuilder.setMediaSession(session.getSessionToken());
+      // mBuilder.setMediaSession(session.getSessionToken());
         mBuilder.build();
         session.setActive(true);
 

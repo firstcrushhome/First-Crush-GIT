@@ -2503,13 +2503,6 @@
       <option name="presentableId" value="Default" />
       <updated>1502534258456</updated>
     </task>
-    <task id="LOCAL-00015" summary="08 July 2022 Progress: Webview Alignment Fixed">
-      <created>1656872636864</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1656872636864</updated>
-    </task>
     <task id="LOCAL-00016" summary="08 July 2022 Progress: Webview Alignment Fixed">
       <created>1656872865054</created>
       <option name="number" value="00016" />
@@ -2846,7 +2839,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660465333347</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="12 August: Handle Headset controls.">
+      <created>1660470762685</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1660470762686</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TodoView">

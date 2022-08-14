@@ -4,8 +4,10 @@ import static android.content.ContentValues.TAG;
 
 import android.app.PictureInPictureParams;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Point;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -112,43 +114,18 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         MediaSessionManager manager = (MediaSessionManager) getSystemService(Context.MEDIA_SESSION_SERVICE);
 
+        ((AudioManager)getSystemService(AUDIO_SERVICE)).registerMediaButtonEventReceiver(
+                new ComponentName(
+                        getPackageName(),
+                        MediaButtonIntentReceiver.class.getName()));
+
         session.setActive(true);
 
-        final BroadcastReceiver myReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if(intent.getAction().equalsIgnoreCase("android.bluetooth.BluetoothDevice.ACTION_ACL_CONNECTED")) {
-                    Log.d(TAG,"Bluetooth connect");
-                }
-                String intentAction = intent.getAction();
-                if (!Intent.ACTION_MEDIA_BUTTON.equals(intentAction)) {
-                    return;
-                }
-                KeyEvent event = (KeyEvent) intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
-                if (event == null) {
-                    return;
-                }
+        IntentFilter filter = new IntentFilter(Intent.ACTION_MEDIA_BUTTON);
 
-                int action = event.getAction();
-                if (event.getKeyCode() == 126 || event.getKeyCode() == 127) {
-                    // do something
-                    if (action == KeyEvent.ACTION_DOWN) {
-
-                        Toast.makeText(context,"BUTTON PRESSED!", Toast.LENGTH_LONG).show();
-
-                        if(event.isLongPress()==true)
-                        {
-                            Toast.makeText(context,"Finally long press worked!!", Toast.LENGTH_LONG).show();
-
-                        }
-
-
-                    }
-
-
-                }
-            }
-        };
+        MediaButtonIntentReceiver r = new MediaButtonIntentReceiver();
+        filter.setPriority(10000);
+        registerReceiver(r, filter);
 
         OneSignal.initWithContext(this);
         OneSignal.setAppId("ea063994-c980-468b-8895-fcdd9dd93cf4");

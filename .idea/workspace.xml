@@ -15,9 +15,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="12 August: Handle Headset controls">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MediaButtonIntentReceiver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/HomeFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,9 +61,9 @@
       <list>
         <option value="layoutResourceFile_vertical" />
         <option value="layoutResourceFile" />
-        <option value="Class" />
         <option value="valueResourceFile" />
         <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -2504,13 +2506,6 @@
       <option name="presentableId" value="Default" />
       <updated>1502534258456</updated>
     </task>
-    <task id="LOCAL-00011" summary="07 July 2022 Progress: Resolved errors">
-      <created>1656787410910</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1656787410910</updated>
-    </task>
     <task id="LOCAL-00012" summary="07 July 2022 Progress: Resolved errors">
       <created>1656788000088</created>
       <option name="number" value="00012" />
@@ -2847,7 +2842,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660391254769</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="12 August: Handle Headset controls">
+      <created>1660392791310</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1660392791311</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TodoView">

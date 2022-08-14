@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE" />
 
@@ -80,6 +81,11 @@
         <meta-data
             android:name="onesignal_google_project_number"
             android:value="str:105064394158" />
+        <receiver android:name=".MediaButtonIntentReceiver" android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
 
         <receiver
             android:name="com.onesignal.NotificationDismissReceiver"

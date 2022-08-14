@@ -26,6 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.core.app.NotificationCompat;
 
 import android.support.v4.media.session.MediaSessionCompat;
+import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.util.Rational;
 import android.view.Display;
@@ -169,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSkipToNext() {
                 Log.e(TAG, "onSkipToNext called (media button pressed)");
                 Toast.makeText(getApplicationContext(), "onSkipToNext called", Toast.LENGTH_SHORT).show();
+                Log.d("MyLog", "STATE_SKIPPING_TO_NEXT");
            // Handle this button press.
                 super.onSkipToNext();
             }
@@ -186,12 +188,18 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "onPause called (media button pressed)");
                 Toast.makeText(getApplicationContext(), "onPause called", Toast.LENGTH_SHORT).show();
                  // Pause the player.
-                super.onPause();
+                ((AudioManager)getSystemService(
+                        Context.AUDIO_SERVICE)).requestAudioFocus(
+                        new AudioManager.OnAudioFocusChangeListener() {
+                            @Override
+                            public void onAudioFocusChange(int focusChange) {}
+                        }, AudioManager.STREAM_MUSIC,
+                        AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
             }
 
             @Override
             public void onPlay() {
-                Log.e(TAG, "onPlay called (media button pressed)");
+                Log.e(TAG, "onPlay called ");
                  // Start player/playback.
                 super.onPlay();
             }

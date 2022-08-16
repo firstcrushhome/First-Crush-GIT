@@ -2,6 +2,7 @@ package co.firstcrush.firstcrush;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.Activity;
 import android.app.PictureInPictureParams;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -12,6 +13,11 @@ import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.media.AudioManager;
+import android.media.MediaDescription;
+import android.media.MediaMetadata;
+import android.media.MediaMetadataRetriever;
+import android.media.MediaPlayer;
+import android.media.session.MediaController;
 import android.media.session.MediaSession;
 import android.media.session.PlaybackState;
 import android.net.Uri;
@@ -24,7 +30,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.core.app.NotificationCompat;
+import androidx.media.session.MediaButtonReceiver;
 
+import android.support.v4.media.MediaDescriptionCompat;
+import android.support.v4.media.MediaMetadataCompat;
+import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
@@ -34,7 +44,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
-import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.onesignal.OSNotificationAction;
@@ -54,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
     MediaButtonIntentReceiver mMediaButtonReceiver = new MediaButtonIntentReceiver();
     IntentFilter mediaFilter = new IntentFilter(Intent.ACTION_MEDIA_BUTTON);
     MediaSession.Callback callback;
+    MediaPlayer mPlayer;
+    MediaController mediaC;
 
 
 
@@ -105,24 +116,32 @@ public class MainActivity extends AppCompatActivity {
 
 
         MediaSession session = new MediaSession(getApplicationContext(), "FirstCrush");
-        session.setActive(true);
+       // MediaController controller = session.getController();
+
+      //  MediaMetadata controllerMetadata= controller.getMetadata();
+//        MediaDescription description = controllerMetadata.getDescription();
 
         session.setFlags(MediaSession.FLAG_HANDLES_MEDIA_BUTTONS|MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS);
         PlaybackState state = new PlaybackState.Builder()
-                .setActions(PlaybackState.ACTION_PLAY | PlaybackState.ACTION_PAUSE | PlaybackState.ACTION_PLAY_PAUSE |
+                .setActions(PlaybackState.ACTION_PAUSE)
+                .setState(PlaybackState.STATE_PLAYING, 0, 0, 0)
+                .build();
+       /* PlaybackState state = new PlaybackState.Builder()
+                .setActions(PlaybackState.ACTION_PLAY | PlaybackState.ACTION_PAUSE | PlaybackState.ACTION_PLAY_PAUSE|
                         PlaybackState.ACTION_SKIP_TO_NEXT | PlaybackState.ACTION_SKIP_TO_PREVIOUS)
              .setState(PlaybackState.STATE_PLAYING, 0, 0, 0)
-              .build();
+              .build();*/
 
 
         //Now Playing Notification
         //MediaSessionCompat mediaSession = MediaSessionCompat(this, "First Crush");
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,"First Crush");
         mBuilder.setSmallIcon(icon);
-        mBuilder.setContentTitle("Track title");
-        mBuilder.setContentText("Artist - Album");
+        mBuilder.setContentTitle("description.getTitle()");
+        mBuilder.setContentText("description.getDescription()");
         mBuilder.setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(), largeicon));
         mBuilder.setStyle(new androidx.media.app.NotificationCompat.MediaStyle().setShowActionsInCompactView(0).setMediaSession(MediaSessionCompat.Token.fromToken(session.getSessionToken())));
+        mBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
         mBuilder.build();
 
 
@@ -165,13 +184,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             //Override Methods Media Session Callback
-
             @Override
             public void onSkipToNext() {
                 Log.e(TAG, "onSkipToNext called (media button pressed)");
                 Toast.makeText(getApplicationContext(), "onSkipToNext called", Toast.LENGTH_SHORT).show();
                 Log.d("MyLog", "STATE_SKIPPING_TO_NEXT");
            // Handle this button press.
+                MediaControllerCompat.getMediaController(MainActivity.this).getTransportControls().skipToNext();
                 super.onSkipToNext();
             }
 
@@ -180,6 +199,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "onSkipToPrevious called (media button pressed)");
                 Toast.makeText(getApplicationContext(), "onSkipToPrevious called", Toast.LENGTH_SHORT).show();
                 // Handle this button press.
+                MediaControllerCompat.getMediaController((Activity) getApplicationContext()).getTransportControls().skipToPrevious();
+                //mPlayer = new MediaPlayer();
+               // mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 super.onSkipToPrevious();
             }
 
@@ -188,6 +210,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "onPause called (media button pressed)");
                 Toast.makeText(getApplicationContext(), "onPause called", Toast.LENGTH_SHORT).show();
                  // Pause the player.
+                PlaybackState state = new PlaybackState.Builder()
+                        .setActions(PlaybackState.ACTION_PLAY)
+                        .setState(PlaybackState.STATE_PAUSED, 0, 0, 0)
+                        .build();
+                session.setPlaybackState(state);
                 ((AudioManager)getSystemService(
                         Context.AUDIO_SERVICE)).requestAudioFocus(
                         new AudioManager.OnAudioFocusChangeListener() {
@@ -195,13 +222,19 @@ public class MainActivity extends AppCompatActivity {
                             public void onAudioFocusChange(int focusChange) {}
                         }, AudioManager.STREAM_MUSIC,
                         AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-            }
+
+                }
 
             @Override
             public void onPlay() {
                 Log.e(TAG, "onPlay called ");
-                 // Start player/playback.
+                PlaybackState state = new PlaybackState.Builder()
+                        .setActions(PlaybackState.ACTION_PAUSE)
+                        .setState(PlaybackState.STATE_PLAYING, 0, 0, 0)
+                        .build();
+                session.setPlaybackState(state);
                 super.onPlay();
+
             }
 
             @Override
@@ -214,6 +247,7 @@ public class MainActivity extends AppCompatActivity {
 
         };
 
+        mediaC = session.getController();
         session.setPlaybackState(state);
         session.setCallback(callback);
         session.setActive(true);

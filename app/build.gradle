@@ -31,7 +31,7 @@ dependencies {
     }
     )
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.gms:play-services-identity:18.0.1'
     implementation 'com.google.android.gms:play-services-gcm:17.0.0'
@@ -41,6 +41,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-appindexing:20.0.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    // required to avoid crash on Android 12 API 31
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
 }
 
 

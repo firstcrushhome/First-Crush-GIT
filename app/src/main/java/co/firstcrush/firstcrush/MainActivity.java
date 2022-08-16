@@ -330,7 +330,8 @@ public class MainActivity extends AppCompatActivity {
         Point size = new Point();
         display.getSize(size);
         int width=854;
-        int height = 480;
+        int height= 480;
+
         Rational aspectRatio = new Rational(width, height);
         PictureInPictureParams.Builder pictureInPictureParamsBuilder;
         pictureInPictureParamsBuilder=new PictureInPictureParams.Builder();

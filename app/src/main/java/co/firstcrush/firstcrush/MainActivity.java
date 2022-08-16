@@ -207,8 +207,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPause() {
-                Log.e(TAG, "onPause called (media button pressed)");
-                Toast.makeText(getApplicationContext(), "onPause called", Toast.LENGTH_SHORT).show();
+                //Log.e(TAG, "onPause called (media button pressed)");
+                //Toast.makeText(getApplicationContext(), "onPause called", Toast.LENGTH_SHORT).show();
                  // Pause the player.
                 PlaybackState state = new PlaybackState.Builder()
                         .setActions(PlaybackState.ACTION_PLAY)
@@ -223,16 +223,19 @@ public class MainActivity extends AppCompatActivity {
                         }, AudioManager.STREAM_MUSIC,
                         AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
+                session.setCallback(callback);
                 }
 
             @Override
             public void onPlay() {
-                Log.e(TAG, "onPlay called ");
+               // Log.e(TAG, "onPlay called ");
+                //Toast.makeText(getApplicationContext(), "onPlay called", Toast.LENGTH_SHORT).show();
                 PlaybackState state = new PlaybackState.Builder()
                         .setActions(PlaybackState.ACTION_PAUSE)
                         .setState(PlaybackState.STATE_PLAYING, 0, 0, 0)
                         .build();
                 session.setPlaybackState(state);
+                session.setCallback(callback);
                 //MediaControllerCompat.getMediaController((MainActivity) getApplicationContext()).getTransportControls().play();
                 super.onPlay();
 

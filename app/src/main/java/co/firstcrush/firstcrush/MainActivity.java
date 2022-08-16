@@ -233,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
                         .setState(PlaybackState.STATE_PLAYING, 0, 0, 0)
                         .build();
                 session.setPlaybackState(state);
+                //MediaControllerCompat.getMediaController((MainActivity) getApplicationContext()).getTransportControls().play();
                 super.onPlay();
 
             }

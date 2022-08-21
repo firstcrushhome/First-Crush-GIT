@@ -23,10 +23,10 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
                 NewsFragment tab2 = new NewsFragment();
                 return tab2;
             case 2:
-                TrailersFragment tab3 = new TrailersFragment();
+                TravelFragment tab3 = new TravelFragment();
                 return tab3;
             case 3:
-                TravelFragment tab4 = new TravelFragment();
+                TrailersFragment tab4 = new TrailersFragment();
                 return tab4;
             default:
                 return null;

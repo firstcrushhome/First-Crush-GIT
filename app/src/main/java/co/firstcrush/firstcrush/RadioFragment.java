@@ -13,6 +13,7 @@ import android.os.Bundle;
 import com.onesignal.OneSignal;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -237,7 +238,11 @@ public class RadioFragment extends Fragment{
         webRadioView.saveState(outState);
     }
 
-
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        webRadioView.restoreState(savedInstanceState);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

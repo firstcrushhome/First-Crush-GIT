@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.onesignal.OneSignal;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -214,7 +215,11 @@ public class NewsFragment extends Fragment{
         super.onSaveInstanceState(outState);
         webNewsView.saveState(outState);
     }
-
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        webNewsView.restoreState(savedInstanceState);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

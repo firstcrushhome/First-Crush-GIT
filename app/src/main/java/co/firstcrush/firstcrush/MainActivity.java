@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 if(item.getItemId() != navigation.getSelectedItemId()) {
                     switch (item.getItemId()) {
                         case R.id.navigation_home:
+
                             selectedFragment = HomeFragment.newInstance();
                             break;
                         case R.id.search:

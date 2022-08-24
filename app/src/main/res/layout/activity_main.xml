@@ -10,16 +10,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <FrameLayout
         android:id="@+id/frame_layout"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_above="@+id/navigation"
         android:layout_alignParentStart="true"
         android:layout_gravity="bottom"
         android:fitsSystemWindows="true"
-        android:layout_height="match_parent">
+        >
+    </FrameLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:animateLayoutChanges="false"
         android:animationCache="false"
@@ -31,5 +34,4 @@
         app:menu="@menu/navigation"
         app:labelVisibilityMode="labeled"
         />
-    </FrameLayout>
 </RelativeLayout>

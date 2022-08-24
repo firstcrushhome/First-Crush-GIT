@@ -250,6 +250,8 @@ public class MainFragment extends Fragment{
         webMainView.saveState(outState);
     }
 
+
+
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);

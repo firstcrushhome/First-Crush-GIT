@@ -12,13 +12,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.media.AudioAttributes;
 import android.media.AudioManager;
-import android.media.MediaDescription;
-import android.media.MediaMetadata;
-import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.media.session.MediaController;
 import android.media.session.MediaSession;
+import android.media.session.MediaSession.Callback;
 import android.media.session.PlaybackState;
 import android.net.Uri;
 import android.os.Build;
@@ -30,13 +29,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.core.app.NotificationCompat;
-import androidx.media.session.MediaButtonReceiver;
-
-import android.support.v4.media.MediaDescriptionCompat;
-import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
-import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.util.Rational;
 import android.view.Display;
@@ -62,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private AudioManager am;
     MediaButtonIntentReceiver mMediaButtonReceiver = new MediaButtonIntentReceiver();
     IntentFilter mediaFilter = new IntentFilter(Intent.ACTION_MEDIA_BUTTON);
-    MediaSession.Callback callback;
+    Callback callback;
     MediaPlayer mPlayer;
     MediaController mediaC;
 
@@ -151,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Media Session Callback Implementation
 
-       callback = new MediaSession.Callback() {
+       callback = new Callback() {
 
             @Override
             public boolean onMediaButtonEvent(final Intent mediaButtonEvent) {
@@ -174,9 +168,19 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case KeyEvent.KEYCODE_MEDIA_PAUSE:
                                 Toast.makeText(getApplicationContext(), "Pause called", Toast.LENGTH_SHORT).show();
+                                onPause();
                                 break;
                             case KeyEvent.KEYCODE_MEDIA_PLAY:
                                 Toast.makeText(getApplicationContext(), "Play called", Toast.LENGTH_SHORT).show();
+                                onPlay();
+                                break;
+                            case KeyEvent.KEYCODE_MEDIA_NEXT:
+                                Toast.makeText(getApplicationContext(), "Play Next called", Toast.LENGTH_SHORT).show();
+                                onSkipToNext();
+                                break;
+                            case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
+                                Toast.makeText(getApplicationContext(), "Play Previous called", Toast.LENGTH_SHORT).show();
+                                onSkipToPrevious();
                                 break;
                         }
                         startService(new Intent(getApplicationContext(), MediaButtonIntentReceiver.class));
@@ -223,11 +227,16 @@ public class MainActivity extends AppCompatActivity {
                         Context.AUDIO_SERVICE)).requestAudioFocus(
                         new AudioManager.OnAudioFocusChangeListener() {
                             @Override
-                            public void onAudioFocusChange(int focusChange) {}
+                            public void onAudioFocusChange(int focusChange) {
+                            }
                         }, AudioManager.STREAM_MUSIC,
                         AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
+
                 session.setCallback(callback);
+
+                super.onPause();
+
                 }
 
             @Override
@@ -239,8 +248,10 @@ public class MainActivity extends AppCompatActivity {
                         .setState(PlaybackState.STATE_PLAYING, 0, 0, 0)
                         .build();
                 session.setPlaybackState(state);
+             am.setMode(AudioManager.MODE_NORMAL);
+
+                //callback.onPlay();
                 session.setCallback(callback);
-                //MediaControllerCompat.getMediaController((MainActivity) getApplicationContext()).getTransportControls().play();
                 super.onPlay();
 
             }

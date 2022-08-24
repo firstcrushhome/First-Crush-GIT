@@ -71,27 +71,30 @@ public class MainActivity extends AppCompatActivity {
     private final BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
                 androidx.fragment.app.Fragment selectedFragment = null;
-                switch (item.getItemId()) {
-                    case R.id.navigation_home:
-                        selectedFragment = HomeFragment.newInstance();
-                        break;
-                    case R.id.search:
-                        selectedFragment = SearchFragment.newInstance();
-                        break;
-                    case R.id.navigation_radio:
-                        selectedFragment = RadioFragment.newInstance();
-                        break;
-                    case R.id.navigation_profile:
-                        selectedFragment = ProfileFragment.newInstance();
-                        break;
-                    case R.id.navigation_notifications:
-                        selectedFragment = NotificationsFragment.newInstance();
-                        break;
-                }
-                androidx.fragment.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.commit();
-                return true;
+                if(item.getItemId() != navigation.getSelectedItemId()) {
+                    switch (item.getItemId()) {
+                        case R.id.navigation_home:
+                            selectedFragment = HomeFragment.newInstance();
+                            break;
+                        case R.id.search:
+                            selectedFragment = SearchFragment.newInstance();
+                            break;
+                        case R.id.navigation_radio:
+                            selectedFragment = RadioFragment.newInstance();
+                            break;
+                        case R.id.navigation_profile:
+                            selectedFragment = ProfileFragment.newInstance();
+                            break;
+                        case R.id.navigation_notifications:
+                            selectedFragment = NotificationsFragment.newInstance();
+                            break;
+                    }
+                    androidx.fragment.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, selectedFragment);
+                    transaction.commit();
+                    return true;
+                } else return false;
+
             };
 
     @Override

@@ -16,14 +16,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="21 August: Version 18.0: Fixed Scrolling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/main_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/main_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/news_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/news_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/notifications_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/notifications_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/profile_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/profile_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/radio_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/radio_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/search_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/search_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/trailers_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/trailers_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/travel_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/travel_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2493,8 +2487,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Android App.app" />
       <item itemvalue="Android App.URL https://www.firstcrush.co" />
+      <item itemvalue="Android App.app" />
       <item itemvalue="Gradle.FirstCrush2 [signingReport]" />
     </list>
   </component>
@@ -2509,13 +2503,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1502534258456</updated>
-    </task>
-    <task id="LOCAL-00026" summary="08 July 2022 Progress: Webview Alignment Fixed">
-      <created>1657047126601</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1657047126601</updated>
     </task>
     <task id="LOCAL-00027" summary="05 July 2022 Progress: Webview Fullscreen Fixed">
       <created>1657052604178</created>
@@ -2853,7 +2840,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661255307699</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="21 August: Version 18.0: Fixed Scrolling">
+      <created>1661256143192</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1661256143192</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TodoView">

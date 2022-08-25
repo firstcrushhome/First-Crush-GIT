@@ -14,7 +14,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="21 August: Version 18.0: Restore Webview Handling">
+    <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="24 August: Version 18.0: Restore Webview Handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" afterDir="false" />
@@ -2504,13 +2504,6 @@
       <option name="presentableId" value="Default" />
       <updated>1502534258456</updated>
     </task>
-    <task id="LOCAL-00032" summary="06 July 2022 Progress: Minor Bug Fixes">
-      <created>1657228444115</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1657228444116</updated>
-    </task>
     <task id="LOCAL-00033" summary="22 July 2022 Progress: Minor Bug Fixes">
       <created>1658475072722</created>
       <option name="number" value="00033" />
@@ -2847,7 +2840,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661343914687</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="24 August: Version 18.0: Restore Webview Handling">
+      <created>1661350337499</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1661350337499</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2929,7 +2929,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="07 July 2022 Progress: Resolved errors" />
     <MESSAGE value="08 July 2022 Progress: Webview Alignment Fixed" />
     <MESSAGE value="05 July 2022 Progress: Webview Fullscreen Fixed" />
     <MESSAGE value="06 July 2022 Progress: Minor Bug Fixes" />
@@ -2954,7 +2953,8 @@
     <MESSAGE value="21 August: Version 18.0: Reverted Nested Scroll View" />
     <MESSAGE value="21 August: Version 18.0: Fixed Webview Bottom hidden issue" />
     <MESSAGE value="21 August: Version 18.0: Restore Webview Handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="21 August: Version 18.0: Restore Webview Handling" />
+    <MESSAGE value="24 August: Version 18.0: Restore Webview Handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="24 August: Version 18.0: Restore Webview Handling" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/FullScreenActivity.java" />

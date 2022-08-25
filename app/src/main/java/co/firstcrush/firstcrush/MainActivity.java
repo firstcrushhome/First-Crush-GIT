@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onMediaButtonEvent(final Intent mediaButtonEvent) {
-                Toast.makeText(getApplicationContext(), "Inside Broadcast", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(), "Inside Broadcast", Toast.LENGTH_SHORT).show();
                 final String intentAction = mediaButtonEvent.getAction();
                 if (Intent.ACTION_MEDIA_BUTTON.equals(intentAction)) {
                     final KeyEvent event = mediaButtonEvent.getParcelableExtra(
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 break;
                             case KeyEvent.KEYCODE_MEDIA_PAUSE:
-                                Toast.makeText(getApplicationContext(), "Pause called", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(), "Pause called", Toast.LENGTH_SHORT).show();
                                 onPause();
                                 break;
                             case KeyEvent.KEYCODE_MEDIA_PLAY:
@@ -175,11 +175,11 @@ public class MainActivity extends AppCompatActivity {
                                 onPlay();
                                 break;
                             case KeyEvent.KEYCODE_MEDIA_NEXT:
-                                Toast.makeText(getApplicationContext(), "Play Next called", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Next called", Toast.LENGTH_SHORT).show();
                                 onSkipToNext();
                                 break;
                             case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
-                                Toast.makeText(getApplicationContext(), "Play Previous called", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Previous called", Toast.LENGTH_SHORT).show();
                                 onSkipToPrevious();
                                 break;
                         }
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "onSkipToNext called", Toast.LENGTH_SHORT).show();
                 Log.d("MyLog", "STATE_SKIPPING_TO_NEXT");
            // Handle this button press.
-                MediaControllerCompat.getMediaController(MainActivity.this).getTransportControls().skipToNext();
+                //MediaControllerCompat.getMediaController(MainActivity.this).getTransportControls().skipToNext();
                 super.onSkipToNext();
             }
 
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "onSkipToPrevious called (media button pressed)");
                 Toast.makeText(getApplicationContext(), "onSkipToPrevious called", Toast.LENGTH_SHORT).show();
                 // Handle this button press.
-                MediaControllerCompat.getMediaController((Activity) getApplicationContext()).getTransportControls().skipToPrevious();
+                //MediaControllerCompat.getMediaController((Activity) getApplicationContext()).getTransportControls().skipToPrevious();
                 //mPlayer = new MediaPlayer();
                // mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 super.onSkipToPrevious();

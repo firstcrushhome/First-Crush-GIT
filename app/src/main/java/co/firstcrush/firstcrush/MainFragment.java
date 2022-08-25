@@ -152,8 +152,13 @@ public class MainFragment extends Fragment{
             String appLinkAction = appLinkIntent.getAction();
             Uri appLinkData = appLinkIntent.getData();
             if (appLinkData == null) {
-                webMainView.loadUrl("https://www.firstcrush.co");
-                Log.w("App Link","Home Page Link");
+                if (savedInstanceState != null) {
+                    webMainView.restoreState(savedInstanceState);
+                }
+                else {
+                    webMainView.loadUrl("https://www.firstcrush.co");
+                    Log.w("App Link", "Home Page Link");
+                }
             }
             else {
                 webMainView.loadUrl(appLinkData.toString());

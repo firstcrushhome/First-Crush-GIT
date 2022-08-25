@@ -34,10 +34,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.core.app.NotificationCompat;
+import androidx.media.session.MediaButtonReceiver;
 
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
+import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.util.Rational;
 import android.view.Display;
@@ -181,22 +183,39 @@ public class MainActivity extends AppCompatActivity {
                 );*/
 
 
+        androidx.core.app.NotificationCompat.Builder builder = new androidx.core.app.NotificationCompat.Builder(getApplicationContext(), "FirstCrush")
+                //NotificationCompat.Builder builder = new NotificationCompat.Builder( this, NOTIFICATION_CHANNEL_ID );
+                .setSmallIcon(icon)
+                .setVisibility(androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC)
+                .setContentTitle( "TEST" )
+                .setContentText("notificationText")
+                .setContentIntent(pendingIntent)
+                .setShowWhen(false)
+                .setOngoing(true).setBadgeIconType(androidx.core.app.NotificationCompat.BADGE_ICON_NONE)
+                .setOnlyAlertOnce(true)
+                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
+                        .setShowActionsInCompactView(0,1)
+                        .setMediaSession(MediaSessionCompat.Token.fromToken(session.getSessionToken())))
+                //.setStyle(bigText)
+                ;
+
+
         mNotificationManager =
                 (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
 // === Removed some obsoletes
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
         {
-            String channelId = "Your_channel_id";
+            String channelId = "FirstCrush";
             NotificationChannel channel = new NotificationChannel(
                     channelId,
-                    "Channel human readable title",
+                    "FirstCrush`",
                     NotificationManager.IMPORTANCE_HIGH);
             mNotificationManager.createNotificationChannel(channel);
             mBuilder.setChannelId(channelId);
         }
 
-        mNotificationManager.notify(0, mBuilder.build());
+        mNotificationManager.notify(1, builder.build());
 
 
 
@@ -384,8 +403,6 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
         //Used to select an item programmatically
         //bottomNavigationView.getMenu().getItem(2).setChecked(true);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setSmallIcon(icon);
         //builder.setLargeIcon(Bitmap.createBitmap(largeicon));
         // ATTENTION: This was auto-generated to handle app links.
 

@@ -17,7 +17,6 @@
     <list default="true" id="a3dcb4d1-dbc9-4252-9eac-66dbfcb78bc3" name="Default" comment="24 August: Version 18.0: Restore Webview Handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/co/firstcrush/firstcrush/MainFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -2504,13 +2503,6 @@
       <option name="presentableId" value="Default" />
       <updated>1502534258456</updated>
     </task>
-    <task id="LOCAL-00033" summary="22 July 2022 Progress: Minor Bug Fixes">
-      <created>1658475072722</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1658475072722</updated>
-    </task>
     <task id="LOCAL-00034" summary="22 July 2022 Progress: Minor Bug Fixes">
       <created>1658475358422</created>
       <option name="number" value="00034" />
@@ -2847,7 +2839,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661350337499</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="24 August: Version 18.0: Restore Webview Handling">
+      <created>1661447001890</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1661447001890</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TodoView">

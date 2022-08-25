@@ -3,6 +3,10 @@ package co.firstcrush.firstcrush;
 import static android.content.ContentValues.TAG;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.PictureInPictureParams;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -14,6 +18,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
+import android.media.MediaMetadata;
 import android.media.MediaPlayer;
 import android.media.session.MediaController;
 import android.media.session.MediaSession;
@@ -29,6 +34,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.core.app.NotificationCompat;
+
+import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
@@ -59,12 +66,13 @@ public class MainActivity extends AppCompatActivity {
     Callback callback;
     MediaPlayer mPlayer;
     MediaController mediaC;
-
+    androidx.fragment.app.Fragment selectedFragment = null;
+    private NotificationManager mNotificationManager;
 
 
     private final BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
-                androidx.fragment.app.Fragment selectedFragment = null;
+
                 if(item.getItemId() != navigation.getSelectedItemId()) {
                     switch (item.getItemId()) {
                         case R.id.navigation_home:
@@ -91,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 } else return false;
 
             };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,15 +141,64 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Now Playing Notification
-        //MediaSessionCompat mediaSession = MediaSessionCompat(this, "First Crush");
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,"First Crush");
+        //MediaSessionCompat mediaSessionCompat = new MediaSessionCompat(this, "First Crush");
+        /*NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,"First Crush");
         mBuilder.setSmallIcon(icon);
         mBuilder.setContentTitle("description.getTitle()");
         mBuilder.setContentText("description.getDescription()");
         mBuilder.setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(), largeicon));
         mBuilder.setStyle(new androidx.media.app.NotificationCompat.MediaStyle().setShowActionsInCompactView(0).setMediaSession(MediaSessionCompat.Token.fromToken(session.getSessionToken())));
         mBuilder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-        mBuilder.build();
+        Notification build = mBuilder.build();*/
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(getApplicationContext(), "FirstCrush");
+        Intent ii = new Intent(getApplicationContext(), MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
+                0, ii, PendingIntent.FLAG_IMMUTABLE);
+        Notification.MediaStyle style = new Notification.MediaStyle();
+        style.setMediaSession(session.getSessionToken());
+
+
+        NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
+        bigText.setBigContentTitle("Today's Bible Verse");
+        bigText.setSummaryText("Text in detail");
+
+        mBuilder.setContentIntent(pendingIntent);
+        mBuilder.setSmallIcon(icon);
+        mBuilder.setContentTitle("Your Title");
+        mBuilder.setContentText("Your text");
+        mBuilder.setPriority(Notification.PRIORITY_MAX);
+        mBuilder.setStyle(bigText);
+        /*mBuilder.setStyle(new NotificationCompat.MediaStyle()
+                .setShowActionsInCompactView(0,1)
+                .setMediaSession(session.getSessionToken()));
+        session.setMetadata
+                (new MediaMetadataCompat.Builder()
+                        .putString(MediaMetadata.METADATA_KEY_TITLE, "TEST TITLE")
+                        .putString(MediaMetadata.METADATA_KEY_ARTIST, "TEST ARTIST")
+                        .build()
+                );*/
+
+
+        mNotificationManager =
+                (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+// === Removed some obsoletes
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
+            String channelId = "Your_channel_id";
+            NotificationChannel channel = new NotificationChannel(
+                    channelId,
+                    "Channel human readable title",
+                    NotificationManager.IMPORTANCE_HIGH);
+            mNotificationManager.createNotificationChannel(channel);
+            mBuilder.setChannelId(channelId);
+        }
+
+        mNotificationManager.notify(0, mBuilder.build());
+
+
 
 
         //Media Session Callback Implementation
@@ -249,7 +307,6 @@ public class MainActivity extends AppCompatActivity {
                         .build();
                 session.setPlaybackState(state);
              am.setMode(AudioManager.MODE_NORMAL);
-
                 //callback.onPlay();
                 session.setCallback(callback);
                 super.onPlay();

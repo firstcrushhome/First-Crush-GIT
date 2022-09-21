@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.graphics.drawable.Icon;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaMetadata;
@@ -55,6 +56,7 @@ import com.onesignal.OneSignal;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static co.firstcrush.firstcrush.R.mipmap.ic_stat_onesignal_default;
 import static co.firstcrush.firstcrush.R.mipmap.icon;
 import static co.firstcrush.firstcrush.R.mipmap.largeicon;
 
@@ -125,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         MediaSession session = new MediaSession(getApplicationContext(), "FirstCrush");
+        session.setCallback(callback);
        // MediaController controller = session.getController();
 
       //  MediaMetadata controllerMetadata= controller.getMetadata();
@@ -135,6 +138,12 @@ public class MainActivity extends AppCompatActivity {
                 .setActions(PlaybackState.ACTION_PAUSE)
                 .setState(PlaybackState.STATE_PLAYING, 0, 0, 0)
                 .build();
+        session.setPlaybackState(state);
+        session.setActive(true);
+        MediaSession.Token token = session.getSessionToken();
+        MediaMetadata.Builder mediaMetaData_builder = new MediaMetadata.Builder();
+        mediaMetaData_builder.putLong(MediaMetadata.METADATA_KEY_DURATION, 10 );
+        session.setMetadata(mediaMetaData_builder.build());
        /* PlaybackState state = new PlaybackState.Builder()
                 .setActions(PlaybackState.ACTION_PLAY | PlaybackState.ACTION_PAUSE | PlaybackState.ACTION_PLAY_PAUSE|
                         PlaybackState.ACTION_SKIP_TO_NEXT | PlaybackState.ACTION_SKIP_TO_PREVIOUS)
@@ -182,20 +191,33 @@ public class MainActivity extends AppCompatActivity {
                         .build()
                 );*/
 
+        //Notification.Action actionPrev = new Notification.Action.Builder(Icon.createWithResource(this, android.R.drawable.ic_media_previous), "Previous", pr).build();
+       // Notification.Action actionNext = new Notification.Action.Builder(Icon.createWithResource(this, android.R.drawable.ic_media_next), "Next", getPendingIntentNext()).build();
+        //Notification.Action actionPlay = new Notification.Action.Builder(Icon.createWithResource(this, drw_play), "Play", ()).build();
+        Intent intentPrev = new Intent("ACTION_PREV");
+        Intent intentPlayPause = new Intent("ACTION_PLAY");
+        Intent intentNext = new Intent("ACTION_NEXT)");
+        PendingIntent pendingPrev = PendingIntent.getActivity(this, 0, intentPrev, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent pendingPlayPause = PendingIntent.getActivity(this, 0, intentPlayPause, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent pendingNext = PendingIntent.getActivity(this, 0, intentNext, PendingIntent.FLAG_IMMUTABLE);
 
         androidx.core.app.NotificationCompat.Builder builder = new androidx.core.app.NotificationCompat.Builder(getApplicationContext(), "FirstCrush")
                 //NotificationCompat.Builder builder = new NotificationCompat.Builder( this, NOTIFICATION_CHANNEL_ID );
                 .setSmallIcon(icon)
                 .setVisibility(androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC)
-                .setContentTitle( "TEST" )
-                .setContentText("notificationText")
+                .setContentTitle( "First Crush" )
+                .setContentText("Media Playing")
                 .setContentIntent(pendingIntent)
                 .setShowWhen(false)
+               // .addAction(actionPrev).addAction(actionPlay).addAction(actionNext)
                 .setOngoing(true).setBadgeIconType(androidx.core.app.NotificationCompat.BADGE_ICON_NONE)
                 .setOnlyAlertOnce(true)
                 .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
                         .setShowActionsInCompactView(0,1)
                         .setMediaSession(MediaSessionCompat.Token.fromToken(session.getSessionToken())))
+                .addAction(android.R.drawable.ic_media_previous, "Prev", pendingPrev)
+                .addAction(android.R.drawable.ic_media_play, "Play", pendingPlayPause)
+                .addAction(android.R.drawable.ic_media_next, "Next", pendingNext);
                 //.setStyle(bigText)
                 ;
 
@@ -204,16 +226,13 @@ public class MainActivity extends AppCompatActivity {
                 (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
 // === Removed some obsoletes
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
-            String channelId = "FirstCrush";
-            NotificationChannel channel = new NotificationChannel(
-                    channelId,
-                    "FirstCrush`",
-                    NotificationManager.IMPORTANCE_HIGH);
-            mNotificationManager.createNotificationChannel(channel);
-            mBuilder.setChannelId(channelId);
-        }
+        String channelId = "FirstCrush";
+        NotificationChannel channel = new NotificationChannel(
+                channelId,
+                "FirstCrush`",
+                NotificationManager.IMPORTANCE_HIGH);
+        mNotificationManager.createNotificationChannel(channel);
+        mBuilder.setChannelId(channelId);
 
         mNotificationManager.notify(1, builder.build());
 

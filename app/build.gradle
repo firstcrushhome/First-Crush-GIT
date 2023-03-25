@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
     buildToolsVersion "31.0.0"
     defaultConfig {
         applicationId "co.firstcrush.firstcrush"
-        minSdkVersion 28
-        targetSdkVersion 32
+        minSdkVersion 32
+        targetSdkVersion 33
         versionCode 18
         multiDexEnabled true
         versionName "18.0"
@@ -22,6 +22,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    namespace 'co.firstcrush.firstcrush'
 }
 
 dependencies {

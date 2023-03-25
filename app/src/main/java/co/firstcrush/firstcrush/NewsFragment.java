@@ -91,7 +91,7 @@ public class NewsFragment extends Fragment{
         WebSettings webSettings = webNewsView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
-        webSettings.setAppCacheEnabled(true);
+        webNewsView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(false);
         webSettings.supportMultipleWindows();

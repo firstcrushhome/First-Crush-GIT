@@ -98,7 +98,7 @@ public class NotificationsFragment extends Fragment{
         WebSettings webSettings = webNotificationsView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
-        webSettings.setAppCacheEnabled(true);
+        webNotificationsView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(false);
         webSettings.supportMultipleWindows();

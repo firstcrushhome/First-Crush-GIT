@@ -99,7 +99,7 @@ public class TravelFragment extends Fragment{
         WebSettings webSettings = webTravelView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
-        webSettings.setAppCacheEnabled(true);
+        webTravelView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(false);
         webSettings.supportMultipleWindows();

@@ -98,7 +98,7 @@ public class RadioFragment extends Fragment{
         WebSettings webSettings = webRadioView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
-        webSettings.setAppCacheEnabled(true);
+        webRadioView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(false);
         webSettings.setAllowContentAccess(true);

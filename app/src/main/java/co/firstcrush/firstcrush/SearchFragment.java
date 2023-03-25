@@ -92,7 +92,7 @@ public class SearchFragment extends Fragment{
         WebSettings webSettings = webSearchView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
-        webSettings.setAppCacheEnabled(true);
+        webSearchView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(false);
         webSettings.setAllowContentAccess(true);

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
@@ -36,7 +35,6 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,7 +53,7 @@ public class MainFragment extends Fragment{
     private ProgressBar progressBar;
     private ViewGroup mContentViewContainer;
     private MyWebChromeClient mWebChromeClient = null;
-    AudioManager audioManager;
+
     View decorView;
     SwipeRefreshLayout mySwipeRefreshLayout;
     ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
@@ -102,7 +100,7 @@ public class MainFragment extends Fragment{
             webSettings.setBuiltInZoomControls(false);
             webSettings.setJavaScriptEnabled(true);
             webSettings.setDomStorageEnabled(true);
-            webSettings.setAppCacheEnabled(true);
+            webMainView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
             webSettings.setUseWideViewPort(true);
             webSettings.setLoadWithOverviewMode(false);
             webSettings.supportMultipleWindows();
@@ -148,7 +146,7 @@ public class MainFragment extends Fragment{
 
                 }
             });
-            Intent appLinkIntent = getActivity().getIntent();
+            Intent appLinkIntent = requireActivity().getIntent();
             String appLinkAction = appLinkIntent.getAction();
             Uri appLinkData = appLinkIntent.getData();
             if (appLinkData == null) {
@@ -166,15 +164,12 @@ public class MainFragment extends Fragment{
             }
 
             mySwipeRefreshLayout.setOnRefreshListener(
-                    new SwipeRefreshLayout.OnRefreshListener() {
-                        @Override
-                        public void onRefresh() {
+                    () -> {
 
-                            webMainView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
-                            webMainView.reload();
+                        webMainView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+                        webMainView.reload();
 // This is important as it forces webview to load from the instead of reloading from cache
-                            progressBar.setVisibility(View.VISIBLE);
-                        }
+                        progressBar.setVisibility(View.VISIBLE);
                     }
             );
             webMainView.setOnKeyListener((v, keyCode, event) -> {

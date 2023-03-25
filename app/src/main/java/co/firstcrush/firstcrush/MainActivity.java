@@ -2,7 +2,7 @@ package co.firstcrush.firstcrush;
 
 import static android.content.ContentValues.TAG;
 
-import android.app.Activity;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -14,10 +14,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.BitmapFactory;
 import android.graphics.Point;
-import android.graphics.drawable.Icon;
-import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaMetadata;
 import android.media.MediaPlayer;
@@ -35,12 +32,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.core.app.NotificationCompat;
-import androidx.media.session.MediaButtonReceiver;
 
-import android.support.v4.media.MediaMetadataCompat;
-import android.support.v4.media.session.MediaControllerCompat;
+import android.os.SystemClock;
 import android.support.v4.media.session.MediaSessionCompat;
-import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.util.Rational;
 import android.view.Display;
@@ -56,9 +50,7 @@ import com.onesignal.OneSignal;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static co.firstcrush.firstcrush.R.mipmap.ic_stat_onesignal_default;
 import static co.firstcrush.firstcrush.R.mipmap.icon;
-import static co.firstcrush.firstcrush.R.mipmap.largeicon;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView navigation;
@@ -108,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
 
         //Bluetooth Device Connectivity
         IntentFilter filter = new IntentFilter(Intent.ACTION_MEDIA_BUTTON);
@@ -133,10 +125,12 @@ public class MainActivity extends AppCompatActivity {
       //  MediaMetadata controllerMetadata= controller.getMetadata();
 //        MediaDescription description = controllerMetadata.getDescription();
 
-        session.setFlags(MediaSession.FLAG_HANDLES_MEDIA_BUTTONS|MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS);
         PlaybackState state = new PlaybackState.Builder()
-                .setActions(PlaybackState.ACTION_PAUSE)
-                .setState(PlaybackState.STATE_PLAYING, 0, 0, 0)
+                .setActions(PlaybackState.ACTION_PLAY |
+                        PlaybackState.ACTION_PAUSE |
+                        PlaybackState.ACTION_SKIP_TO_NEXT|
+                        PlaybackState.ACTION_SKIP_TO_PREVIOUS)
+                .setState(PlaybackState.STATE_PLAYING, 0, 0, SystemClock.elapsedRealtime())
                 .build();
         session.setPlaybackState(state);
         session.setActive(true);
@@ -179,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
         mBuilder.setSmallIcon(icon);
         mBuilder.setContentTitle("Your Title");
         mBuilder.setContentText("Your text");
-        mBuilder.setPriority(Notification.PRIORITY_MAX);
         mBuilder.setStyle(bigText);
         /*mBuilder.setStyle(new NotificationCompat.MediaStyle()
                 .setShowActionsInCompactView(0,1)
@@ -219,7 +212,6 @@ public class MainActivity extends AppCompatActivity {
                 .addAction(android.R.drawable.ic_media_play, "Play", pendingPlayPause)
                 .addAction(android.R.drawable.ic_media_next, "Next", pendingNext);
                 //.setStyle(bigText)
-                ;
 
 
         mNotificationManager =
@@ -321,10 +313,7 @@ public class MainActivity extends AppCompatActivity {
                 session.setPlaybackState(state);
                 ((AudioManager)getSystemService(
                         Context.AUDIO_SERVICE)).requestAudioFocus(
-                        new AudioManager.OnAudioFocusChangeListener() {
-                            @Override
-                            public void onAudioFocusChange(int focusChange) {
-                            }
+                        focusChange -> {
                         }, AudioManager.STREAM_MUSIC,
                         AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 

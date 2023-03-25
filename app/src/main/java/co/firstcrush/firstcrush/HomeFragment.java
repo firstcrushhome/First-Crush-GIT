@@ -1,37 +1,26 @@
 package co.firstcrush.firstcrush;
 
-import android.app.PictureInPictureParams;
-import android.app.ProgressDialog;
-import android.content.res.Configuration;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.os.Build;
+
 import android.os.Bundle;
 
 
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.annotation.RequiresApi;
+
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
 import androidx.viewpager.widget.ViewPager;
 
-import android.util.Log;
-import android.util.Rational;
-import android.view.Display;
+
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-import java.util.Objects;
 
 public class HomeFragment extends Fragment{
     public WebView webView;

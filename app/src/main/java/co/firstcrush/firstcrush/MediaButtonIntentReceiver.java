@@ -1,21 +1,17 @@
 package co.firstcrush.firstcrush;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
-
-import androidx.media.session.MediaButtonReceiver;
 
 public class MediaButtonIntentReceiver extends BroadcastReceiver {
     public MediaButtonIntentReceiver(){
         super();
         Log.i("mylog", "init");
+
         //abortBroadcast();
     }
 

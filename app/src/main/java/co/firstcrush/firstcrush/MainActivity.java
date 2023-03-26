@@ -394,7 +394,7 @@ public class MainActivity extends AppCompatActivity {
         if (activityStarted
                 && getIntent() != null
                 && (getIntent().getFlags() & Intent.FLAG_ACTIVITY_REORDER_TO_FRONT) != 0) {
-            finish();
+           // finish();
             return;
         }
         activityStarted = true;
@@ -526,7 +526,7 @@ public class MainActivity extends AppCompatActivity {
                     if (   activityStarted
                             && getIntent() != null
                             && (getIntent().getFlags() & Intent.FLAG_ACTIVITY_REORDER_TO_FRONT) != 0) {
-                        finish();
+                        //finish();
                         return;
                     }
                 }

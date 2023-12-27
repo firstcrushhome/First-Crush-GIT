@@ -4,6 +4,7 @@ package co.firstcrush.firstcrush;
 import android.app.PictureInPictureParams;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.AudioManager;
@@ -14,6 +15,7 @@ import com.onesignal.OneSignal;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -27,8 +29,10 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -55,6 +59,8 @@ public class RadioFragment extends Fragment{
     private MyWebChromeClient mWebChromeClient = null;
     AudioManager audioManager;
     View decorView;
+    SwipeRefreshLayout mySwipeRefreshLayoutRadio;
+    ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
 
     private Handler handler = new Handler(Looper.getMainLooper()){
         @Override
@@ -84,6 +90,9 @@ public class RadioFragment extends Fragment{
         webRadioView = view.findViewById(R.id.web1);
         progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
 
+        mySwipeRefreshLayoutRadio = view.findViewById(R.id.swipeContainer);
+        mySwipeRefreshLayoutRadio.setColorSchemeColors(Color.WHITE);
+        mySwipeRefreshLayoutRadio.setProgressBackgroundColorSchemeResource(R.color.cardview_dark_background);
         progressBar.setVisibility(View.VISIBLE);
         WebSettings webSettings = webRadioView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -91,6 +100,7 @@ public class RadioFragment extends Fragment{
         webSettings.setAppCacheEnabled(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(false);
+        webSettings.setAllowContentAccess(true);
         webSettings.supportMultipleWindows();
 
         webSettings.setAllowFileAccess(true);
@@ -108,9 +118,23 @@ public class RadioFragment extends Fragment{
         webRadioView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView, String urlNewString) {
-                webView.loadUrl(urlNewString);
+                webRadioView.loadUrl(urlNewString);
+                Log.w("App Link",urlNewString);
                 progressBar.setVisibility(View.VISIBLE);
                 return true;
+            }
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                if((String.valueOf(request.getUrl().getHost())).contains("firstcrush.co")) {
+                    webRadioView.loadUrl(String.valueOf(request.getUrl()));
+                    Log.w("App Link","Internal Link");
+                    progressBar.setVisibility(View.VISIBLE);
+                    return false;
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, request.getUrl());
+                    startActivity(intent);
+                    return true;
+                }
             }
 
             @Override
@@ -118,13 +142,26 @@ public class RadioFragment extends Fragment{
                 if (progressBar != null) {
                     progressBar.setVisibility(View.GONE);
                 }
+                mySwipeRefreshLayoutRadio.clearAnimation();
+                mySwipeRefreshLayoutRadio.setRefreshing(false);
                 super.onPageFinished(view, url);
 
             }
         });
         webRadioView.loadUrl("https://www.firstcrush.co/first-crush-101-radio/");
 
+        mySwipeRefreshLayoutRadio.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
 
+                        webRadioView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+                        webRadioView.reload();
+// This is important as it forces webview to load from the instead of reloading from cache
+
+                    }
+                }
+        );
         webRadioView.setOnKeyListener((v, keyCode, event) -> {
             if (keyCode == KeyEvent.KEYCODE_BACK
                     && event.getAction() == MotionEvent.ACTION_UP) {
@@ -244,12 +281,31 @@ public class RadioFragment extends Fragment{
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+
+        mySwipeRefreshLayoutRadio.getViewTreeObserver()
+                .addOnScrollChangedListener(mOnScrollChangedListener =
+                        () -> {
+                            if (webRadioView.getScrollY() == 0)
+                                mySwipeRefreshLayoutRadio.setEnabled(true);
+                            else
+                                mySwipeRefreshLayoutRadio.setEnabled(false);
+
+                        });
+    }
+
+    @Override
     public void onStop() {
         super.onStop();    //To change body of overridden methods use File | Settings | File Templates.
         if (mCustomView != null) {
             getActivity().setContentView(mContentView);
         }
+        mySwipeRefreshLayoutRadio.getViewTreeObserver()
+                .removeOnScrollChangedListener(mOnScrollChangedListener);
     }
+
 
     @Override
     public void onDestroy() {

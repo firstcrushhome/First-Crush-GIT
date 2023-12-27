@@ -4,15 +4,16 @@ package co.firstcrush.firstcrush;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
+import android.graphics.Color;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import com.onesignal.OneSignal;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -24,14 +25,17 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,6 +56,8 @@ public class MainFragment extends Fragment{
     private MyWebChromeClient mWebChromeClient = null;
     AudioManager audioManager;
     View decorView;
+    SwipeRefreshLayout mySwipeRefreshLayout;
+    ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
 
     private final Handler handler = new Handler(Looper.getMainLooper()){
         @Override
@@ -65,8 +71,15 @@ public class MainFragment extends Fragment{
             if (message.what == 3) {
                 onKeyUp();
             }
+            if (message.what == 5) {
+                onPause();
+            }
+            if (message.what == 6) {
+                onPause();
+            }
         }
     };
+
     public static MainFragment newInstance() {
         MainFragment fragment = new MainFragment();
         return fragment;
@@ -79,6 +92,9 @@ public class MainFragment extends Fragment{
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             view = inflater.inflate(R.layout.main_fragment, container, false);
             webMainView = view.findViewById(R.id.web1);
+            mySwipeRefreshLayout = view.findViewById(R.id.swipeContainer);
+            mySwipeRefreshLayout.setColorSchemeColors(Color.WHITE);
+            mySwipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.cardview_dark_background);
             progressBar = view.findViewById(R.id.progressbar);
 
             WebSettings webSettings = webMainView.getSettings();
@@ -92,6 +108,7 @@ public class MainFragment extends Fragment{
             webSettings.setAllowFileAccess(true);
             webSettings.setDomStorageEnabled(true);
             webSettings.setAllowFileAccess(true);
+            webSettings.setAllowContentAccess(true);
 
             webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 
@@ -106,10 +123,17 @@ public class MainFragment extends Fragment{
             webMainView.setWebViewClient(new WebViewClient() {
 
                 @Override
-                public boolean shouldOverrideUrlLoading(WebView webView, String urlNewString) {
-                    webView.loadUrl(urlNewString);
-                    progressBar.setVisibility(View.VISIBLE);
-                    return true;
+                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                    if((String.valueOf(request.getUrl().getHost())).contains("firstcrush.co")) {
+                        webMainView.loadUrl(String.valueOf(request.getUrl()));
+                        Log.w("App Link","Internal Link");
+                        progressBar.setVisibility(View.VISIBLE);
+                        return false;
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, request.getUrl());
+                        startActivity(intent);
+                        return true;
+                    }
                 }
 
                 @Override
@@ -117,6 +141,8 @@ public class MainFragment extends Fragment{
                         if (progressBar != null) {
                             progressBar.setVisibility(View.GONE);
                         }
+                    mySwipeRefreshLayout.clearAnimation();
+                        mySwipeRefreshLayout.setRefreshing(false);
                     super.onPageFinished(view, url);
 
                 }
@@ -126,12 +152,25 @@ public class MainFragment extends Fragment{
             Uri appLinkData = appLinkIntent.getData();
             if (appLinkData == null) {
                 webMainView.loadUrl("https://www.firstcrush.co");
+                Log.w("App Link","Home Page Link");
             }
             else {
                 webMainView.loadUrl(appLinkData.toString());
+                Log.w("App Link",appLinkData.toString());
             }
 
+            mySwipeRefreshLayout.setOnRefreshListener(
+                    new SwipeRefreshLayout.OnRefreshListener() {
+                        @Override
+                        public void onRefresh() {
 
+                            webMainView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+                            webMainView.reload();
+// This is important as it forces webview to load from the instead of reloading from cache
+                            progressBar.setVisibility(View.VISIBLE);
+                        }
+                    }
+            );
             webMainView.setOnKeyListener((v, keyCode, event) -> {
                 if (keyCode == KeyEvent.KEYCODE_BACK
                         && event.getAction() == MotionEvent.ACTION_UP) {
@@ -162,6 +201,14 @@ public class MainFragment extends Fragment{
                     handler.sendEmptyMessage(4);
                     return true;
                 }
+                if ((keyCode == KeyEvent.KEYCODE_MEDIA_PAUSE)) {
+                    handler.sendEmptyMessage(5);
+                    return true;
+                }
+                if ((keyCode == KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)) {
+                    handler.sendEmptyMessage(6);
+                    return true;
+                }
                     return false;
             });
 
@@ -171,6 +218,14 @@ public class MainFragment extends Fragment{
 
     private void webViewGoBack(){
         webMainView.goBack();
+    }
+
+    @Override
+    public void onPictureInPictureModeChanged(boolean isInPictureInPictureMode) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode);
+        if (isInPictureInPictureMode) {
+            //Toast.makeText(getContext(), "Entering Pip", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public boolean onKeyUp() {
@@ -188,19 +243,12 @@ public class MainFragment extends Fragment{
     }
 
 
-    public void onWindowFocusChanged(boolean hasFocus) {
-        view.onWindowFocusChanged(hasFocus);
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-    }
-
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         webMainView.saveState(outState);
     }
+
 
 
     @Override
@@ -248,7 +296,24 @@ public class MainFragment extends Fragment{
 
     public void onPause() {
         super.onPause();
+
              }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+        mySwipeRefreshLayout.getViewTreeObserver()
+                .addOnScrollChangedListener(mOnScrollChangedListener =
+                        () -> {
+                            if (webMainView.getScrollY() == 0)
+                                mySwipeRefreshLayout.setEnabled(true);
+                            else
+                                mySwipeRefreshLayout.setEnabled(false);
+
+                        });
+    }
 
     @Override
     public void onStop() {
@@ -256,12 +321,17 @@ public class MainFragment extends Fragment{
         if (mCustomView != null) {
             getActivity().setContentView(mContentView);
         }
+        mySwipeRefreshLayout.getViewTreeObserver()
+                .removeOnScrollChangedListener(mOnScrollChangedListener);
     }
+
+
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        webMainView.destroy();
         webMainView = null;
+        super.onDestroy();
     }
 
 

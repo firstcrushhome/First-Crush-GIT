@@ -15,8 +15,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE" />
+
 
     <permission
         android:name="co.firstcrush.firstcrush.permission.RECEIVE_ADM_MESSAGE"
@@ -52,16 +56,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:scheme="https"
-                    android:host="www.firstcrush.co" />
-            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -70,16 +64,6 @@
 
                 <data
                     android:scheme="https"
-                    android:host="www.firstcrush.co" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:scheme="http"
                     android:host="www.firstcrush.co" />
             </intent-filter>
             <intent-filter>
@@ -93,14 +77,18 @@
                     android:host="www.firstcrush.co" />
             </intent-filter>
         </activity>
-
+        <receiver android:name=".MediaButtonIntentReceiver" android:exported="true" android:priority="2139999999"
+            android:permission="android.permission.FOREGROUND_SERVICE">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
         <meta-data
             android:name="onesignal_app_id"
             android:value="ea063994-c980-468b-8895-fcdd9dd93cf4" />
         <meta-data
             android:name="onesignal_google_project_number"
             android:value="str:105064394158" />
-
         <receiver
             android:name="com.onesignal.NotificationDismissReceiver"
             android:exported="true" />
